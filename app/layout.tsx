@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
-import { inter } from "@/components/fonts";
+import { roboto_c } from "@/components/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,11 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="min-h-screen">
-          <Header />
-          {children}
-        </main>
+      <body className={roboto_c.className}>
+        <Header />
+        <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );
