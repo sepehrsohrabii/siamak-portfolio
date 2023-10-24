@@ -2,11 +2,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-
-interface SidebarProps {
-    open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { SidebarProps } from "@/utils/types";
 
 export default function Sidebar({ open, setOpen }: SidebarProps) {
   return (
