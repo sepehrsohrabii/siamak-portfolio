@@ -3,7 +3,7 @@ import { useState } from "react";
 import Sidebar from "./sidebar";
 
 export default function Header() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   return (
     <header className="w-full py-10 absolute z-20">
       <div className="mx-40 flex justify-between">
