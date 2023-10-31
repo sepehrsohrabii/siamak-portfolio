@@ -1,0 +1,16 @@
+{
+    "vs-code-prettier-eslint.prettierLast": true,
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "jsx",
+        "tsx"
+    ],
+    "eslint.workingDirectories": [
+        ".eslintrc.json"
+    ],
+    "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+    "editor.formatOnSave": true, 
+    "eslint.alwaysShowStatus": true, 
+    "files.autoSave": "onFocusChange" 
+}
