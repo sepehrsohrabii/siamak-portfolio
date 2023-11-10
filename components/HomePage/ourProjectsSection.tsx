@@ -15,7 +15,7 @@ export default function OurProjectsSection() {
 
    return (
       <div className='mt-20 flex w-full items-center justify-between overflow-hidden px-40'>
-         <div className='grid columns-9'>
+         <div className='relative grid columns-9'>
             <Swiper
                slidesPerView={3}
                spaceBetween={30}
@@ -24,7 +24,7 @@ export default function OurProjectsSection() {
                   watchState: true,
                }}
                autoplay={{
-                  delay: 2500,
+                  delay: 5500,
                   disableOnInteraction: true,
                   pauseOnMouseEnter: true,
                }}
@@ -37,6 +37,7 @@ export default function OurProjectsSection() {
                   </SwiperSlide>
                ))}
             </Swiper>
+            <div className='absolute right-0 top-0 z-10 h-full w-1/6 bg-gradient-to-l from-white'></div>
          </div>
          <div className='columns-1 px-5'></div>
          <div className='flex columns-2 flex-col'>
