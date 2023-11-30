@@ -1,16 +1,25 @@
 export default function Footer() {
    return (
-      <footer className='mx-40 mt-20'>
+      <footer className='mx-40'>
          <div className='flex flex-row justify-between'>
             <div className='basis-1/4'>
-               <h2 className='text-4xl'>Siamak M.Hejri</h2>
+               <h2 className='text-4xl'>Graph Studio</h2>
             </div>
-            <div className='basis-1/4 text-right'>
-               <a
-                  className='border border-blue-700 bg-blue-700 px-5 py-3 text-white duration-200 hover:bg-white hover:text-blue-700'
-                  href='tel:+989113373811'
-               >
-                  Call Us Now
+            <div className='flex basis-2/4 flex-row justify-between text-right'>
+               <a className='text-lg text-gray-500' href='#' target='_blank'>
+                  About Us
+               </a>
+               <a className='text-lg text-gray-500' href='#' target='_blank'>
+                  Contact Us
+               </a>
+               <a className='text-lg text-gray-500' href='#' target='_blank'>
+                  Our Projects
+               </a>
+               <a className='text-lg text-gray-500' href='#' target='_blank'>
+                  Awards
+               </a>
+               <a className='text-lg text-gray-500' href='#' target='_blank'>
+                  Privacy and Policy
                </a>
             </div>
          </div>
@@ -64,7 +73,7 @@ export default function Footer() {
                   className='text-xl text-gray-500'
                   href='https://instagram.com/'
                >
-                  Youtube, and
+                  Youtube, and{' '}
                </a>
                <a
                   className='text-xl text-gray-500'

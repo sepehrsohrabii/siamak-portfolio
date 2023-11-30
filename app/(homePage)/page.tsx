@@ -1,29 +1,38 @@
 'use client';
 
-import FirstSection from "@/components/HomePage/firstSection";
-import OurProjectsSection from "@/components/HomePage/ourProjectsSection";
+import AwardsSection from '@/components/HomePage/awardsSection';
+import CallUsSection from '@/components/HomePage/callUsSection';
+import FirstSection from '@/components/HomePage/firstSection';
+import OurProjectsSection from '@/components/HomePage/ourProjectsSection';
+import SloganSection from '@/components/HomePage/sloganSection';
+import StatisticsSection from '@/components/HomePage/statisticsSection';
+import TrustSection from '@/components/HomePage/trustSection';
 
 export default function Home() {
-    const slides = [
-        {
-            src: 'string',
-            title: 'string',
-            description: 'string',
-        },
-        {
-            src: 'string',
-            title: 'string',
-            description: 'string',
-        },
-    ];
-    return (
-        <div>
-            <FirstSection />
-            <OurProjectsSection />
-            
-            {/* second section */}
-            <div className='mt-20 flex w-full items-center justify-between overflow-hidden px-40'>
-                {/* <div>
+   const slides = [
+      {
+         src: 'string',
+         title: 'string',
+         description: 'string',
+      },
+      {
+         src: 'string',
+         title: 'string',
+         description: 'string',
+      },
+   ];
+   return (
+      <div>
+         <FirstSection />
+         <OurProjectsSection />
+         <TrustSection />
+         <AwardsSection />
+         <StatisticsSection />
+         {/* <SloganSection /> */}
+         <CallUsSection />
+         {/* second section */}
+         <div className='mt-20 flex w-full items-center justify-between overflow-hidden px-40'>
+            {/* <div>
                     <div className='relative max-h-[800px] overflow-auto rounded-xl p-8'>
                         <div className='relative'>
                             <div className='columns-3xs gap-8 space-y-8'>
@@ -59,7 +68,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div> */}
-            </div>
-        </div>
-    );
+         </div>
+      </div>
+   );
 }
