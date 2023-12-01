@@ -1,6 +1,6 @@
 export default function CallUsSection() {
    return (
-      <div className='me-40 flex w-full flex-row'>
+      <div className='my-32 me-40 flex w-full flex-row'>
          <div className='basis-1/2 bg-gray-200 py-40 ps-40'>
             <h4 className='text-center text-6xl font-thin'>We are here</h4>
          </div>

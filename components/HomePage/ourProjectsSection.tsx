@@ -14,7 +14,7 @@ export default function OurProjectsSection() {
    const projects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
    return (
-      <div className='mt-20 flex w-full items-center justify-between overflow-hidden px-40'>
+      <div className='my-32 flex w-full items-center justify-between overflow-hidden px-40'>
          <div className='relative grid columns-9'>
             <Swiper
                slidesPerView={3}

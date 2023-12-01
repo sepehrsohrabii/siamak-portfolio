@@ -13,27 +13,34 @@ const stats = [
 
 export default function StatisticsSection() {
    return (
-      <div className='relative isolate overflow-hidden py-24 sm:py-32'>
-         <div className='mx-40 max-w-7xl px-6 lg:px-8'>
-            <div className='mx-auto max-w-2xl lg:mx-0'>
-               <h2 className='text-4xl font-bold tracking-tight text-black sm:text-6xl'>
-                  Work with us
-               </h2>
-               <p className='mt-6 text-lg leading-8 text-gray-800'>
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                  qui lorem cupidatat commodo. Elit sunt amet fugiat veniam
-                  occaecat fugiat aliqua.
-               </p>
-            </div>
-            <div className='mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none'>
-               <div className='grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-black sm:grid-cols-2 md:flex lg:gap-x-10'>
-                  {links.map((link) => (
-                     <a key={link.name} href={link.href}>
-                        {link.name} <span aria-hidden='true'>&rarr;</span>
-                     </a>
-                  ))}
+      <div className='mx-40 my-32'>
+         <div className='flex flex-row'>
+            <div className='basis-1/2'>
+               <div className='mx-auto max-w-2xl lg:mx-0'>
+                  <h2 className='text-6xl font-thin tracking-tight text-black sm:text-6xl'>
+                     Work with us
+                  </h2>
+                  <p className='mt-6 text-lg leading-8 text-gray-800'>
+                     Anim aute id magna aliqua ad ad non deserunt sunt. Qui
+                     irure qui lorem cupidatat commodo. Elit sunt amet fugiat
+                     veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad
+                     ad non deserunt sunt. Qui irure qui lorem cupidatat
+                     commodo. Elit sunt amet fugiat veniam occaecat fugiat
+                     aliqua.
+                  </p>
                </div>
-               <dl className='mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4'>
+               <div className='mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none'>
+                  <div className='grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-black sm:grid-cols-2 md:flex lg:gap-x-10'>
+                     {links.map((link) => (
+                        <a key={link.name} href={link.href}>
+                           {link.name} <span aria-hidden='true'>&rarr;</span>
+                        </a>
+                     ))}
+                  </div>
+               </div>
+            </div>
+            <div className='basis-1/2 ps-40'>
+               <dl className='grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-2'>
                   {stats.map((stat) => (
                      <div key={stat.name} className='flex flex-col-reverse'>
                         <dt className='text-base leading-7 text-gray-800'>

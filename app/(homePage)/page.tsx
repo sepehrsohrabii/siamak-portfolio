@@ -1,9 +1,10 @@
 'use client';
 
-import AwardsSection from '@/components/HomePage/awardsSection';
+import AboutUsSection from '@/components/HomePage/aboutUsSection';
 import CallUsSection from '@/components/HomePage/callUsSection';
-import FirstSection from '@/components/HomePage/firstSection';
+import HeroSection from '@/components/HomePage/heroSection';
 import OurProjectsSection from '@/components/HomePage/ourProjectsSection';
+import ServicesSection from '@/components/HomePage/servicesSection';
 import SloganSection from '@/components/HomePage/sloganSection';
 import StatisticsSection from '@/components/HomePage/statisticsSection';
 import TrustSection from '@/components/HomePage/trustSection';
@@ -23,10 +24,12 @@ export default function Home() {
    ];
    return (
       <div>
-         <FirstSection />
+         <HeroSection />
          <OurProjectsSection />
+         <ServicesSection />
+         <AboutUsSection />
+         <SloganSection />
          <TrustSection />
-         <AwardsSection />
          <StatisticsSection />
          {/* <SloganSection /> */}
          <CallUsSection />

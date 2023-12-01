@@ -1,10 +1,10 @@
-export default function FirstSection() {
+export default function HeroSection() {
    return (
       <div className='flex h-screen w-full items-center justify-between overflow-hidden'>
          <div className='flex h-screen flex-initial items-center ps-40'>
             <div className='w-30 absolute z-50'>
                <h3 className='w-fit bg-blue-700 px-3 py-1'>
-                  <span className='text-2xl text-white'>
+                  <span className='text-2xl uppercase text-white'>
                      Explore the most beautiful
                   </span>
                </h3>

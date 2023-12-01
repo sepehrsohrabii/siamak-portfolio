@@ -3,12 +3,12 @@ import engineers from '../../public/animations/engineers.json';
 
 export default function TrustSection() {
    return (
-      <div className='mx-40 my-20'>
+      <div className='mx-40 -mt-52'>
          <div className='flex flex-row'>
             <div className='relative w-full'>
                <Lottie animationData={engineers} loop={true} />
             </div>
-            <div className='absolute left-2/3 mr-40 mt-40'>
+            <div className='absolute left-2/3 mr-40 mt-52'>
                <h2 className='mb-5 text-6xl font-thin text-gray-800'>
                   Trust Professionals
                </h2>
