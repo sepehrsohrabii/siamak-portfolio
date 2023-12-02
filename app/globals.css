@@ -26,3 +26,70 @@ body {
     rgb(var(--background-start-rgb)); */
   background-color: white;
 }
+
+.autoplay-progress {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: #fff;
+  fill: none;
+  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+.menu-container {
+  position: relative;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  max-width: 0;
+  height: 0;
+  transition: max-width 0.5s ease-in-out;
+}
+
+.menu.visible {
+  max-width: 500px; /* Adjust the max-width as needed */
+  height: auto;
+}
+
+.header-ul {
+  list-style: none;
+  display: flex;
+}
+
+.header-li {
+  margin-right: 10px;
+  opacity: 0;
+  height: 0;
+  transform: translateX(500px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.menu.visible .header-li {
+  opacity: 1;
+  height: auto;
+  transform: translateX(0);
+}
