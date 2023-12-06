@@ -1,29 +1,71 @@
+import { motion } from 'framer-motion';
+
+const container = {
+   hidden: { opacity: 1, scale: 0 },
+   visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+         delayChildren: 0.3,
+         staggerChildren: 0.2,
+      },
+   },
+};
+
+const item = {
+   hidden: { y: 20, opacity: 0 },
+   visible: {
+      y: 0,
+      opacity: 1,
+   },
+};
+<motion.ul
+   className='container'
+   variants={container}
+   initial='hidden'
+   animate='visible'
+>
+   {[0, 1, 2, 3].map((index) => (
+      <motion.li key={index} className='item' variants={item} />
+   ))}
+</motion.ul>;
 export default function HeroSection() {
    return (
       <div className='flex h-screen w-full items-center justify-between overflow-hidden'>
          <div className='flex h-screen flex-initial items-center ps-40'>
-            <div className='w-30 absolute z-50'>
-               <h3 className='w-fit bg-blue-700 px-3 py-1'>
+            <motion.div
+               className='w-30 absolute'
+               variants={container}
+               initial='hidden'
+               animate='visible'
+            >
+               <motion.h3
+                  className='w-fit bg-cyan-700 px-3 py-1'
+                  variants={item}
+               >
                   <span className='text-2xl uppercase text-white'>
                      Explore the most beautiful
                   </span>
-               </h3>
-               <h1 className='w-fit text-8xl font-thin text-gray-800'>
+               </motion.h3>
+               <motion.h1
+                  className='w-fit text-8xl font-thin text-gray-800'
+                  variants={item}
+               >
                   Explore Old
                   <br className='hidden md:inline' />
-                  Classic Buildings
-               </h1>
-               <p className='ms-20 mt-10 w-1/4 text-gray-600'>
+                  Classic Building
+               </motion.h1>
+               <motion.p className='mt-10 w-1/4 text-gray-600' variants={item}>
                   buildings in the world Lorem ipsum dolor, sit amet consectetur
                   adipisicing elit. Vitae, labore quod veritatis explicabo
                   maiores consectetur. Suscipit dolor, ex nemo aperiam
                   reprehenderit ea non doloribus velit quidem omnis labore, enim
                   soluta?
-               </p>
-            </div>
+               </motion.p>
+            </motion.div>
          </div>
          <div className='z-0 h-screen w-3/5 flex-initial saturate-0 duration-500 hover:saturate-100'>
-            <div className="h-full w-full bg-[url('/images/2.jpg')] bg-cover bg-center bg-no-repeat">
+            <div className="h-full w-full bg-[url('/images/01.jpg')] bg-cover bg-center bg-no-repeat">
                <div className='z-2 absolute bottom-20 left-20 w-80 border-b-2 border-l-2 pb-5 pl-5'>
                   <h3 className='font-bold'>felan</h3>
                   <p>

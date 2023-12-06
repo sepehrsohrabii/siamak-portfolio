@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
+const variants = {
+   open: { opacity: 1, x: 0 },
+   closed: { opacity: 0, x: '-100%' },
+};
 export default function Header() {
    const [isMenuVisible, setMenuVisibility] = useState(false);
 
@@ -21,7 +25,7 @@ export default function Header() {
                      <li className='header-li'>
                         <Link
                            className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-blue-700'
-                           href='#'
+                           href='/'
                         >
                            Home
                         </Link>

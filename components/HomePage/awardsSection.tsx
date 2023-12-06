@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { motion } from 'framer-motion';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -18,10 +18,14 @@ const AwardsSection: React.FC = () => {
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
    };
    return (
-      <div className='my-32 bg-blue-700 py-32'>
+      <div className='my-32 bg-stone-300 py-32'>
          <div className='mx-40'>
-            <div className='mb-16 flex flex-row items-center justify-center'>
-               <h2 className='text-center text-8xl font-thin text-white'>
+            <motion.div
+               whileHover={{ scale: [null, 1.5, 1.4] }}
+               transition={{ duration: 0.3 }}
+               className='mb-16 flex flex-row items-center justify-center'
+            >
+               <h2 className='text-center text-8xl font-thin text-gray-800'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      fill='none'
@@ -37,15 +41,24 @@ const AwardsSection: React.FC = () => {
                      />
                   </svg>
                </h2>
-               <h2 className='text-center text-8xl font-thin text-white'>
+               <h2 className='text-center text-8xl font-thin text-gray-800'>
                   Awards
                </h2>
-            </div>
+            </motion.div>
+            <motion.div
+               className='box'
+               /**
+                * Setting the initial keyframe to "null" will use
+                * the current value to allow for interruptable keyframes.
+                */
+               whileHover={{ scale: [null, 1.5, 1.4] }}
+               transition={{ duration: 0.3 }}
+            />
             <Swiper
                spaceBetween={30}
                centeredSlides={true}
                autoplay={{
-                  delay: 2500,
+                  delay: 4000,
                   disableOnInteraction: false,
                }}
                pagination={{
@@ -59,18 +72,18 @@ const AwardsSection: React.FC = () => {
                <SwiperSlide>
                   <div className='flex flex-row justify-between'>
                      <div className='basis-1/5'>
-                        <h5 className='text-4xl font-medium text-white'>
+                        <h5 className='text-4xl font-medium text-gray-800'>
                            Lorem ipsum dolor sit amet consectetur adipisicing
                         </h5>
                      </div>
                      <div className='h-96 basis-2/5'>
                         <img
                            className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                           src='/images/7.jpg'
+                           src='/images/9.jpg'
                            alt=''
                         />
                      </div>
-                     <div className='basis-2/5 self-center ps-40 text-gray-300'>
+                     <div className='basis-2/5 self-center ps-40 text-gray-600'>
                         <p>
                            Lorem ipsum dolor sit amet consectetur adipisicing
                            elit. Voluptatibus eligendi voluptatum dolore
@@ -79,14 +92,43 @@ const AwardsSection: React.FC = () => {
                            libero quasi excepturi! Alias, quidem.
                         </p>
                         <a href='#'>
-                           <button className='mt-5 bg-white px-5 py-2 text-blue-700 duration-200 hover:bg-gray-400'>
+                           <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
                               Read More
                            </button>
                         </a>
                      </div>
                   </div>
                </SwiperSlide>
-
+               <SwiperSlide>
+                  <div className='flex flex-row justify-between'>
+                     <div className='basis-1/5'>
+                        <h5 className='text-4xl font-medium text-gray-800'>
+                           Lorem ipsum dolor sit amet consectetur adipisicing
+                        </h5>
+                     </div>
+                     <div className='h-96 basis-2/5'>
+                        <img
+                           className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                           src='/images/9.jpg'
+                           alt=''
+                        />
+                     </div>
+                     <div className='basis-2/5 self-center ps-40 text-gray-600'>
+                        <p>
+                           Lorem ipsum dolor sit amet consectetur adipisicing
+                           elit. Voluptatibus eligendi voluptatum dolore
+                           repellat, quam laboriosam perferendis aperiam nemo
+                           rerum odio laudantium. Aliquid nemo quibusdam quia,
+                           libero quasi excepturi! Alias, quidem.
+                        </p>
+                        <a href='#'>
+                           <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
+                              Read More
+                           </button>
+                        </a>
+                     </div>
+                  </div>
+               </SwiperSlide>
                <div className='autoplay-progress' slot='container-end'>
                   <svg viewBox='0 0 48 48' ref={progressCircle}>
                      <circle cx='24' cy='24' r='20'></circle>
