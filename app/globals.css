@@ -105,37 +105,28 @@ body {
   border-radius: 50%;
   background: #000;
 }
-
-.scroll-container {
-  position: sticky;
-  left: 0;
-  right: 0;
-  will-change: transform;
+.containerTwo {
+  width: 600vw;
+  height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
 }
-.scroll-container .ghost {
+.panel {
   width: 100vw;
+  height: 50vh;
 }
-.thumbnails-container {
-  position: relative;
-  height: 100vh;
-  width: max-content;
-  display: flex;
-  align-items: center;
-  padding: 0px 160px;
-  background-color: #141414;
-  border: 40px solid yellowgreen;
+.red {
+  background: blue;
 }
-.thumbnails-container .thumbnails {
-  position: relative;
-  display: flex;
-  border: 20px solid yellow;
+.red {
+  background: red;
 }
-.thumbnails-container .thumbnails > *:not(:last-child) {
-  margin-right: 45px;
+.orange {
+  background: orange;
 }
-.thumbnails-container .thumbnails .thumbnail {
-  height: 40vh;
-  width: 700px;
-  background-color: royalblue;
-  border: 15px solid magenta;
+.purple {
+  background: purple;
+}
+.blue {
+  background-color: blue;
 }

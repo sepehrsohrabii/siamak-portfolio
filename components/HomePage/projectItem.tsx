@@ -8,7 +8,7 @@ export default function ProjectItem({
    return (
       <div
          key={key}
-         className='thumbnail group relative h-72 w-full shrink-0 snap-start scroll-mx-6 saturate-0 duration-500 hover:saturate-100'
+         className='panel thumbnail group relative h-72 w-full shrink-0 snap-start scroll-mx-6 saturate-0 duration-500 hover:saturate-100'
       >
          <img
             className='h-full w-full object-cover'

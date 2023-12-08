@@ -1,5 +1,4 @@
 'use client';
-
 import AboutUsSection from '@/components/HomePage/aboutUsSection';
 import AwardsSection from '@/components/HomePage/awardsSection';
 import CallUsSection from '@/components/HomePage/callUsSection';
