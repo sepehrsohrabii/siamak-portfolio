@@ -6,7 +6,7 @@ import ProjectItem from './projectItem';
 gsap.registerPlugin(ScrollTrigger);
 
 const OurProjectsSection = () => {
-   const projects = [0, 1, 2, 3, 4, 5, 6];
+   const projects = [0, 1, 2];
    const component = useRef();
    const slider = useRef();
 
@@ -19,9 +19,10 @@ const OurProjectsSection = () => {
             scrollTrigger: {
                trigger: slider.current,
                pin: true,
+               anticipatePin: 1,
                scrub: 1,
                snap: 1 / (panels.length - 1),
-               end: () => '+=' + slider.current.offsetWidth,
+               end: () => '+=' + slider.current.offsetWidth * 10,
                markers: true,
             },
          });
@@ -30,21 +31,19 @@ const OurProjectsSection = () => {
    });
 
    return (
-      <div className='App' ref={component}>
-         <div ref={slider} className='flex flex-row overflow-x-hidden'>
-            <div className='description panel blue'>
-               <div>
-                  SCROLL DOWN
-                  <div className='scroll-down'>
-                     <div className='arrow'></div>
-                  </div>
-               </div>
-            </div>
-            {projects.map((project, index) => (
-               <ProjectItem project={project} key={index} />
-            ))}
+      <>
+         <div className='flex items-end'>
+            <h6 className='text-lg font-thin text-gray-700'>Our</h6>
+            <h2 className='text-6xl font-thin text-gray-700'>Projects</h2>
          </div>
-      </div>
+         <div className='' ref={component}>
+            <div ref={slider} className='flex flex-row overflow-x-hidden py-32'>
+               {projects.map((project, index) => (
+                  <ProjectItem project={project} key={index} />
+               ))}
+            </div>
+         </div>
+      </>
    );
 };
 

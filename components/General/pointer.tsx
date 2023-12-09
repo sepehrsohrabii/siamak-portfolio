@@ -1,24 +1,22 @@
-'use client';
-import '../../app/globals.css';
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useFollowPointer } from './pointerFunc';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
+import gsap from 'gsap';
 
-export default function Pointer() {
-   const ref = useRef(null);
-   const { x, y } = useFollowPointer(ref);
+const Circle = forwardRef((props, ref) => {
+   const el = useRef();
 
-   return (
-      <motion.div
-         ref={ref}
-         className='pointer'
-         animate={{ x, y }}
-         transition={{
-            type: 'spring',
-            damping: 3,
-            stiffness: 50,
-            restDelta: 0.001,
-         }}
-      />
+   useImperativeHandle(
+      ref,
+      () => {
+         // return our API
+         return {
+            moveTo(x, y) {
+               gsap.to(el.current, { x, y });
+            },
+         };
+      },
+      []
    );
-}
+
+   return <div className='circle border-2 p-5' ref={el}></div>;
+});
+export default Circle;
