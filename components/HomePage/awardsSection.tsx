@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -17,14 +17,19 @@ const AwardsSection: React.FC = () => {
       progressCircle.current.style.setProperty('--progress', 1 - progress);
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
    };
+   const container = useRef(null);
+   const { scrollYProgress } = useScroll({
+      target: container,
+      offset: ['start end', 'end end'],
+   });
    return (
-      <div className='my-32 bg-stone-300 py-32'>
-         <div className='mx-40'>
-            <motion.div
-               whileHover={{ scale: [null, 1.5, 1.4] }}
-               transition={{ duration: 0.3 }}
-               className='mb-16 flex flex-row items-center justify-center'
-            >
+      <div className='mb-32 bg-stone-300 py-32'>
+         <motion.div
+            ref={container}
+            className='mx-40'
+            style={{ opacity: scrollYProgress }}
+         >
+            <motion.div className='mb-16 flex flex-row items-center justify-center'>
                <h2 className='text-center text-8xl font-thin text-gray-800'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
@@ -136,7 +141,7 @@ const AwardsSection: React.FC = () => {
                   <span ref={progressContent}></span>
                </div>
             </Swiper>
-         </div>
+         </motion.div>
       </div>
    );
 };

@@ -24,7 +24,7 @@ export default function Header() {
                   <ul className='header-ul'>
                      <li className='header-li'>
                         <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-blue-700'
+                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
                            href='/'
                         >
                            Home
@@ -32,7 +32,7 @@ export default function Header() {
                      </li>
                      <li className='header-li'>
                         <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-blue-700'
+                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
                            href='#'
                         >
                            Projects
@@ -40,7 +40,7 @@ export default function Header() {
                      </li>
                      <li className='header-li'>
                         <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-blue-700'
+                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
                            href='#'
                         >
                            Awards
@@ -48,7 +48,7 @@ export default function Header() {
                      </li>
                      <li className='header-li'>
                         <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-blue-700'
+                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
                            href='#'
                         >
                            About
@@ -56,7 +56,7 @@ export default function Header() {
                      </li>
                      <li className='header-li'>
                         <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-blue-700'
+                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
                            href='#'
                         >
                            Contact
@@ -66,8 +66,8 @@ export default function Header() {
                </div>
                <button
                   onClick={toggleMenu}
-                  className={`flex h-fit flex-row items-center justify-between border-2 border-white bg-white px-4 py-0 text-lg font-light duration-200 hover:border-b-2 hover:border-b-blue-700 ${
-                     isMenuVisible ? 'border-b-blue-700' : ''
+                  className={`flex h-fit flex-row items-center justify-between border-2 border-white bg-white px-4 py-0 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
+                     isMenuVisible ? 'border-b-cyan-700' : ''
                   }`}
                >
                   <svg

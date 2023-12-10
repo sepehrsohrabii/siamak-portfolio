@@ -6,7 +6,7 @@ import ProjectItem from './projectItem';
 gsap.registerPlugin(ScrollTrigger);
 
 const OurProjectsSection = () => {
-   const projects = [0, 1, 2];
+   const projects = [0, 1, 2, 3, 4, 5];
    const component = useRef();
    const slider = useRef();
 
@@ -21,9 +21,10 @@ const OurProjectsSection = () => {
                pin: true,
                anticipatePin: 1,
                scrub: 1,
-               snap: 1 / (panels.length - 1),
-               end: () => '+=' + slider.current.offsetWidth * 10,
-               markers: true,
+               snap: 0,
+               start: 'center center',
+               end: () => '+=' + slider.current.offsetWidth,
+               markers: false,
             },
          });
       }, component);
@@ -31,19 +32,24 @@ const OurProjectsSection = () => {
    });
 
    return (
-      <>
-         <div className='flex items-end'>
-            <h6 className='text-lg font-thin text-gray-700'>Our</h6>
-            <h2 className='text-6xl font-thin text-gray-700'>Projects</h2>
-         </div>
-         <div className='' ref={component}>
-            <div ref={slider} className='flex flex-row overflow-x-hidden py-32'>
+      <div className='overflow-hidden'>
+         <div className='my-36 overflow-y-visible' ref={component}>
+            <div ref={slider} className='flex w-fit flex-row overflow-visible'>
+               <div className='panel ms-40'>
+                  <h2 className='text-6xl font-thin text-gray-700'>Our</h2>
+                  <h2 className='text-6xl font-thin text-gray-700'>Projects</h2>
+                  <div className='text-end'>
+                     <a className='bg-cyan-700 px-3 py-1 text-white' href='#'>
+                        View All.
+                     </a>
+                  </div>
+               </div>
                {projects.map((project, index) => (
                   <ProjectItem project={project} key={index} />
                ))}
             </div>
          </div>
-      </>
+      </div>
    );
 };
 

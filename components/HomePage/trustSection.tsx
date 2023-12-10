@@ -1,10 +1,21 @@
 import Lottie from 'lottie-react';
 import engineers from '../../public/animations/engineers.json';
+import { useRef } from 'react';
+import { motion, useScroll } from 'framer-motion';
 
 export default function TrustSection() {
+   const container = useRef(null);
+   const { scrollYProgress } = useScroll({
+      target: container,
+      offset: ['start end', 'end end'],
+   });
    return (
       <div className='mx-40 -mt-52'>
-         <div className='flex flex-row'>
+         <motion.div
+            ref={container}
+            className='flex flex-row'
+            style={{ opacity: scrollYProgress }}
+         >
             <div className='relative w-full'>
                <Lottie animationData={engineers} loop={true} />
             </div>
@@ -19,7 +30,7 @@ export default function TrustSection() {
                   delectus rem dolor laudantium eligendi animi modi.
                </p>
             </div>
-         </div>
+         </motion.div>
       </div>
    );
 }

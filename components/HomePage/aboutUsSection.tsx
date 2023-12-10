@@ -1,8 +1,20 @@
+import { motion, useScroll } from 'framer-motion';
+import { useRef } from 'react';
+
 export default function AboutUsSection() {
+   const container = useRef(null);
+   const { scrollYProgress } = useScroll({
+      target: container,
+      offset: ['start end', 'end end'],
+   });
    return (
-      <div className='mx-40 my-32'>
-         <div className='flex w-full flex-row'>
-            <div className='basis-1/2'>
+      <div className='mx-40 mb-32'>
+         <motion.div
+            ref={container}
+            className='flex w-full flex-row'
+            style={{ opacity: scrollYProgress }}
+         >
+            <motion.div className='basis-1/2'>
                <div className='grid grid-cols-3 gap-4'>
                   <div className=' overflow-hidden'>
                      <img
@@ -40,8 +52,8 @@ export default function AboutUsSection() {
                      />
                   </div>
                </div>
-            </div>
-            <div className='basis-1/2 self-center ps-20'>
+            </motion.div>
+            <motion.div className='basis-1/2 self-center ps-20'>
                <h2 className='text-6xl font-thin text-gray-700'>About Graph</h2>
 
                <p className='mb-5 mt-5 text-gray-600'>
@@ -60,8 +72,8 @@ export default function AboutUsSection() {
                      More --{'>'}
                   </a>
                </div>
-            </div>
-         </div>
+            </motion.div>
+         </motion.div>
       </div>
    );
 }

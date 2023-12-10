@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
+import engineers from '../../public/animations/scroll-down.json';
 
 const container = {
    hidden: { opacity: 1, scale: 0 },
@@ -62,6 +64,9 @@ export default function HeroSection() {
                   reprehenderit ea non doloribus velit quidem omnis labore, enim
                   soluta?
                </motion.p>
+               <motion.div className='absolute -bottom-36 w-20'>
+                  <Lottie animationData={engineers} loop={true} />
+               </motion.div>
             </motion.div>
          </div>
          <div className='z-0 h-screen w-3/5 flex-initial saturate-0 duration-500 hover:saturate-100'>

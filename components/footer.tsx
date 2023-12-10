@@ -1,6 +1,18 @@
+import { motion, useScroll } from 'framer-motion';
+import { useRef } from 'react';
+
 export default function Footer() {
+   const container = useRef(null);
+   const { scrollYProgress } = useScroll({
+      target: container,
+      offset: ['start end', 'end end'],
+   });
    return (
-      <footer className='mx-40'>
+      <motion.footer
+         className='mx-40'
+         ref={container}
+         style={{ opacity: scrollYProgress }}
+      >
          <div className='flex flex-row justify-between'>
             <div className='basis-1/4'>
                <h2 className='text-4xl'>Graph Studio</h2>
@@ -95,6 +107,6 @@ export default function Footer() {
                </p>
             </div>
          </div>
-      </footer>
+      </motion.footer>
    );
 }

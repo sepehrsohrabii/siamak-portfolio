@@ -1,3 +1,6 @@
+import { motion, useScroll } from 'framer-motion';
+import { useRef } from 'react';
+
 const links = [
    { name: 'Open roles', href: '#' },
    { name: 'Internship program', href: '#' },
@@ -12,9 +15,18 @@ const stats = [
 ];
 
 export default function StatisticsSection() {
+   const container = useRef(null);
+   const { scrollYProgress } = useScroll({
+      target: container,
+      offset: ['start end', 'end end'],
+   });
    return (
       <div className='mx-40 my-32'>
-         <div className='flex flex-row'>
+         <motion.div
+            ref={container}
+            className='flex flex-row'
+            style={{ opacity: scrollYProgress }}
+         >
             <div className='basis-1/2'>
                <div className='mx-auto max-w-2xl lg:mx-0'>
                   <h2 className='text-6xl font-thin tracking-tight text-black sm:text-6xl'>
@@ -53,7 +65,7 @@ export default function StatisticsSection() {
                   ))}
                </dl>
             </div>
-         </div>
+         </motion.div>
       </div>
    );
 }
