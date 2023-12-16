@@ -12,8 +12,8 @@ export default function Header() {
    const links = [
       { name: 'Home', path: '/' },
       { name: 'Projects', path: '/projects' },
-      { name: 'Awards', path: '#' },
-      { name: 'About', path: '#' },
+      { name: 'Awards', path: '/awards' },
+      { name: 'About', path: '/about' },
       { name: 'Contact', path: '#' },
    ];
    return (
