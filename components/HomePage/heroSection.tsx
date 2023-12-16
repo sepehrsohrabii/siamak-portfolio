@@ -2,36 +2,26 @@ import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import engineers from '../../public/animations/scroll-down.json';
 
-const container = {
-   hidden: { opacity: 1, scale: 0 },
-   visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-         delayChildren: 0.3,
-         staggerChildren: 0.2,
-      },
-   },
-};
-
-const item = {
-   hidden: { y: 20, opacity: 0 },
-   visible: {
-      y: 0,
-      opacity: 1,
-   },
-};
-<motion.ul
-   className='container'
-   variants={container}
-   initial='hidden'
-   animate='visible'
->
-   {[0, 1, 2, 3].map((index) => (
-      <motion.li key={index} className='item' variants={item} />
-   ))}
-</motion.ul>;
 export default function HeroSection() {
+   const container = {
+      hidden: { opacity: 1, scale: 0 },
+      visible: {
+         opacity: 1,
+         scale: 1,
+         transition: {
+            delayChildren: 0.3,
+            staggerChildren: 0.2,
+         },
+      },
+   };
+
+   const item = {
+      hidden: { y: 20, opacity: 0 },
+      visible: {
+         y: 0,
+         opacity: 1,
+      },
+   };
    return (
       <div className='flex h-screen w-full items-center justify-between overflow-hidden'>
          <div className='flex h-screen flex-initial items-center ps-40'>
@@ -69,7 +59,12 @@ export default function HeroSection() {
                </motion.div>
             </motion.div>
          </div>
-         <div className='z-0 h-screen w-3/5 flex-initial saturate-0 duration-500 hover:saturate-100'>
+         <motion.div
+            initial={{ width: '100%' }}
+            animate={{ width: '60%' }}
+            transition={{ duration: 0.5 }}
+            className='z-0 h-screen w-3/5 flex-initial saturate-0 duration-500 hover:saturate-100'
+         >
             <div className="h-full w-full bg-[url('/images/01.jpg')] bg-cover bg-center bg-no-repeat">
                <div className='z-2 absolute bottom-20 left-20 w-80 border-b-2 border-l-2 pb-5 pl-5'>
                   <h3 className='font-bold'>felan</h3>
@@ -80,7 +75,7 @@ export default function HeroSection() {
                   </p>
                </div>
             </div>
-         </div>
+         </motion.div>
       </div>
    );
 }

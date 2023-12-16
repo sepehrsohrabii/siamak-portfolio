@@ -9,19 +9,7 @@ import SloganSection from '@/components/HomePage/sloganSection';
 import StatisticsSection from '@/components/HomePage/statisticsSection';
 import TrustSection from '@/components/HomePage/trustSection';
 
-export default function Home() {
-   const slides = [
-      {
-         src: 'string',
-         title: 'string',
-         description: 'string',
-      },
-      {
-         src: 'string',
-         title: 'string',
-         description: 'string',
-      },
-   ];
+const HomePage: React.FC = () => {
    return (
       <div>
          <HeroSection />
@@ -34,4 +22,5 @@ export default function Home() {
          <CallUsSection />
       </div>
    );
-}
+};
+export default HomePage;

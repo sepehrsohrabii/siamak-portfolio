@@ -3,16 +3,19 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-const variants = {
-   open: { opacity: 1, x: 0 },
-   closed: { opacity: 0, x: '-100%' },
-};
 export default function Header() {
    const [isMenuVisible, setMenuVisibility] = useState(false);
-
+   const path = usePathname();
    const toggleMenu = () => {
       setMenuVisibility(!isMenuVisible);
    };
+   const links = [
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects' },
+      { name: 'Awards', path: '#' },
+      { name: 'About', path: '#' },
+      { name: 'Contact', path: '#' },
+   ];
    return (
       <header className='absolute z-20 w-full py-10'>
          <div className='mx-40 flex justify-between'>
@@ -22,46 +25,18 @@ export default function Header() {
             <div className='menu-container flex flex-row '>
                <div className={`menu ${isMenuVisible ? 'visible' : ''}`}>
                   <ul className='header-ul'>
-                     <li className='header-li'>
-                        <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
-                           href='/'
-                        >
-                           Home
-                        </Link>
-                     </li>
-                     <li className='header-li'>
-                        <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
-                           href='#'
-                        >
-                           Projects
-                        </Link>
-                     </li>
-                     <li className='header-li'>
-                        <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
-                           href='#'
-                        >
-                           Awards
-                        </Link>
-                     </li>
-                     <li className='header-li'>
-                        <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
-                           href='#'
-                        >
-                           About
-                        </Link>
-                     </li>
-                     <li className='header-li'>
-                        <Link
-                           className='flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700'
-                           href='#'
-                        >
-                           Contact
-                        </Link>
-                     </li>
+                     {links.map((link) => (
+                        <li className='header-li'>
+                           <Link
+                              className={`flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
+                                 path === link.path ? 'border-b-cyan-700' : ''
+                              }`}
+                              href={link.path}
+                           >
+                              {link.name}
+                           </Link>
+                        </li>
+                     ))}
                   </ul>
                </div>
                <button

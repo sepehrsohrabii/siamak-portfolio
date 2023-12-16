@@ -111,21 +111,6 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
-.red {
-  background: blue;
-}
-.red {
-  background: red;
-}
-.orange {
-  background: orange;
-}
-.purple {
-  background: purple;
-}
-.blue {
-  background-color: blue;
-}
 .parallax {
   overflow: hidden;
   white-space: nowrap;
@@ -143,4 +128,9 @@ body {
 
 .parallax span {
   display: block;
+}
+.swiper-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
