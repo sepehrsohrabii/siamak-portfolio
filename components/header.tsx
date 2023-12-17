@@ -14,7 +14,7 @@ export default function Header() {
       { name: 'Projects', path: '/projects' },
       { name: 'Awards', path: '/awards' },
       { name: 'About', path: '/about' },
-      { name: 'Contact', path: '#' },
+      { name: 'Contact', path: '/contact' },
    ];
    return (
       <header className='absolute z-20 w-full py-10'>

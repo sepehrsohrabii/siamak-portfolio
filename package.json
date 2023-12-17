@@ -17,11 +17,13 @@
     "framer-motion": "^10.16.12",
     "gsap": "^3.12.3",
     "intersection-observer": "^0.12.2",
+    "leaflet": "^1.9.4",
     "lottie-react": "^2.4.0",
     "next": "^14.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.5.3",
+    "react-leaflet": "^4.2.1",
     "react-scroll-percentage": "^4.3.0",
     "react-spring": "^9.7.3",
     "resize-observer-polyfill": "^1.5.1",
@@ -29,6 +31,7 @@
     "swiper": "^11.0.5"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
