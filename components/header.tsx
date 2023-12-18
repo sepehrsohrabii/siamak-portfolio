@@ -17,7 +17,7 @@ export default function Header() {
       { name: 'Contact', path: '/contact' },
    ];
    return (
-      <header className='absolute z-20 w-full py-10'>
+      <header className='absolute top-0 z-20 w-full py-10'>
          <div className='mx-40 flex justify-between'>
             <h1 className='border-b border-black text-4xl font-thin'>
                Graph Studio
