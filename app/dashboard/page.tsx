@@ -1,8 +1,9 @@
+import { Heading1 } from '@/components/General/typography';
+
 const DashboardPage = () => {
    return (
-      <div>
-         <h1>Dashboard</h1>
-         <p>This is the dashboard page</p>
+      <div className='bg- h-full w-full rounded-lg bg-slate-200 p-5 shadow-lg'>
+         <Heading1 className=''>Dashboard</Heading1>
       </div>
    );
 };
