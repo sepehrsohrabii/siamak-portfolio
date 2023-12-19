@@ -2,6 +2,7 @@
 import { signIn, signOut } from '@/auth';
 import Users from '@/schemas/Users';
 import { AuthError } from 'next-auth';
+import connectMongo from './connectMongo';
 export async function authenticate(
    prevState: string | undefined,
    formData: FormData
@@ -25,6 +26,7 @@ export async function signOutFunc() {
 }
 export async function getUsers() {
    try {
+      await connectMongo();
       const users = await Users.find();
       return users;
    } catch (e) {
