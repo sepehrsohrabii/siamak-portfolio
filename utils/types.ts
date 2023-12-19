@@ -1,14 +1,20 @@
 // DB schema structure that are used in MongoDB schemas.
 export interface IUsersSchema extends Document {
-  uniqueCode: string;
+  id: string;
   username: string;
   email: string;
   password: string;
-  nickname: string;
+  name: string;
   status: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+};
 export interface IProjectSchema extends Document {
   uniqueCode: string;
   title: string;

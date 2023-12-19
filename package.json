@@ -14,6 +14,8 @@
     "@heroicons/react": "^2.0.18",
     "@motionone/utils": "^10.16.3",
     "@react-spring/web": "^9.7.3",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
     "framer-motion": "^10.16.12",
     "gsap": "^3.12.3",
     "intersection-observer": "^0.12.2",
@@ -30,7 +32,8 @@
     "react-spring": "^9.7.3",
     "resize-observer-polyfill": "^1.5.1",
     "scroller-motion": "^1.2.3",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.8",
