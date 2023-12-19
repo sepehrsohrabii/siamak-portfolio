@@ -4,27 +4,22 @@ import { IUsersSchema } from '@/utils/types';
 
 const UsersSchema = new Schema<IUsersSchema>(
    {
-      uniqueCode: {
+      id: {
          type: String,
          unique: true,
          required: true,
-      },
-      username: {
-         type: String,
-         required: true,
-         unique: true,
       },
       email: {
          type: String,
-         required: false,
-         default: null,
+         required: true,
+         unique: true,
       },
       password: {
          type: String,
          required: false,
          default: null,
       },
-      nickname: {
+      name: {
          type: String,
          required: false,
          default: null,
