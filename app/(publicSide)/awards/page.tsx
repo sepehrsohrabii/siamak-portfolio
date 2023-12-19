@@ -1,7 +1,7 @@
 'use client';
 import { ScrollerMotion } from 'scroller-motion';
-import AwardsHeader from '@/components/AwardsPage/header';
-import SingleAwardItem from '@/components/AwardsPage/singleAward';
+import AwardsHeader from '@/components/PublicSide/AwardsPage/header';
+import SingleAwardItem from '@/components/PublicSide/AwardsPage/singleAward';
 
 const Awards: React.FC = () => {
    const awards = [0, 1, 2, 3, 4, 5];

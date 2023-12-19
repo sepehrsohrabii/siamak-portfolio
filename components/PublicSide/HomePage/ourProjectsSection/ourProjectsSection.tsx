@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useLayoutEffect, useRef } from 'react';
 import ProjectItem from './projectItem';
+import { Heading2 } from '@/components/General/typography';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,8 +37,8 @@ const OurProjectsSection = () => {
          <div className='my-36 overflow-y-visible' ref={component}>
             <div ref={slider} className='flex w-fit flex-row overflow-visible'>
                <div className='panel ms-40'>
-                  <h2 className='text-6xl font-thin text-gray-700'>Our</h2>
-                  <h2 className='text-6xl font-thin text-gray-700'>Projects</h2>
+                  <Heading2 className='text-gray-700'>Our</Heading2>
+                  <Heading2 className='text-gray-700'>Projects</Heading2>
                   <div className='text-end'>
                      <a className='bg-cyan-700 px-3 py-1 text-white' href='#'>
                         View All.

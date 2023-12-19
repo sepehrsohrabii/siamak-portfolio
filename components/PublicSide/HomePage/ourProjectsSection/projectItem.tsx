@@ -1,3 +1,8 @@
+import {
+   Heading5,
+   Paragraph2,
+   Paragraph3,
+} from '@/components/General/typography';
 import { motion } from 'framer-motion';
 
 export default function ProjectItem({
@@ -44,11 +49,9 @@ export default function ProjectItem({
             </motion.a>
          </motion.div>
          <div className='border-s-2 border-slate-400 py-10 ps-5'>
-            <p className='text-md font-normal text-gray-400'>Interior</p>
-            <h6 className='text-2xl font-light text-gray-900'>
-               Tehran Building
-            </h6>
-            <p className='mt-10 text-sm font-normal text-gray-400'>Oct. 2019</p>
+            <Paragraph2 className='text-gray-400'>Interior</Paragraph2>
+            <Heading5 className='text-gray-900'>Tehran Building</Heading5>
+            <Paragraph3 className='mt-10 text-gray-400'>Oct. 2019</Paragraph3>
          </div>
       </div>
    );

@@ -1,8 +1,8 @@
 'use client';
 import { ScrollerMotion } from 'scroller-motion';
-import ProjectsHeader from '@/components/ProjectsPage/header';
-import TypesSection from '@/components/ProjectsPage/typesSection';
-import SingleProjectItem from '@/components/ProjectsPage/singleProject';
+import ProjectsHeader from '@/components/PublicSide/ProjectsPage/header';
+import TypesSection from '@/components/PublicSide/ProjectsPage/typesSection';
+import SingleProjectItem from '@/components/PublicSide/ProjectsPage/singleProject';
 
 const Projects: React.FC = () => {
    const projects = [0, 1, 2, 3, 4, 5];

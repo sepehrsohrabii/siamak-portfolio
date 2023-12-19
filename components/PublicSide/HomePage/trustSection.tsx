@@ -1,7 +1,12 @@
 import Lottie from 'lottie-react';
-import engineers from '../../public/animations/engineers.json';
+import engineers from '@/public/animations/engineers.json';
 import { useRef } from 'react';
 import { motion, useScroll } from 'framer-motion';
+import {
+   Heading2,
+   Paragraph1,
+   Paragraph2,
+} from '@/components/General/typography';
 
 export default function TrustSection() {
    const container = useRef(null);
@@ -20,15 +25,15 @@ export default function TrustSection() {
                <Lottie animationData={engineers} loop={true} />
             </div>
             <div className='absolute left-2/3 mr-40 mt-52'>
-               <h2 className='mb-5 text-6xl font-thin text-gray-800'>
+               <Heading2 className='mb-5 text-gray-800'>
                   Trust Professionals
-               </h2>
-               <p className='text-gray w-full flex-wrap ps-20'>
+               </Heading2>
+               <Paragraph2 className='text-gray w-full flex-wrap ps-20'>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
                   sunt? Laboriosam esse cumque, nesciunt exercitationem
                   asperiores, repellat minima natus a, consequatur nihil odio
                   delectus rem dolor laudantium eligendi animi modi.
-               </p>
+               </Paragraph2>
             </div>
          </motion.div>
       </div>

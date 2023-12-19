@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { roboto_c } from '@/components/fonts';
-import MainContainer from '@/components/main';
 
 export const metadata: Metadata = {
    title: 'Create Next App',
@@ -15,9 +14,7 @@ export default function RootLayout({
 }) {
    return (
       <html lang='en' className='scroll-smooth'>
-         <body className={roboto_c.className}>
-            <MainContainer children={children} />
-         </body>
+         <body className={roboto_c.className}>{children}</body>
       </html>
    );
 }

@@ -1,3 +1,4 @@
+import { Heading2, Paragraph1 } from '@/components/General/typography';
 import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -54,15 +55,15 @@ export default function AboutUsSection() {
                </div>
             </motion.div>
             <motion.div className='basis-1/2 self-center ps-20'>
-               <h2 className='text-6xl font-thin text-gray-700'>About Graph</h2>
+               <Heading2 className='text-gray-700'>About Graph</Heading2>
 
-               <p className='mb-5 mt-5 text-gray-600'>
+               <Paragraph1 className='mb-5 mt-5 text-gray-600'>
                   buildings in the world Lorem ipsum dolor, sit amet consectetur
                   adipisicing elit. Vitae, labore quod veritatis explicabo
                   maiores consectetur. Suscipit dolor, ex nemo aperiam
                   reprehenderit ea non doloribus velit quidem omnis labore, enim
                   soluta?
-               </p>
+               </Paragraph1>
 
                <div className='mt-10'>
                   <a

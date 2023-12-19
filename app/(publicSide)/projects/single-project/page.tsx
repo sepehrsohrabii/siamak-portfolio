@@ -1,5 +1,5 @@
 'use client';
-import GallerySection from '@/components/SingleProjectPage/gallerySection';
+import GallerySection from '@/components/PublicSide/SingleProjectPage/gallerySection';
 import { motion } from 'framer-motion';
 
 const SingleProject: React.FC = () => {

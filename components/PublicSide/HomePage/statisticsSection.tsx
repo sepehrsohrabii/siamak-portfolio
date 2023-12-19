@@ -1,3 +1,4 @@
+import { Heading2, Paragraph1 } from '@/components/General/typography';
 import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -29,17 +30,17 @@ export default function StatisticsSection() {
          >
             <div className='basis-1/2'>
                <div className='mx-auto max-w-2xl lg:mx-0'>
-                  <h2 className='text-6xl font-thin tracking-tight text-black sm:text-6xl'>
+                  <Heading2 className='tracking-tight text-black sm:text-6xl'>
                      Work with us
-                  </h2>
-                  <p className='mt-6 text-lg leading-8 text-gray-800'>
+                  </Heading2>
+                  <Paragraph1 className='mt-6 leading-8 text-gray-800'>
                      Anim aute id magna aliqua ad ad non deserunt sunt. Qui
                      irure qui lorem cupidatat commodo. Elit sunt amet fugiat
                      veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad
                      ad non deserunt sunt. Qui irure qui lorem cupidatat
                      commodo. Elit sunt amet fugiat veniam occaecat fugiat
                      aliqua.
-                  </p>
+                  </Paragraph1>
                </div>
                <div className='mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none'>
                   <div className='grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-black sm:grid-cols-2 md:flex lg:gap-x-10'>

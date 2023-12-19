@@ -1,5 +1,5 @@
 'use client';
-import LocationMap from '@/components/ContactPage/LocationMap';
+import LocationMap from '@/components/PublicSide/ContactPage/LocationMap';
 import { motion } from 'framer-motion';
 
 const ContactPage: React.FC = () => {

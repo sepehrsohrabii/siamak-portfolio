@@ -1,7 +1,7 @@
 'use client';
-import LeadershipSection from '@/components/AboutPage/leadershipSection';
-import MissionSection from '@/components/AboutPage/ourMissionSection';
-import SloganSection from '@/components/AboutPage/sloganSection';
+import LeadershipSection from '@/components/PublicSide/AboutPage/leadershipSection';
+import MissionSection from '@/components/PublicSide/AboutPage/ourMissionSection';
+import SloganSection from '@/components/PublicSide/AboutPage/sloganSection';
 import { motion } from 'framer-motion';
 
 const AboutPage: React.FC = () => {
