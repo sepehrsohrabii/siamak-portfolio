@@ -1,3 +1,4 @@
+import { Document } from 'mongoose';
 // DB schema structure that are used in MongoDB schemas.
 export interface IUsersSchema extends Document {
   id: string;
@@ -8,29 +9,66 @@ export interface IUsersSchema extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
-export interface IProjectSchema extends Document {
-  uniqueCode: string;
+export interface UsersType{
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+  status: boolean;
+}
+export interface IProjectsSchema extends Document {
+  id: string;
   title: string;
   slug: string;
+  typeId: string;
   mainImage: string;
   galleryImages: [string];
   award: string;
   description: string;
   year: string;
   area: string;
+  address: string;
+  designTeam: string;
+  collaboration: string;
+  viewCounter: number;
   status: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
-export interface ITypeSchema extends Document {
-  uniqueCode: string;
+export interface ProjectsType {
+  id: string;
   title: string;
   slug: string;
-  projectsNumber: number;
+  typeId: string;
+  mainImage: string;
+  galleryImages: [string];
+  award: string;
+  description: string;
+  year: string;
+  area: string;
+  address: string;
+  designTeam: string;
+  collaboration: string;
+  viewCounter: number;
+  status: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+export interface ITypesSchema extends Document {
+  id: string;
+  title: string;
+  slug: string;
   orderingNumber: number;
   status: boolean;
   createdAt: Date;
   updatedAt: Date;
+}
+export interface TypesType {
+  id: string;
+  title: string;
+  slug: string;
+  orderingNumber: number;
+  status: boolean;
 }
 // Other types
 export interface CarouselSlide {

@@ -1,29 +1,24 @@
-import LoadingPulse from '@/components/General/loadingPulse';
 import LoadingSpin from '@/components/General/loadingSpin';
-import {
-   Heading6,
-   Paragraph1,
-   Paragraph2,
-} from '@/components/General/typography';
-import { getUsers } from '@/utils/actions';
-import { IUsersSchema, UsersType } from '@/utils/types';
+import { Heading6, Paragraph2 } from '@/components/General/typography';
+import { getTypes } from '@/utils/actions';
+import { ITypesSchema, TypesType } from '@/utils/types';
 import { useEffect, useState } from 'react';
-import DeleteUserModal from './deleteUserModal';
-import EditUserModal from './editUserModal';
+import DeleteTypeModal from './deleteTypeModal';
+import EditTypeModal from './editTypeModal';
 
-const UsersList = () => {
-   const [users, setUsers] = useState<UsersType[]>([]);
+const TypesList = () => {
+   const [types, setTypes] = useState<TypesType[]>([]);
    const [error, setError] = useState(null);
    useEffect(() => {
-      const fetchUsers = async () => {
-         const usersList: UsersType[] = await getUsers();
-         setUsers(usersList);
+      const fetchTypes = async () => {
+         const typesList: TypesType[] = await getTypes();
+         setTypes(typesList);
       };
-      fetchUsers();
+      fetchTypes();
    }, []);
    return (
       <>
-         {users.length > 0 ? (
+         {types.length >= 0 ? (
             <table className='w-full table-auto border-spacing-x-4 overflow-y-scroll'>
                <thead className='mb-5 border border-b-white'>
                   <tr>
@@ -31,13 +26,16 @@ const UsersList = () => {
                         <Heading6 className=''>Id</Heading6>
                      </th>
                      <th className='text-start'>
-                        <Heading6 className=''>Name</Heading6>
+                        <Heading6 className=''>Title</Heading6>
                      </th>
                      <th className='text-start'>
-                        <Heading6 className=''>Email</Heading6>
+                        <Heading6 className=''>Slug</Heading6>
                      </th>
                      <th className='text-start'>
-                        <Heading6 className=''>Password</Heading6>
+                        <Heading6 className=''>Projects Number</Heading6>
+                     </th>
+                     <th className='text-start'>
+                        <Heading6 className=''>Ordering Number</Heading6>
                      </th>
                      <th className='text-start'>
                         <Heading6 className=''>Status</Heading6>
@@ -48,39 +46,42 @@ const UsersList = () => {
                   </tr>
                </thead>
                <tbody>
-                  {users.map((user) => (
-                     <tr className='h-10' key={user.id}>
+                  {types.map((type) => (
+                     <tr className='h-10' key={type.id}>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {user.id}
+                              {type.id}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {user.name}
+                              {type.title}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {user.email}
+                              {type.slug}
+                           </Paragraph2>
+                        </td>
+                        <td>
+                           <Paragraph2 className='text-gray-700'>0</Paragraph2>
+                        </td>
+                        <td>
+                           <Paragraph2 className='text-gray-700'>
+                              {type.orderingNumber}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {user.password}
-                           </Paragraph2>
-                        </td>
-                        <td>
-                           <Paragraph2 className='text-gray-700'>
-                              {user.status ? 'Active' : 'Not Active'}
+                              {type.status ? 'Active' : 'Not Active'}
                            </Paragraph2>
                         </td>
                         <td>
                            <div className='flex items-center'>
-                              <EditUserModal user={user} />
-                              <DeleteUserModal
-                                 userName={user.name}
-                                 id={user.id}
+                              <EditTypeModal type={type} />
+                              <DeleteTypeModal
+                                 typeName={type.name}
+                                 id={type.id}
                               />
                            </div>
                         </td>
@@ -89,9 +90,9 @@ const UsersList = () => {
                </tbody>
             </table>
          ) : (
-            <LoadingSpin loadingText='Users are loading ...' />
+            <LoadingSpin loadingText='Types are loading ...' />
          )}
       </>
    );
 };
-export default UsersList;
+export default TypesList;

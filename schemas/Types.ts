@@ -1,10 +1,10 @@
 import { Schema, model, models } from 'mongoose';
 
-import { ITypeSchema } from '@/utils/types';
+import { ITypesSchema } from '@/utils/types';
 
-const TypeSchema = new Schema<ITypeSchema>(
+const TypesSchema = new Schema<ITypesSchema>(
    {
-      uniqueCode: {
+      id: {
          type: String,
          unique: true,
          required: true,
@@ -17,11 +17,6 @@ const TypeSchema = new Schema<ITypeSchema>(
          type: String,
          required: true,
          unique: true,
-      },
-      projectsNumber: {
-         type: Number,
-         require: false,
-         default: 0
       },
       orderingNumber: {
          type: Number,
@@ -36,6 +31,6 @@ const TypeSchema = new Schema<ITypeSchema>(
    { timestamps: true }
 );
 
-const Type = models.Type || model<ITypeSchema>('Type', TypeSchema);
+const Types = models.Types || model<ITypesSchema>('Types', TypesSchema);
 
-export default Type;
+export default Types;

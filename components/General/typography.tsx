@@ -83,6 +83,21 @@ const Paragraph3 = ({
 }) => {
    return <p className={`text-sm font-normal ${className}`}>{children}</p>;
 };
+const Label = ({
+   children,
+   className,
+   htmlFor,
+}: {
+   children: React.ReactNode;
+   className: string;
+   htmlFor: string;
+}) => {
+   return (
+      <label htmlFor={htmlFor} className={`text-lg font-normal ${className}`}>
+         {children}
+      </label>
+   );
+};
 
 export {
    Heading1,
@@ -94,4 +109,5 @@ export {
    Paragraph1,
    Paragraph2,
    Paragraph3,
+   Label,
 };

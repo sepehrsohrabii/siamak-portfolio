@@ -30,6 +30,7 @@ const SideBar = () => {
          </div>
          {links.map((link) => (
             <Link
+               key={link.path}
                className={`mt-2 flex items-center rounded-lg px-5 py-2 shadow-lg duration-500 hover:bg-slate-300 ${
                   path === link.path ? 'bg-blue-300' : 'bg-slate-200'
                }`}
