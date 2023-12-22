@@ -1,24 +1,24 @@
 import LoadingSpin from '@/components/General/loadingSpin';
 import { Heading6, Paragraph2 } from '@/components/General/typography';
-import { getTypes } from '@/utils/actions';
-import { ITypesSchema, TypesType } from '@/utils/types';
+import { getProjects } from '@/utils/actions';
+import { IProjectsSchema, ProjectsType } from '@/utils/types';
 import { useEffect, useState } from 'react';
-import DeleteTypeModal from './deleteTypeModal';
-import EditTypeModal from './editTypeModal';
+import DeleteProjectModal from './deleteProjectModal';
+import EditProjectModal from './editProjectModal';
 
-const TypesList = () => {
-   const [types, setTypes] = useState<TypesType[]>([]);
+const ProjectsList = () => {
+   const [projects, setProjects] = useState<ProjectsType[]>([]);
    const [error, setError] = useState(null);
    useEffect(() => {
-      const fetchTypes = async () => {
-         const typesList: TypesType[] = await getTypes();
-         setTypes(typesList);
+      const fetchProjects = async () => {
+         const projectsList: ProjectsType[] = await getProjects();
+         setProjects(projectsList);
       };
-      fetchTypes();
+      fetchProjects();
    }, []);
    return (
       <>
-         {types.length >= 0 ? (
+         {projects.length >= 0 ? (
             <table className='w-full table-auto border-spacing-x-4 overflow-y-scroll'>
                <thead className='mb-5 border border-b-white'>
                   <tr>
@@ -32,13 +32,19 @@ const TypesList = () => {
                         <Heading6 className=''>Slug</Heading6>
                      </th>
                      <th className='text-start'>
-                        <Heading6 className=''>Projects Number</Heading6>
+                        <Heading6 className=''>Type</Heading6>
                      </th>
                      <th className='text-start'>
-                        <Heading6 className=''>Ordering Number</Heading6>
+                        <Heading6 className=''>View Counter</Heading6>
                      </th>
                      <th className='text-start'>
                         <Heading6 className=''>Status</Heading6>
+                     </th>
+                     <th className='text-start'>
+                        <Heading6 className=''>createdAt</Heading6>
+                     </th>
+                     <th className='text-start'>
+                        <Heading6 className=''>updatedAt</Heading6>
                      </th>
                      <th className='text-start'>
                         <Heading6 className=''>Operation</Heading6>
@@ -46,42 +52,54 @@ const TypesList = () => {
                   </tr>
                </thead>
                <tbody>
-                  {types.map((type) => (
-                     <tr className='h-10' key={type.id}>
+                  {projects.map((project) => (
+                     <tr className='h-10' key={project.id}>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {type.id}
+                              {project.id}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {type.title}
+                              {project.title}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {type.slug}
-                           </Paragraph2>
-                        </td>
-                        <td>
-                           <Paragraph2 className='text-gray-700'>0</Paragraph2>
-                        </td>
-                        <td>
-                           <Paragraph2 className='text-gray-700'>
-                              {type.orderingNumber}
+                              {project.slug}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {type.status ? 'Active' : 'Not Active'}
+                              {project.typeId}
+                           </Paragraph2>
+                        </td>
+                        <td>
+                           <Paragraph2 className='text-gray-700'>
+                              {project.viewCounter}
+                           </Paragraph2>
+                        </td>
+                        <td>
+                           <Paragraph2 className='text-gray-700'>
+                              {project.status ? 'Active' : 'Not Active'}
+                           </Paragraph2>
+                        </td>
+                        <td>
+                           <Paragraph2 className='text-gray-700'>
+                              {String(project.createdAt)}
+                           </Paragraph2>
+                        </td>
+                        <td>
+                           <Paragraph2 className='text-gray-700'>
+                              {String(project.updatedAt)}
                            </Paragraph2>
                         </td>
                         <td>
                            <div className='flex items-center'>
-                              <EditTypeModal type={type} />
-                              <DeleteTypeModal
-                                 typeName={type.title}
-                                 id={type.id}
+                              <EditProjectModal project={project} />
+                              <DeleteProjectModal
+                                 projectName={project.title}
+                                 id={project.id}
                               />
                            </div>
                         </td>
@@ -90,9 +108,9 @@ const TypesList = () => {
                </tbody>
             </table>
          ) : (
-            <LoadingSpin loadingText='Types are loading ...' />
+            <LoadingSpin loadingText='Projects are loading ...' />
          )}
       </>
    );
 };
-export default TypesList;
+export default ProjectsList;

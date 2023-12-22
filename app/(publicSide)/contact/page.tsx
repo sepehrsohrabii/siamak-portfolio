@@ -1,6 +1,7 @@
 'use client';
 import LocationMap from '@/components/PublicSide/ContactPage/LocationMap';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const ContactPage: React.FC = () => {
    return (
@@ -26,30 +27,33 @@ const ContactPage: React.FC = () => {
                <div className='mt-16'>
                   <div className='flex justify-between pe-36'>
                      <a href='#' className='flex flex-col items-center'>
-                        <img
+                        <Image
                            src='/icons/phone-call.png'
                            alt='Phone Icon'
-                           className='h-16 w-16'
+                           width={64}
+                           height={64}
                         />
                         <h6 className='mt-5 text-xl font-normal text-gray-700'>
                            +989113332222
                         </h6>
                      </a>
                      <a href='#' className='flex flex-col items-center'>
-                        <img
+                        <Image
                            src='/icons/gmail.png'
                            alt='Phone Icon'
-                           className='h-16 w-16'
+                           width={64}
+                           height={64}
                         />
                         <h6 className='mt-5 text-xl font-normal text-gray-700'>
                            graph@gmail.com
                         </h6>
                      </a>
                      <a href='#' className='flex flex-col items-center'>
-                        <img
+                        <Image
                            src='/icons/address.png'
                            alt='Phone Icon'
-                           className='h-16 w-16'
+                           width={64}
+                           height={64}
                         />
                         <h6 className='mt-5 text-xl font-normal text-gray-700'>
                            graph@gmail.com
@@ -73,30 +77,33 @@ const ContactPage: React.FC = () => {
                   Social Media
                </h6>
                <a href='#' className='flex flex-col items-center'>
-                  <img
+                  <Image
                      src='/icons/instagram.png'
                      alt='Phone Icon'
-                     className='h-10 w-10'
+                     width={40}
+                     height={40}
                   />
                   <h6 className='mt-5 text-xl font-normal text-gray-700'>
                      graph@gmail.com
                   </h6>
                </a>
                <a href='#' className='flex flex-col items-center'>
-                  <img
+                  <Image
                      src='/icons/telegram.png'
                      alt='Phone Icon'
-                     className='h-10 w-10'
+                     width={40}
+                     height={40}
                   />
                   <h6 className='mt-5 text-xl font-normal text-gray-700'>
                      graph@gmail.com
                   </h6>
                </a>
                <a href='#' className='flex flex-col items-center'>
-                  <img
+                  <Image
                      src='/icons/whatsapp.png'
                      alt='Phone Icon'
-                     className='h-10 w-10'
+                     width={40}
+                     height={40}
                   />
                   <h6 className='mt-5 text-xl font-normal text-gray-700'>
                      graph@gmail.com

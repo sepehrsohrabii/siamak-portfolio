@@ -5,6 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const GallerySection = () => {
    const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -25,50 +26,68 @@ const GallerySection = () => {
             className='mySwiper2'
          >
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/5.jpg'
                   loading='lazy'
                   className='h-screen w-full object-cover'
+                  alt='gallery image'
+                  width={384}
+                  height={284}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/6.jpg'
                   loading='lazy'
                   className='h-screen w-full object-cover'
+                  alt='gallery image'
+                  width={384}
+                  height={284}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/7.jpg'
                   loading='lazy'
                   className='h-screen w-full object-cover'
+                  alt='gallery image'
+                  width={384}
+                  height={284}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/8.jpg'
                   loading='lazy'
                   className='h-screen w-full object-cover'
+                  alt='gallery image'
+                  width={384}
+                  height={284}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/1.jpg'
                   loading='lazy'
                   className='h-screen w-full object-cover'
+                  alt='gallery image'
+                  width={384}
+                  height={284}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/2.jpg'
                   loading='lazy'
                   className='h-screen w-full object-cover'
+                  alt='gallery image'
+                  width={384}
+                  height={284}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
@@ -85,50 +104,68 @@ const GallerySection = () => {
             className='mySwiper mt-3'
          >
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/5.jpg'
                   loading='lazy'
                   className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                  alt='gallery image'
+                  height={128}
+                  width={228}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/6.jpg'
                   loading='lazy'
                   className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                  alt='gallery image'
+                  height={128}
+                  width={228}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/7.jpg'
                   loading='lazy'
                   className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                  alt='gallery image'
+                  height={128}
+                  width={228}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/8.jpg'
                   loading='lazy'
                   className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                  alt='gallery image'
+                  height={128}
+                  width={228}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/1.jpg'
                   loading='lazy'
                   className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                  alt='gallery image'
+                  height={128}
+                  width={228}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>
             <SwiperSlide>
-               <img
+               <Image
                   src='/images/2.jpg'
                   loading='lazy'
                   className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                  alt='gallery image'
+                  height={128}
+                  width={228}
                />
                <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
             </SwiperSlide>

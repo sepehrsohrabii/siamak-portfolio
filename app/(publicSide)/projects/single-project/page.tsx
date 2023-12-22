@@ -1,6 +1,7 @@
 'use client';
 import GallerySection from '@/components/PublicSide/SingleProjectPage/gallerySection';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const SingleProject: React.FC = () => {
    return (
@@ -11,10 +12,12 @@ const SingleProject: React.FC = () => {
             transition={{ duration: 1 }}
             className='my-32 flex items-center bg-stone-300 p-5 px-40'
          >
-            <img
+            <Image
                src='/icons/award.png'
                alt='award icon'
-               className='me-5 h-8 w-8'
+               className='me-5'
+               width={32}
+               height={32}
             />
             <h5 className='text-3xl font-thin text-black'>
                The Best Design In 2023 Lorem ipsum dolor sit amet consectetur

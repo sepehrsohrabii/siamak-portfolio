@@ -14,6 +14,7 @@ import {
    Heading2,
    Paragraph1,
 } from '@/components/General/typography';
+import Image from 'next/image';
 
 const AwardsSection: React.FC = () => {
    const progressCircle = useRef(null);
@@ -85,10 +86,12 @@ const AwardsSection: React.FC = () => {
                         </h5>
                      </div>
                      <div className='h-96 basis-2/5'>
-                        <img
+                        <Image
                            className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
                            src='/images/9.jpg'
-                           alt=''
+                           alt='project image'
+                           height={384}
+                           width={384}
                         />
                      </div>
                      <div className='basis-2/5 self-center ps-40 text-gray-600'>
@@ -115,10 +118,12 @@ const AwardsSection: React.FC = () => {
                         </h5>
                      </div>
                      <div className='h-96 basis-2/5'>
-                        <img
+                        <Image
                            className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
                            src='/images/9.jpg'
                            alt=''
+                           width={384}
+                           height={384}
                         />
                      </div>
                      <div className='basis-2/5 self-center ps-40 text-gray-600'>

@@ -1,6 +1,7 @@
 import { Heading2, Paragraph1 } from '@/components/General/typography';
 import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export default function AboutUsSection() {
    const container = useRef(null);
@@ -18,38 +19,48 @@ export default function AboutUsSection() {
             <motion.div className='basis-1/2'>
                <div className='grid grid-cols-3 gap-4'>
                   <div className=' overflow-hidden'>
-                     <img
+                     <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/8.jpg'
                         alt='Awards'
+                        height={224}
+                        width={324}
                      />
                   </div>
                   <div className=' overflow-hidden'>
-                     <img
+                     <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/8.jpg'
                         alt='Awards'
+                        height={224}
+                        width={324}
                      />
                   </div>
                   <div className=' overflow-hidden'>
-                     <img
+                     <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/8.jpg'
                         alt='Awards'
+                        height={224}
+                        width={324}
                      />
                   </div>
                   <div className=' col-span-2  overflow-hidden'>
-                     <img
+                     <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/8.jpg'
                         alt='Awards'
+                        height={224}
+                        width={324}
                      />
                   </div>
                   <div className=' overflow-hidden'>
-                     <img
+                     <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/8.jpg'
                         alt='Awards'
+                        height={224}
+                        width={324}
                      />
                   </div>
                </div>

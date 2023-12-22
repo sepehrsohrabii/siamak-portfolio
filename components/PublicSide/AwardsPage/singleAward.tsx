@@ -2,7 +2,7 @@ import { motion, useInView, useScroll } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import Image from 'next/image';
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,14 +61,21 @@ const SingleAwardItem = ({ award, key }: { award: any; key: number }) => {
             ref={imageRef}
             className='group z-10 flex justify-center'
          >
-            <motion.img
-               className='w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
-               src='/images/2.jpg'
+            <motion.div
+               className='w-full'
                whileHover={{
                   scale: 1.05,
                   boxShadow: '10px 10px 0px 0px #D3D3D3',
                }}
-            />
+            >
+               <Image
+                  className='w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
+                  src='/images/2.jpg'
+                  alt='Graph Award image'
+                  width={250}
+                  height={150}
+               />
+            </motion.div>
             <motion.a
                className='absolute hidden self-center border-2 border-white p-4 text-black duration-500 group-hover:block'
                href='#'

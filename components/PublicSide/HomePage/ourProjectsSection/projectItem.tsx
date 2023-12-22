@@ -4,6 +4,7 @@ import {
    Paragraph3,
 } from '@/components/General/typography';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function ProjectItem({
    project,
@@ -15,14 +16,21 @@ export default function ProjectItem({
    return (
       <div key={key} className='panel ms-32 w-96 overflow-y-visible'>
          <motion.div className='group relative flex justify-center'>
-            <motion.img
-               className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
-               src='/images/2.jpg'
+            <motion.div
+               className='h-96 w-full'
                whileHover={{
                   scale: 1.1,
                   boxShadow: '10px 10px 0px 0px #D3D3D3',
                }}
-            />
+            >
+               <Image
+                  className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
+                  src='/images/2.jpg'
+                  alt='Graph Project Image'
+                  width={384}
+                  height={384}
+               />
+            </motion.div>
             <motion.a
                className='absolute hidden self-center border-2 border-white p-4 text-black duration-500 group-hover:block'
                href='#'

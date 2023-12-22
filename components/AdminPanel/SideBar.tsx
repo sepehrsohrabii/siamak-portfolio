@@ -3,22 +3,28 @@ import Link from 'next/link';
 import { Heading5 } from '../General/typography';
 import { usePathname } from 'next/navigation';
 import { signOutFunc } from '@/utils/actions';
+import homeIcon from '@/public/icons/home.png';
+import statisticsIcon from '@/public/icons/bar-chart.png';
+import usersIcon from '@/public/icons/group.png';
+import typesIcon from '@/public/icons/menu.png';
+import projectsIcon from '@/public/icons/modeling.png';
+import Image from 'next/image';
 
 const SideBar = () => {
    const path = usePathname();
    const links = [
-      { name: 'Home', path: '/dashboard', imgPath: '/icons/home.png' },
+      { name: 'Home', path: '/dashboard', imgPath: homeIcon },
       {
          name: 'Statistics',
          path: '/dashboard/statistics',
-         imgPath: '/icons/bar-chart.png',
+         imgPath: statisticsIcon,
       },
-      { name: 'Users', path: '/dashboard/users', imgPath: '/icons/group.png' },
-      { name: 'Types', path: '/dashboard/types', imgPath: '/icons/menu.png' },
+      { name: 'Users', path: '/dashboard/users', imgPath: usersIcon },
+      { name: 'Types', path: '/dashboard/types', imgPath: typesIcon },
       {
          name: 'Projects',
          path: '/dashboard/projects',
-         imgPath: '/icons/modeling.png',
+         imgPath: projectsIcon,
       },
    ];
    return (
@@ -36,7 +42,13 @@ const SideBar = () => {
                }`}
                href={link.path}
             >
-               <img src={link.imgPath} className='me-2 h-5 w-5' />
+               <Image
+                  src={link.imgPath}
+                  className='me-2'
+                  alt={`${link.name} icon`}
+                  width={20}
+                  height={20}
+               />
 
                <Heading5 className=''>{link.name}</Heading5>
             </Link>
@@ -48,7 +60,13 @@ const SideBar = () => {
             }}
          >
             <button className='mt-2 flex h-[48px] w-full grow items-center justify-center gap-2 rounded-lg bg-slate-200 p-3 px-5 py-2 text-sm font-medium shadow-lg duration-500 hover:bg-sky-100 md:flex-none md:justify-start'>
-               <img src='/icons/turn-off.png' className='me-2 h-5 w-5' />
+               <Image
+                  src='/icons/turn-off.png'
+                  className='me-2'
+                  width={20}
+                  height={20}
+                  alt='sign out icon'
+               />
                <Heading5 className=''>Sign Out</Heading5>
             </button>
          </form>

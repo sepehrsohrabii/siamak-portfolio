@@ -3,8 +3,9 @@ import { signIn, signOut } from '@/auth';
 import Users from '@/schemas/Users';
 import { AuthError } from 'next-auth';
 import connectMongo from './connectMongo';
-import { ITypesSchema, IUsersSchema } from './types';
+import { IProjectsSchema, ITypesSchema, IUsersSchema } from './types';
 import Types from '@/schemas/Types';
+import Projects from '@/schemas/Projects';
 export async function authenticate(
    prevState: string | undefined,
    formData: FormData
@@ -26,7 +27,7 @@ export async function authenticate(
 export async function signOutFunc() {
    await signOut();
 }
-// Users CRUD functions
+// Users CRUD functions ------------------------------------------------------------------------------------------------------
 export async function getUsers() {
    try {
       await connectMongo();
@@ -155,7 +156,8 @@ export async function removeUser(id: string) {
       throw new Error('An error occurred on removing the user.');
    }
 }
-// Types CRUD functions
+
+// Types CRUD functions ------------------------------------------------------------------------------------------------------
 export async function getTypes() {
    try {
       await connectMongo();
@@ -263,5 +265,124 @@ export async function editType(
    } catch (e) {
       console.log(e);
       throw new Error('An error occurred on saving the type.');
+   }
+}
+export async function removeType(id: string) {
+   try {
+      await connectMongo();
+
+      if (id === null || id === undefined)
+         throw new Error('Id is not provided.');
+
+      const typeDataFromDB = await Types.findOne({
+         id: id,
+      });
+
+      if (!typeDataFromDB) throw new Error('Type does not exist.');
+
+      await Types.deleteOne({
+         id: id,
+      });
+      return true;
+   } catch (e) {
+      console.log(e);
+      throw new Error('An error occurred on removing the type.');
+   }
+}
+// Projects CRUD functions ------------------------------------------------------------------------------------------------------
+export async function getProjects() {
+   try {
+      await connectMongo();
+      const projects: IProjectsSchema[] = await Projects.find();
+
+      // Convert MongoDB documents to plain JavaScript objects
+      const projectsAsObjects = projects.map((project) => ({  
+         id: project.id,
+         title: project.title,
+         slug: project.slug,
+         typeId: project.typeId,
+         mainImage: project.mainImage,
+         galleryImages: project.galleryImages,
+         award: project.award,
+         description: project.description,
+         year: project.year,
+         area: project.area,
+         address: project.address,
+         designTeam: project.designTeam,
+         collaboration: project.collaboration,
+         viewCounter: project.viewCounter,
+         status: project.status,
+         createdAt: project.createdAt,
+         updatedAt: project.updatedAt,
+      }));
+
+      return projectsAsObjects;
+   } catch (e) {
+      console.log(e);
+   }
+   return [];
+}
+export async function createProject(
+   title: string,
+   slug: string,
+   typeId: string,
+   mainImage: string,
+   galleryImages: string[],
+   award: string,
+   description: string,
+   year: number,
+   area: number,
+   address: string,
+   designTeam: string,
+   collaboration: string,
+   viewCounter: number,
+   status: boolean
+) {
+   try {
+      await connectMongo();
+
+      if (
+         title === null ||
+         title === '' ||
+         title === undefined ||
+         slug === null ||
+         slug === '' ||
+         slug === undefined
+      )
+         throw new Error('Title or Slug is not provided.');
+
+      // We have to check if the request is for a new Types or not.
+      const projectDataFromDB = await Projects.findOne({
+         slug: slug,
+      });
+
+      if (projectDataFromDB) throw new Error('Project already exists.');
+
+      const id = Math.floor(Math.random() * 1000000)
+         .toString()
+         .padStart(6, '0');
+
+      const project: IProjectsSchema = new Projects({
+         id,
+         title,
+         slug,
+         typeId,
+         mainImage,
+         galleryImages,
+         award,
+         description,
+         year,
+         area,
+         address,
+         designTeam,
+         collaboration,
+         viewCounter,
+         status,
+      });
+
+      await project.save();
+      return project;
+   } catch (e) {
+      throw new Error('An error occurred on saving the project.');
    }
 }

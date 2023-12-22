@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const LeadershipSection: React.FC = () => {
    return (
@@ -18,17 +19,21 @@ const LeadershipSection: React.FC = () => {
          <motion.div className='group relative flex basis-2/5 self-center duration-500'>
             <div className='relative h-96 w-80 overflow-hidden'>
                {/* Default Image */}
-               <img
+               <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
                   src='/images/sample-man-1.jpg'
                   alt='Default'
+                  width={150}
+                  height={250}
                />
 
                {/* Hover Image */}
-               <img
+               <Image
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
                   src='/images/sample-man-2.jpg'
                   alt='Hover'
+                  width={150}
+                  height={250}
                />
             </div>
             <div className='self-center ps-5'>
@@ -39,33 +44,48 @@ const LeadershipSection: React.FC = () => {
                </p>
                <div className='mt-10 flex'>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/phone-solid.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='phone icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/envelope-solid.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='email icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/instagram.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='instagram icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/telegram.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='telegram icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/whatsapp.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='whatsapp icon'
                      />
                   </a>
                </div>
@@ -74,17 +94,21 @@ const LeadershipSection: React.FC = () => {
          <motion.div className='group relative flex basis-2/5 self-center duration-500'>
             <div className='relative h-96 w-80 overflow-hidden'>
                {/* Default Image */}
-               <img
+               <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
                   src='/images/sample-girl-1.jpg'
                   alt='Default'
+                  width={150}
+                  height={250}
                />
 
                {/* Hover Image */}
-               <img
+               <Image
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
                   src='/images/sample-girl-2.jpg'
                   alt='Hover'
+                  width={150}
+                  height={250}
                />
             </div>
             <div className='self-center ps-5'>
@@ -95,33 +119,48 @@ const LeadershipSection: React.FC = () => {
                </p>
                <div className='mt-10 flex'>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/phone-solid.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='phone icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/envelope-solid.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='email icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/instagram.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='instagram icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/telegram.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='telegram icon'
                      />
                   </a>
                   <a href='#' className='me-5'>
-                     <img
+                     <Image
                         src='/icons/whatsapp.svg'
-                        className='w-5 opacity-80 saturate-0'
+                        className='opacity-80 saturate-0'
+                        width={20}
+                        height={20}
+                        alt='whatsapp icon'
                      />
                   </a>
                </div>
