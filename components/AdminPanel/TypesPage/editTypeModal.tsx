@@ -5,7 +5,13 @@ import { Heading4, Paragraph3 } from '@/components/General/typography';
 import EditTypeForm from './editTypeForm';
 import { TypesType } from '@/utils/types';
 
-export default function EditTypeModal({ type }: { type: TypesType }) {
+export default function EditTypeModal({
+   type,
+   fetchTypes,
+}: {
+   type: TypesType;
+   fetchTypes: () => void;
+}) {
    const [open, setOpen] = useState(false);
 
    const cancelButtonRef = useRef(null);
@@ -68,6 +74,7 @@ export default function EditTypeModal({ type }: { type: TypesType }) {
                                  setOpen={setOpen}
                                  cancelButtonRef={cancelButtonRef}
                                  type={type}
+                                 fetchTypes={fetchTypes}
                               />
                            </div>
                         </Dialog.Panel>

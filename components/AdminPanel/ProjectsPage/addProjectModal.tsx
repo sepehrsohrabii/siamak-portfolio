@@ -4,7 +4,11 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { Heading4, Heading6 } from '@/components/General/typography';
 import AddProjectForm from './addProjectForm';
 
-export default function AddProjectModal() {
+export default function AddProjectModal({
+   fetchProjects,
+}: {
+   fetchProjects: () => void;
+}) {
    const [open, setOpen] = useState(false);
 
    const cancelButtonRef = useRef(null);
@@ -68,6 +72,7 @@ export default function AddProjectModal() {
                               <AddProjectForm
                                  setOpen={setOpen}
                                  cancelButtonRef={cancelButtonRef}
+                                 fetchProjects={fetchProjects}
                               />
                            </div>
                         </Dialog.Panel>

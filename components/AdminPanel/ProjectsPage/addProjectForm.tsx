@@ -16,9 +16,11 @@ import ImagePreview from './ImageUploader/ImagePreview';
 const AddProjectForm = ({
    setOpen,
    cancelButtonRef,
+   fetchProjects,
 }: {
    setOpen: Dispatch<SetStateAction<boolean>>;
    cancelButtonRef: MutableRefObject<null>;
+   fetchProjects: () => void;
 }) => {
    const [error, setError] = useState<string>('');
    const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -62,6 +64,7 @@ const AddProjectForm = ({
          if (project) {
             setIsLoading(false);
             setOpen(false);
+            fetchProjects();
          }
       } catch (e) {
          //  console.log(e.message);

@@ -10,7 +10,13 @@ import {
 import EditUserForm from './editUserForm';
 import { UsersType } from '@/utils/types';
 
-export default function EditUserModal({ user }: { user: UsersType }) {
+export default function EditUserModal({
+   user,
+   fetchUsers,
+}: {
+   user: UsersType;
+   fetchUsers: () => void;
+}) {
    const [open, setOpen] = useState(false);
 
    const cancelButtonRef = useRef(null);
@@ -73,6 +79,7 @@ export default function EditUserModal({ user }: { user: UsersType }) {
                                  setOpen={setOpen}
                                  cancelButtonRef={cancelButtonRef}
                                  user={user}
+                                 fetchUsers={fetchUsers}
                               />
                            </div>
                         </Dialog.Panel>

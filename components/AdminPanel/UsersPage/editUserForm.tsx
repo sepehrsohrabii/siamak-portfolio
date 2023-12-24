@@ -8,10 +8,12 @@ const EditUserForm = ({
    setOpen,
    cancelButtonRef,
    user,
+   fetchUsers,
 }: {
    setOpen: Dispatch<SetStateAction<boolean>>;
    cancelButtonRef: MutableRefObject<null>;
    user: UsersType;
+   fetchUsers: () => void;
 }) => {
    const [error, setError] = useState<string>('');
    const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -34,6 +36,7 @@ const EditUserForm = ({
          if (updatedUser) {
             setIsLoading(false);
             setOpen(false);
+            fetchUsers();
          }
       } catch (e) {
          //  console.log(e.message);

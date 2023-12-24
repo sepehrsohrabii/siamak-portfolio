@@ -7,9 +7,11 @@ import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react';
 const AddTypeForm = ({
    setOpen,
    cancelButtonRef,
+   fetchTypes,
 }: {
    setOpen: Dispatch<SetStateAction<boolean>>;
    cancelButtonRef: MutableRefObject<null>;
+   fetchTypes: () => void;
 }) => {
    const [error, setError] = useState<string>('');
    const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -33,6 +35,7 @@ const AddTypeForm = ({
          if (type) {
             setIsLoading(false);
             setOpen(false);
+            fetchTypes();
          }
       } catch (e) {
          //  console.log(e.message);

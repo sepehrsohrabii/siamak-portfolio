@@ -1,22 +1,18 @@
 import LoadingSpin from '@/components/General/loadingSpin';
 import { Heading6, Paragraph2 } from '@/components/General/typography';
-import { getProjects } from '@/utils/actions';
-import { IProjectsSchema, ProjectsType } from '@/utils/types';
-import { useEffect, useState } from 'react';
+
 import DeleteProjectModal from './deleteProjectModal';
 import EditProjectModal from './editProjectModal';
 import ModifyImagesModal from './ImageUploader/modifyImagesModal';
+import { ProjectsType } from '@/utils/types';
 
-const ProjectsList = () => {
-   const [projects, setProjects] = useState<ProjectsType[]>([]);
-   const [error, setError] = useState(null);
-   const fetchProjects = async () => {
-      const projectsList: ProjectsType[] = await getProjects();
-      setProjects(projectsList);
-   };
-   useEffect(() => {
-      fetchProjects();
-   }, []);
+const ProjectsList = ({
+   projects,
+   fetchProjects,
+}: {
+   projects: ProjectsType[];
+   fetchProjects: () => void;
+}) => {
    return (
       <>
          {projects.length >= 0 ? (

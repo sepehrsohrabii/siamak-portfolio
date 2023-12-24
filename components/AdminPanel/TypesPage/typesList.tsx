@@ -1,21 +1,17 @@
 import LoadingSpin from '@/components/General/loadingSpin';
 import { Heading6, Paragraph2 } from '@/components/General/typography';
-import { getTypes } from '@/utils/actions';
-import { ITypesSchema, TypesType } from '@/utils/types';
-import { useEffect, useState } from 'react';
+
 import DeleteTypeModal from './deleteTypeModal';
 import EditTypeModal from './editTypeModal';
+import { TypesType } from '@/utils/types';
 
-const TypesList = () => {
-   const [types, setTypes] = useState<TypesType[]>([]);
-   const [error, setError] = useState(null);
-   useEffect(() => {
-      const fetchTypes = async () => {
-         const typesList: TypesType[] = await getTypes();
-         setTypes(typesList);
-      };
-      fetchTypes();
-   }, []);
+const TypesList = ({
+   types,
+   fetchTypes,
+}: {
+   types: TypesType[];
+   fetchTypes: () => void;
+}) => {
    return (
       <>
          {types.length >= 0 ? (
@@ -78,10 +74,14 @@ const TypesList = () => {
                         </td>
                         <td>
                            <div className='flex items-center'>
-                              <EditTypeModal type={type} />
+                              <EditTypeModal
+                                 type={type}
+                                 fetchTypes={fetchTypes}
+                              />
                               <DeleteTypeModal
                                  typeName={type.title}
                                  id={type.id}
+                                 fetchTypes={fetchTypes}
                               />
                            </div>
                         </td>

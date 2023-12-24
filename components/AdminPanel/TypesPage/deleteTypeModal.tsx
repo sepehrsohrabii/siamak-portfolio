@@ -13,9 +13,11 @@ import { removeType } from '@/utils/actions';
 export default function DeleteTypeModal({
    typeName,
    id,
+   fetchTypes,
 }: {
    typeName: string;
    id: string;
+   fetchTypes: () => void;
 }) {
    const [open, setOpen] = useState(false);
    const [error, setError] = useState<string>('');
@@ -31,6 +33,7 @@ export default function DeleteTypeModal({
          if (deleted) {
             setIsLoading(false);
             setOpen(false);
+            fetchTypes();
          }
       } catch (e) {
          //  console.log(e.message);

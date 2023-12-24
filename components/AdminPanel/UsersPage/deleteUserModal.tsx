@@ -15,9 +15,11 @@ import { removeUser } from '@/utils/actions';
 export default function DeleteUserModal({
    userName,
    id,
+   fetchUsers,
 }: {
    userName: string;
    id: string;
+   fetchUsers: () => void;
 }) {
    const [open, setOpen] = useState(false);
    const [error, setError] = useState<string>('');
@@ -33,6 +35,7 @@ export default function DeleteUserModal({
          if (deleted) {
             setIsLoading(false);
             setOpen(false);
+            fetchUsers();
          }
       } catch (e) {
          //  console.log(e.message);

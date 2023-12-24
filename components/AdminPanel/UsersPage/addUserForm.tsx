@@ -12,9 +12,11 @@ import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react';
 const AddUserForm = ({
    setOpen,
    cancelButtonRef,
+   fetchUsers,
 }: {
    setOpen: Dispatch<SetStateAction<boolean>>;
    cancelButtonRef: MutableRefObject<null>;
+   fetchUsers: () => void;
 }) => {
    const [error, setError] = useState<string>('');
    const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -31,6 +33,7 @@ const AddUserForm = ({
          if (user) {
             setIsLoading(false);
             setOpen(false);
+            fetchUsers();
          }
       } catch (e) {
          //  console.log(e.message);

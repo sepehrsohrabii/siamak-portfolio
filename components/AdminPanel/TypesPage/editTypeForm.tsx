@@ -15,10 +15,12 @@ const EditTypeForm = ({
    setOpen,
    cancelButtonRef,
    type,
+   fetchTypes,
 }: {
    setOpen: Dispatch<SetStateAction<boolean>>;
    cancelButtonRef: MutableRefObject<null>;
    type: TypesType;
+   fetchTypes: () => void;
 }) => {
    const [error, setError] = useState<string>('');
    const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -48,6 +50,7 @@ const EditTypeForm = ({
          if (updatedType) {
             setIsLoading(false);
             setOpen(false);
+            fetchTypes();
          }
       } catch (e) {
          //  console.log(e.message);

@@ -7,7 +7,11 @@ import {
 import { Heading4, Heading5, Heading6 } from '@/components/General/typography';
 import AddUserForm from './addUserForm';
 
-export default function AddUserModal() {
+export default function AddUserModal({
+   fetchUsers,
+}: {
+   fetchUsers: () => void;
+}) {
    const [open, setOpen] = useState(false);
 
    const cancelButtonRef = useRef(null);
@@ -71,6 +75,7 @@ export default function AddUserModal() {
                               <AddUserForm
                                  setOpen={setOpen}
                                  cancelButtonRef={cancelButtonRef}
+                                 fetchUsers={fetchUsers}
                               />
                            </div>
                         </Dialog.Panel>

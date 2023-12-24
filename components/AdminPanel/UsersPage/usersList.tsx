@@ -1,26 +1,16 @@
-import LoadingPulse from '@/components/General/loadingPulse';
 import LoadingSpin from '@/components/General/loadingSpin';
-import {
-   Heading6,
-   Paragraph1,
-   Paragraph2,
-} from '@/components/General/typography';
-import { getUsers } from '@/utils/actions';
-import { IUsersSchema, UsersType } from '@/utils/types';
-import { useEffect, useState } from 'react';
+import { Heading6, Paragraph2 } from '@/components/General/typography';
 import DeleteUserModal from './deleteUserModal';
 import EditUserModal from './editUserModal';
+import { UsersType } from '@/utils/types';
 
-const UsersList = () => {
-   const [users, setUsers] = useState<UsersType[]>([]);
-   const [error, setError] = useState(null);
-   useEffect(() => {
-      const fetchUsers = async () => {
-         const usersList: UsersType[] = await getUsers();
-         setUsers(usersList);
-      };
-      fetchUsers();
-   }, []);
+const UsersList = ({
+   fetchUsers,
+   users,
+}: {
+   fetchUsers: () => void;
+   users: UsersType[];
+}) => {
    return (
       <>
          {users.length > 0 ? (
@@ -77,10 +67,14 @@ const UsersList = () => {
                         </td>
                         <td>
                            <div className='flex items-center'>
-                              <EditUserModal user={user} />
+                              <EditUserModal
+                                 user={user}
+                                 fetchUsers={fetchUsers}
+                              />
                               <DeleteUserModal
                                  userName={user.name}
                                  id={user.id}
+                                 fetchUsers={fetchUsers}
                               />
                            </div>
                         </td>

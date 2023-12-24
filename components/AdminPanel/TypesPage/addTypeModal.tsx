@@ -4,7 +4,11 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { Heading4, Heading6 } from '@/components/General/typography';
 import AddTypeForm from './addTypeForm';
 
-export default function AddTypeModal() {
+export default function AddTypeModal({
+   fetchTypes,
+}: {
+   fetchTypes: () => void;
+}) {
    const [open, setOpen] = useState(false);
 
    const cancelButtonRef = useRef(null);
@@ -68,6 +72,7 @@ export default function AddTypeModal() {
                               <AddTypeForm
                                  setOpen={setOpen}
                                  cancelButtonRef={cancelButtonRef}
+                                 fetchTypes={fetchTypes}
                               />
                            </div>
                         </Dialog.Panel>
