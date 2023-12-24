@@ -6,7 +6,13 @@ import { getProjectById, getImageById } from '@/utils/actions';
 import { MinusIcon } from '@heroicons/react/24/solid';
 import LoadingSpinSM from '@/components/General/loadingSpinSM';
 
-const MainImageUploadForm = ({ project }: { project: ProjectsType }) => {
+const MainImageUploadForm = ({
+   project,
+   fetchProjects,
+}: {
+   project: ProjectsType;
+   fetchProjects: () => void;
+}) => {
    const [mainImage, setMainImage] = useState<File | null>(null);
    const [mainImageUrl, setMainImageUrl] = useState<string>('');
    const [uploading, setUploading] = useState<boolean>(false);
@@ -31,6 +37,7 @@ const MainImageUploadForm = ({ project }: { project: ProjectsType }) => {
       } finally {
          setIsLoading(false);
          setMainImageUrl('');
+         fetchProjects();
       }
       setIsLoading(false);
    };
@@ -69,6 +76,7 @@ const MainImageUploadForm = ({ project }: { project: ProjectsType }) => {
                console.error('Error uploading images', error);
             } finally {
                setUploading(false);
+               fetchProjects();
             }
          }
          setUploading(false);

@@ -8,14 +8,16 @@ import {
    Paragraph3,
 } from '@/components/General/typography';
 import LoadingSpin from '@/components/General/loadingSpin';
-import { removeType } from '@/utils/actions';
+import { removeProject } from '@/utils/actions';
 
-export default function DeleteTypeModal({
-   typeName,
+export default function DeleteProjectModal({
+   projectName,
    id,
+   fetchProjects,
 }: {
-   typeName: string;
+   projectName: string;
    id: string;
+   fetchProjects: () => void;
 }) {
    const [open, setOpen] = useState(false);
    const [error, setError] = useState<string>('');
@@ -26,11 +28,12 @@ export default function DeleteTypeModal({
    const onClickFunction = async () => {
       setIsLoading(true);
       try {
-         const deleted = await removeType(id);
+         const deleted = await removeProject(id);
 
          if (deleted) {
             setIsLoading(false);
             setOpen(false);
+            fetchProjects();
          }
       } catch (e) {
          //  console.log(e.message);
@@ -95,8 +98,8 @@ export default function DeleteTypeModal({
                                  </Dialog.Title>
                               </div>
                               <Paragraph2 className=''>
-                                 By confirming this, {typeName} type's data will
-                                 delete completely. Are you sure?
+                                 By confirming this, {projectName} Project's
+                                 data will delete completely. Are you sure?
                               </Paragraph2>
                               {error && (
                                  <div className='my-2 rounded bg-red-100 px-3 py-2'>

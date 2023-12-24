@@ -6,28 +6,45 @@ import {
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
-import { editType } from '@/utils/actions';
+import { editProject, getTypes } from '@/utils/actions';
 import slugify from '@/utils/functions';
-import { TypesType } from '@/utils/types';
-import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react';
+import { ProjectsType, TypesType } from '@/utils/types';
+import {
+   Dispatch,
+   MutableRefObject,
+   SetStateAction,
+   useEffect,
+   useState,
+} from 'react';
 
-const EditTypeForm = ({
+const EditProjectForm = ({
    setOpen,
    cancelButtonRef,
-   type,
+   project,
+   fetchProjects,
 }: {
    setOpen: Dispatch<SetStateAction<boolean>>;
    cancelButtonRef: MutableRefObject<null>;
-   type: TypesType;
+   project: ProjectsType;
+   fetchProjects: () => void;
 }) => {
    const [error, setError] = useState<string>('');
    const [isLoading, setIsLoading] = useState<boolean>(false);
-   const [title, setTitle] = useState<string>(type.title);
-   const [slug, setSlug] = useState<string>(type.slug);
-   const [orderingNumber, setOrderingNumber] = useState<number>(
-      type.orderingNumber
+   const [title, setTitle] = useState<string>(project.title);
+   const [slug, setSlug] = useState<string>(project.slug);
+   const [types, setTypes] = useState<TypesType[]>([]);
+   const [typeId, setTypeId] = useState<string>(project.typeId);
+   const [award, setAward] = useState<string>(project.award);
+   const [description, setDescription] = useState<string>(project.description);
+   const [year, setYear] = useState<string>(project.year);
+   const [area, setArea] = useState<string>(project.area);
+   const [address, setAddress] = useState<string>(project.address);
+   const [designTeam, setDesignTeam] = useState<string>(project.designTeam);
+   const [collaboration, setCollaboration] = useState<string>(
+      project.collaboration
    );
-   const [status, setStatus] = useState<boolean>(type.status);
+   const [viewCounter, setViewCounter] = useState<number>(project.viewCounter);
+   const [status, setStatus] = useState<boolean>(project.status);
 
    const handleTitleChange = (value: string) => {
       const newTitle = value;
@@ -38,16 +55,25 @@ const EditTypeForm = ({
    const onClickFunction = async () => {
       setIsLoading(true);
       try {
-         const updatedType = await editType(
-            type.id,
+         const updatedProject = await editProject(
+            project.id,
             title,
             slug,
-            orderingNumber,
+            typeId,
+            award,
+            description,
+            year,
+            area,
+            address,
+            designTeam,
+            collaboration,
+            viewCounter,
             status
          );
-         if (updatedType) {
+         if (updatedProject) {
             setIsLoading(false);
             setOpen(false);
+            fetchProjects();
          }
       } catch (e) {
          //  console.log(e.message);
@@ -55,6 +81,17 @@ const EditTypeForm = ({
          setIsLoading(false);
       }
    };
+   useEffect(() => {
+      const fetchTypes = async () => {
+         const res = await getTypes();
+         setTypes(res);
+      };
+      try {
+         fetchTypes();
+      } catch (e) {
+         setError(e.message);
+      }
+   }, []);
    return (
       <div className='w-full'>
          <Label htmlFor='title' className='text-gray-900'>
@@ -65,8 +102,9 @@ const EditTypeForm = ({
             name='title'
             id='title'
             className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-            placeholder='Interior'
+            placeholder='My New Project'
             onChange={(e) => handleTitleChange(e.target.value)}
+            required
             value={title}
          />
          <Label htmlFor='slug' className='text-gray-900'>
@@ -77,23 +115,129 @@ const EditTypeForm = ({
             name='slug'
             id='slug'
             className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-            placeholder='mail@mail.com'
+            placeholder='my-new-project'
             onChange={(e) => setSlug(e.target.value)}
             required
             value={slug}
          />
-         <Label htmlFor='orderingNumber' className='text-gray-900'>
-            OrderingNumber
+         <Label htmlFor='type' className='text-gray-900'>
+            Type
+         </Label>
+         <select
+            id='type'
+            name='type'
+            className='mb-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600'
+            onChange={(e) => {
+               setTypeId(e.target.value);
+            }}
+            required
+            value={typeId}
+         >
+            <option value='' disabled selected>
+               Select Type
+            </option>
+            {types.map((type) => (
+               <option key={type.id} value={type.id}>
+                  {type.title}
+               </option>
+            ))}
+         </select>
+         <Label htmlFor='award' className='text-gray-900'>
+            Award
+         </Label>
+         <textarea
+            id='award'
+            name='award'
+            rows={3}
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            defaultValue={award}
+            onChange={(e) => setAward(e.target.value)}
+            value={award}
+         />
+         <Label htmlFor='description' className='text-gray-900'>
+            Description
+         </Label>
+         <textarea
+            id='description'
+            name='description'
+            rows={3}
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            defaultValue={description}
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+         />
+         <Label htmlFor='year' className='text-gray-900'>
+            Year
+         </Label>
+         <input
+            type='text'
+            name='year'
+            id='year'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='2023'
+            onChange={(e) => setYear(e.target.value)}
+            value={year}
+         />
+         <Label htmlFor='area' className='text-gray-900'>
+            Area
+         </Label>
+         <input
+            type='text'
+            name='area'
+            id='area'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='100 m2'
+            onChange={(e) => setArea(e.target.value)}
+            value={area}
+         />
+         <Label htmlFor='address' className='text-gray-900'>
+            Address
+         </Label>
+         <input
+            type='address'
+            name='address'
+            id='address'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setAddress(e.target.value)}
+            value={address}
+         />
+         <Label htmlFor='designTeam' className='text-gray-900'>
+            Design Team
+         </Label>
+         <input
+            type='text'
+            name='designTeam'
+            id='designTeam'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setDesignTeam(e.target.value)}
+            value={designTeam}
+         />
+         <Label htmlFor='collaboration' className='text-gray-900'>
+            collaboration
+         </Label>
+         <input
+            type='text'
+            name='collaboration'
+            id='collaboration'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setCollaboration(e.target.value)}
+            value={collaboration}
+         />
+         <Label htmlFor='viewCounter' className='text-gray-900'>
+            View Counter
          </Label>
          <input
             type='number'
-            name='orderingNumber'
-            id='orderingNumber'
+            name='viewCounter'
+            id='viewCounter'
             className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
             placeholder='0'
-            onChange={(e) => setOrderingNumber(Number(e.target.value))}
+            onChange={(e) => setViewCounter(Number(e.target.value))}
             required
-            value={orderingNumber}
+            value={viewCounter}
          />
          <div className='flex items-center'>
             <Label htmlFor='status' className='me-2 text-gray-900'>
@@ -104,10 +248,10 @@ const EditTypeForm = ({
                name='status'
                type='checkbox'
                className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+               checked={status}
                onChange={(e) => {
                   setStatus(e.target.checked);
                }}
-               checked={status}
             />
          </div>
          {error && (
@@ -145,4 +289,4 @@ const EditTypeForm = ({
       </div>
    );
 };
-export default EditTypeForm;
+export default EditProjectForm;

@@ -9,8 +9,10 @@ import GalleryImagesUploadForm from './galleryImagesUploadForm';
 
 export default function ModifyImagesModal({
    project,
+   fetchProjects,
 }: {
    project: ProjectsType;
+   fetchProjects: () => void;
 }) {
    const [open, setOpen] = useState(false);
 
@@ -72,13 +74,14 @@ export default function ModifyImagesModal({
                                     </Heading4>
                                  </Dialog.Title>
                               </div>
-                              {/* <EditTypeForm
-                                 setOpen={setOpen}
-                                 cancelButtonRef={cancelButtonRef}
-                                 type={type}
-                              /> */}
-                              <MainImageUploadForm project={project} />
-                              <GalleryImagesUploadForm project={project} />
+                              <MainImageUploadForm
+                                 project={project}
+                                 fetchProjects={fetchProjects}
+                              />
+                              <GalleryImagesUploadForm
+                                 project={project}
+                                 fetchProjects={fetchProjects}
+                              />
                            </div>
                         </Dialog.Panel>
                      </Transition.Child>

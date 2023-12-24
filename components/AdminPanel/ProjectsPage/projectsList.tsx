@@ -10,11 +10,11 @@ import ModifyImagesModal from './ImageUploader/modifyImagesModal';
 const ProjectsList = () => {
    const [projects, setProjects] = useState<ProjectsType[]>([]);
    const [error, setError] = useState(null);
+   const fetchProjects = async () => {
+      const projectsList: ProjectsType[] = await getProjects();
+      setProjects(projectsList);
+   };
    useEffect(() => {
-      const fetchProjects = async () => {
-         const projectsList: ProjectsType[] = await getProjects();
-         setProjects(projectsList);
-      };
       fetchProjects();
    }, []);
    return (
@@ -97,12 +97,19 @@ const ProjectsList = () => {
                         </td>
                         <td>
                            <div className='flex items-center'>
-                              <EditProjectModal project={project} />
+                              <EditProjectModal
+                                 project={project}
+                                 fetchProjects={fetchProjects}
+                              />
                               <DeleteProjectModal
                                  projectName={project.title}
                                  id={project.id}
+                                 fetchProjects={fetchProjects}
                               />
-                              <ModifyImagesModal project={project} />
+                              <ModifyImagesModal
+                                 project={project}
+                                 fetchProjects={fetchProjects}
+                              />
                            </div>
                         </td>
                      </tr>

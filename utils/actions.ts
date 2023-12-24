@@ -3,12 +3,13 @@ import { signIn, signOut } from '@/auth';
 import Users from '@/schemas/Users';
 import { AuthError } from 'next-auth';
 import connectMongo from './connectMongo';
-import { IProjectsSchema, ITypesSchema, IUsersSchema } from './types';
+import { IProjectsSchema, IServerLogsSchema, ITypesSchema, IUsersSchema } from './types';
 import Types from '@/schemas/Types';
 import Projects from '@/schemas/Projects';
 import fs from 'fs';
 import { NextResponse } from 'next/server';
 import Images from '@/schemas/Images';
+import ServerLogs from '@/schemas/ServerLogs';
 
 export async function authenticate(
    prevState: string | undefined,
@@ -399,5 +400,100 @@ export async function getImageById(id: string) {
       return image;
    } catch (e) {
       console.log(e);
+   }
+}
+export async function editProject(
+   id: string,
+   title: string,
+   slug: string,
+   typeId: string,
+   award: string,
+   description: string,
+   year: string,
+   area: string,
+   address: string,
+   designTeam: string,
+   collaboration: string,
+   viewCounter: number,
+   status: boolean
+) {
+   try {
+      await connectMongo();
+
+      if (
+         id === null ||
+         id === '' ||
+         id === null
+      )
+         throw new Error('Id is not provided.');
+
+      // We have to check if the request is for a new Users or not.
+      const updatedProject = await Projects.findOneAndUpdate(
+         {
+            id: id,
+         },
+         {
+            $set: {
+               title: title,
+               slug: slug,
+               typeId: typeId,
+               award: award,
+               description: description,
+               year: year,
+               area: area,
+               address: address,
+               designTeam: designTeam,
+               collaboration: collaboration,
+               viewCounter: viewCounter,
+               status: status,
+            },
+         },
+         {
+            new: true,
+         }
+      );
+      if (!updatedProject) throw new Error('Project does not exist.');
+
+      return updatedProject;
+   } catch (e) {
+      console.log(e);
+      throw new Error('An error occurred on saving the project.');
+   }
+}
+export async function removeProject(id: string) {
+   try {
+      await connectMongo();
+
+      if (id === null || id === undefined)
+         throw new Error('Id is not provided.');
+
+      const deletedProject = await Projects.findOneAndDelete({
+         id: id,
+      });
+
+      if (!deletedProject) throw new Error('Project does not exist.');
+
+      const imagesDatafromDB = await Images.find({
+         projectId: id,
+      });
+      imagesDatafromDB.map((image) => {
+         // To delete the file from the server, we have to use fs.unlink()
+         fs.unlink(`./public${image.fileURL}`, async (err) => {
+            if (err) {
+               const serverLog: IServerLogsSchema = new ServerLogs({
+                  logUrl: `api/image/delete/${image.id}/route.ts`,
+                  logText: err,
+               });
+               await serverLog.save();
+            }
+         });
+      })
+      const deletingImages = await Images.deleteMany({
+         projectId: id,
+      })
+      return true;
+   } catch (e) {
+      console.log(e);
+      throw new Error('An error occurred on removing the Project.');
    }
 }

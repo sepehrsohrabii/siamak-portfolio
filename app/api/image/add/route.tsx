@@ -94,6 +94,7 @@ export async function POST(request: NextRequest) {
                         {
                            $set: {
                               mainImageId: uniqueSuffix,
+                              status: true,
                            },
                         },
                         {

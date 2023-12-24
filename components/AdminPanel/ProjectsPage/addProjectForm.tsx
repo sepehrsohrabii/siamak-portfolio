@@ -26,8 +26,6 @@ const AddProjectForm = ({
    const [slug, setSlug] = useState<string>('');
    const [types, setTypes] = useState<TypesType[]>([]);
    const [typeId, setTypeId] = useState<string>('');
-   const [mainImage, setMainImage] = useState<File | null>(null);
-   const [galleryImages, setGalleryImages] = useState<FileList | null>(null);
    const [award, setAward] = useState<string>('');
    const [description, setDescription] = useState<string>('');
    const [year, setYear] = useState<string>('');
@@ -82,24 +80,6 @@ const AddProjectForm = ({
          setError(e.message);
       }
    }, []);
-   // useEffect(() => {
-   //    console.log('mainImage: ', mainImage);
-   //    console.log('galleryImages: ', galleryImages);
-   // }, [mainImage, galleryImages]);
-   // const handleImageUpload = async (e: any) => {
-   //    console.log('handleImageUploade');
-   // };
-   // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-   //    e.preventDefault();
-
-   //    const formData = new FormData();
-   //    images.forEach((image, i) => {
-   //       formData.append(image.name, image);
-   //    });
-   //    setUploading(true);
-   //    await axios.post('/api/upload', formData);
-   //    setUploading(false);
-   // };
    return (
       <div className='w-full'>
          <Label htmlFor='title' className='text-gray-900'>
@@ -110,7 +90,7 @@ const AddProjectForm = ({
             name='title'
             id='title'
             className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-            placeholder='Interior'
+            placeholder='My New Project'
             onChange={(e) => handleTitleChange(e.target.value)}
          />
          <Label htmlFor='slug' className='text-gray-900'>
@@ -121,7 +101,7 @@ const AddProjectForm = ({
             name='slug'
             id='slug'
             className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-            placeholder='mail@mail.com'
+            placeholder='my-new-project'
             onChange={(e) => setSlug(e.target.value)}
             required
             value={slug}
@@ -146,33 +126,6 @@ const AddProjectForm = ({
                </option>
             ))}
          </select>
-         {/* <form onSubmit={handleSubmit}>
-            <Label htmlFor='mainImage' className='text-gray-900'>
-               Main Image
-            </Label>
-            <input
-               accept='image/png, image/jpeg'
-               type='file'
-               name='mainImage'
-               id='mainImage'
-               className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-               onChange={(e) => e.submit()}
-            />
-            {mainImage && <ImagePreview images={[mainImage]} />}
-         </form>
-         <Label htmlFor='galleryImages' className='text-gray-900'>
-            Gallery Images
-         </Label>
-         <input
-            type='file'
-            name='galleryImages'
-            id='galleryImages'
-            accept='image/png, image/jpeg'
-            multiple
-            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-            onChange={(e) => setGalleryImages(e.target.files)}
-         />
-         {galleryImages && <ImagePreview images={galleryImages} />} */}
          <Label htmlFor='award' className='text-gray-900'>
             Award
          </Label>

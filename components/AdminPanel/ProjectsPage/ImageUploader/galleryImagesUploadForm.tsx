@@ -7,7 +7,13 @@ import { MinusIcon } from '@heroicons/react/24/solid';
 import LoadingSpinSM from '@/components/General/loadingSpinSM';
 import axios from 'axios';
 
-const GalleryImagesUploadForm = ({ project }: { project: ProjectsType }) => {
+const GalleryImagesUploadForm = ({
+   project,
+   fetchProjects,
+}: {
+   project: ProjectsType;
+   fetchProjects: () => void;
+}) => {
    const [images, setImages] = useState<File[]>([]);
    const [uploading, setUploading] = useState(false);
    const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -110,6 +116,20 @@ const GalleryImagesUploadForm = ({ project }: { project: ProjectsType }) => {
       getImages();
    }, [galleryImagesIds]); // Include galleryImages in dependency array
 
+   const handleImageStatusChange = async (status: boolean, imageId: string) => {
+      try {
+         await fetch('/api/image/update', {
+            method: 'PATCH',
+            body: JSON.stringify({
+               id: imageId,
+               status: status,
+            }),
+         });
+         getImages();
+      } catch (e) {
+         console.error(e);
+      }
+   };
    return (
       <div className='mt-4 rounded bg-red-100 p-4'>
          <form>
@@ -140,6 +160,16 @@ const GalleryImagesUploadForm = ({ project }: { project: ProjectsType }) => {
                   key={image.id}
                   className='my-2 flex items-center justify-between rounded bg-gray-300 px-3 py-2'
                >
+                  <input
+                     id='status'
+                     name='status'
+                     type='checkbox'
+                     checked={image.status}
+                     className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                     onChange={(e) =>
+                        handleImageStatusChange(e.target.checked, image.id)
+                     }
+                  />
                   <Paragraph3 className='text-gray-900'>
                      Image URL:{' '}
                      <Link href={image.fileURL} className='text-blue-700'>

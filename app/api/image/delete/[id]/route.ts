@@ -14,8 +14,8 @@ export async function DELETE(
 ) {
    try {
       const imageDatafromDB = await Images.findOne({
-         id: params.id
-      })
+         id: params.id,
+      });
       if (!imageDatafromDB) {
          return NextResponse.json({
             success: false,
@@ -32,29 +32,39 @@ export async function DELETE(
                logText: err,
             });
             await serverLog.save();
-         };
+         }
       });
       // Find the document to delete by driverDocumentUnique
       await Images.findOneAndDelete({
          id: params.id,
       });
-      await Projects.findOneAndUpdate(
+      const updatedProject = await Projects.findOneAndUpdate(
          {
-           $or: [
-             { mainImageId: params.id },
-             { galleryImagesIds: { $in: [params.id] } }
-           ]
+            $or: [
+               { mainImageId: params.id },
+               { galleryImagesIds: { $in: [params.id] } },
+            ],
          },
          {
-           $pull: {
-             galleryImagesIds: params.id
-           },
-           $set: {
-             mainImageId: { $cond: { if: { $eq: ['$mainImageId', params.id] }, then: '', else: '$mainImageId' } }
-           }
+            $pull: {
+               galleryImagesIds: params.id,
+            },
+            $set: {
+               mainImageId: {
+                  $cond: {
+                     if: { $eq: ['$mainImageId', params.id] },
+                     then: '',
+                     else: '$mainImageId',
+                  },
+               },
+            },
          },
          { new: true }
-       );
+      );
+      if (updatedProject.mainImageId === '') {
+         updatedProject.status = false;
+         updatedProject.save();
+      }
       return NextResponse.json({
          success: true,
          error: null,

@@ -2,10 +2,16 @@ import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { Heading4, Paragraph3 } from '@/components/General/typography';
-import EditTypeForm from './editProjectForm';
-import { TypesType } from '@/utils/types';
+import EditProjectForm from './editProjectForm';
+import { ProjectsType } from '@/utils/types';
 
-export default function EditTypeModal({ type }: { type: TypesType }) {
+export default function EditProjectModal({
+   project,
+   fetchProjects,
+}: {
+   project: ProjectsType;
+   fetchProjects: () => void;
+}) {
    const [open, setOpen] = useState(false);
 
    const cancelButtonRef = useRef(null);
@@ -61,13 +67,16 @@ export default function EditTypeModal({ type }: { type: TypesType }) {
                                     as='h3'
                                     className='leading-6 text-gray-900'
                                  >
-                                    <Heading4 className=''>Edit Type</Heading4>
+                                    <Heading4 className=''>
+                                       Edit Project
+                                    </Heading4>
                                  </Dialog.Title>
                               </div>
-                              <EditTypeForm
+                              <EditProjectForm
                                  setOpen={setOpen}
                                  cancelButtonRef={cancelButtonRef}
-                                 type={type}
+                                 project={project}
+                                 fetchProjects={fetchProjects}
                               />
                            </div>
                         </Dialog.Panel>
