@@ -22,11 +22,11 @@ const ProjectsSchema = new Schema<IProjectsSchema>(
          type: String,
          required: true,
       },
-      mainImage: {
+      mainImageId: {
          type: String,
-         required: true,
+         required: false,
       },
-      galleryImages: [{
+      galleryImagesIds: [{
          type: String,
          required: false,
       }],

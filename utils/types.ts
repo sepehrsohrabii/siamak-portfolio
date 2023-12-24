@@ -21,8 +21,8 @@ export interface IProjectsSchema extends Document {
   title: string;
   slug: string;
   typeId: string;
-  mainImage: string;
-  galleryImages: [string];
+  mainImageId: string;
+  galleryImagesIds: [string];
   award: string;
   description: string;
   year: string;
@@ -40,8 +40,8 @@ export interface ProjectsType {
   title: string;
   slug: string;
   typeId: string;
-  mainImage: string;
-  galleryImages: [string];
+  mainImageId: string;
+  galleryImagesIds: [string];
   award: string;
   description: string;
   year: string;
@@ -69,6 +69,26 @@ export interface TypesType {
   slug: string;
   orderingNumber: number;
   status: boolean;
+}
+export interface IImagesSchema extends Document {
+  id: string;
+  projectId: string;
+  fileURL: string;
+  status: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+export interface ImagesType {
+  id: string;
+  projectId: string;
+  fileURL: string;
+  status: boolean;
+}
+export interface IServerLogsSchema extends Document {
+  logUrl: string;
+  logText: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 // Other types
 export interface CarouselSlide {

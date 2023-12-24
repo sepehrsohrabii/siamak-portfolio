@@ -1,8 +1,17 @@
+'use client';
 import LoadingSpin from '@/components/General/loadingSpin';
 import { Label, Paragraph1, Paragraph2 } from '@/components/General/typography';
-import { createProject } from '@/utils/actions';
+import { FileUploader, createProject, getTypes } from '@/utils/actions';
 import slugify from '@/utils/functions';
-import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react';
+import { TypesType } from '@/utils/types';
+import {
+   Dispatch,
+   MutableRefObject,
+   SetStateAction,
+   useEffect,
+   useState,
+} from 'react';
+import ImagePreview from './ImageUploader/ImagePreview';
 
 const AddProjectForm = ({
    setOpen,
@@ -15,7 +24,18 @@ const AddProjectForm = ({
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [title, setTitle] = useState<string>('');
    const [slug, setSlug] = useState<string>('');
-   const [orderingNumber, setOrderingNumber] = useState<number>(0);
+   const [types, setTypes] = useState<TypesType[]>([]);
+   const [typeId, setTypeId] = useState<string>('');
+   const [mainImage, setMainImage] = useState<File | null>(null);
+   const [galleryImages, setGalleryImages] = useState<FileList | null>(null);
+   const [award, setAward] = useState<string>('');
+   const [description, setDescription] = useState<string>('');
+   const [year, setYear] = useState<string>('');
+   const [area, setArea] = useState<string>('');
+   const [address, setAddress] = useState<string>('');
+   const [designTeam, setDesignTeam] = useState<string>('');
+   const [collaboration, setCollaboration] = useState<string>('');
+   const [viewCounter, setViewCounter] = useState<number>(0);
    const [status, setStatus] = useState<boolean>(false);
 
    const handleTitleChange = (value: string) => {
@@ -28,13 +48,19 @@ const AddProjectForm = ({
    const onClickFunction = async () => {
       setIsLoading(true);
       try {
-         const Project = await createProject(
+         const project = await createProject(
             title,
             slug,
-            orderingNumber,
-            status
+            typeId,
+            award,
+            description,
+            year,
+            area,
+            address,
+            designTeam,
+            collaboration,
+            viewCounter
          );
-         console.log(project);
          if (project) {
             setIsLoading(false);
             setOpen(false);
@@ -45,6 +71,35 @@ const AddProjectForm = ({
          setIsLoading(false);
       }
    };
+   useEffect(() => {
+      const fetchTypes = async () => {
+         const res = await getTypes();
+         setTypes(res);
+      };
+      try {
+         fetchTypes();
+      } catch (e) {
+         setError(e.message);
+      }
+   }, []);
+   // useEffect(() => {
+   //    console.log('mainImage: ', mainImage);
+   //    console.log('galleryImages: ', galleryImages);
+   // }, [mainImage, galleryImages]);
+   // const handleImageUpload = async (e: any) => {
+   //    console.log('handleImageUploade');
+   // };
+   // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+   //    e.preventDefault();
+
+   //    const formData = new FormData();
+   //    images.forEach((image, i) => {
+   //       formData.append(image.name, image);
+   //    });
+   //    setUploading(true);
+   //    await axios.post('/api/upload', formData);
+   //    setUploading(false);
+   // };
    return (
       <div className='w-full'>
          <Label htmlFor='title' className='text-gray-900'>
@@ -71,19 +126,143 @@ const AddProjectForm = ({
             required
             value={slug}
          />
-         <Label htmlFor='orderingNumber' className='text-gray-900'>
-            OrderingNumber
+         <Label htmlFor='type' className='text-gray-900'>
+            Type
+         </Label>
+         <select
+            id='type'
+            name='type'
+            className='mb-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600'
+            onChange={(e) => {
+               setTypeId(e.target.value);
+            }}
+         >
+            <option value='' disabled selected>
+               Select Type
+            </option>
+            {types.map((type) => (
+               <option key={type.id} value={type.id}>
+                  {type.title}
+               </option>
+            ))}
+         </select>
+         {/* <form onSubmit={handleSubmit}>
+            <Label htmlFor='mainImage' className='text-gray-900'>
+               Main Image
+            </Label>
+            <input
+               accept='image/png, image/jpeg'
+               type='file'
+               name='mainImage'
+               id='mainImage'
+               className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+               onChange={(e) => e.submit()}
+            />
+            {mainImage && <ImagePreview images={[mainImage]} />}
+         </form>
+         <Label htmlFor='galleryImages' className='text-gray-900'>
+            Gallery Images
+         </Label>
+         <input
+            type='file'
+            name='galleryImages'
+            id='galleryImages'
+            accept='image/png, image/jpeg'
+            multiple
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            onChange={(e) => setGalleryImages(e.target.files)}
+         />
+         {galleryImages && <ImagePreview images={galleryImages} />} */}
+         <Label htmlFor='award' className='text-gray-900'>
+            Award
+         </Label>
+         <textarea
+            id='award'
+            name='award'
+            rows={3}
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            defaultValue={''}
+            onChange={(e) => setAward(e.target.value)}
+         />
+         <Label htmlFor='description' className='text-gray-900'>
+            Description
+         </Label>
+         <textarea
+            id='description'
+            name='description'
+            rows={3}
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            defaultValue={''}
+            onChange={(e) => setDescription(e.target.value)}
+         />
+         <Label htmlFor='year' className='text-gray-900'>
+            Year
+         </Label>
+         <input
+            type='text'
+            name='year'
+            id='year'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setYear(e.target.value)}
+         />
+         <Label htmlFor='area' className='text-gray-900'>
+            Area
+         </Label>
+         <input
+            type='text'
+            name='area'
+            id='area'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setArea(e.target.value)}
+         />
+         <Label htmlFor='address' className='text-gray-900'>
+            Address
+         </Label>
+         <input
+            type='address'
+            name='address'
+            id='address'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setAddress(e.target.value)}
+         />
+         <Label htmlFor='designTeam' className='text-gray-900'>
+            Design Team
+         </Label>
+         <input
+            type='text'
+            name='designTeam'
+            id='designTeam'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setDesignTeam(e.target.value)}
+         />
+         <Label htmlFor='collaboration' className='text-gray-900'>
+            collaboration
+         </Label>
+         <input
+            type='text'
+            name='collaboration'
+            id='collaboration'
+            className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            placeholder='Interior'
+            onChange={(e) => setCollaboration(e.target.value)}
+         />
+         <Label htmlFor='viewCounter' className='text-gray-900'>
+            View Counter
          </Label>
          <input
             type='number'
-            name='orderingNumber'
-            id='orderingNumber'
+            name='viewCounter'
+            id='viewCounter'
             className='mb-2 block w-full rounded-md border-0 px-2 py-1.5 font-normal text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
             placeholder='0'
-            onChange={(e) => setOrderingNumber(Number(e.target.value))}
+            onChange={(e) => setViewCounter(Number(e.target.value))}
             required
          />
-         <div className='flex items-center'>
+         {/* <div className='flex items-center'>
             <Label htmlFor='status' className='me-2 text-gray-900'>
                Active
             </Label>
@@ -96,7 +275,7 @@ const AddProjectForm = ({
                   setStatus(e.target.checked);
                }}
             />
-         </div>
+         </div> */}
          {error && (
             <div className='my-2 rounded bg-red-100 px-3 py-2'>
                <Paragraph2 className='text-red-700'>{error}</Paragraph2>

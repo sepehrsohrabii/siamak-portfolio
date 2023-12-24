@@ -6,6 +6,10 @@ import connectMongo from './connectMongo';
 import { IProjectsSchema, ITypesSchema, IUsersSchema } from './types';
 import Types from '@/schemas/Types';
 import Projects from '@/schemas/Projects';
+import fs from 'fs';
+import { NextResponse } from 'next/server';
+import Images from '@/schemas/Images';
+
 export async function authenticate(
    prevState: string | undefined,
    formData: FormData
@@ -296,7 +300,7 @@ export async function getProjects() {
       const projects: IProjectsSchema[] = await Projects.find();
 
       // Convert MongoDB documents to plain JavaScript objects
-      const projectsAsObjects = projects.map((project) => ({  
+      const projectsAsObjects = projects.map((project) => ({
          id: project.id,
          title: project.title,
          slug: project.slug,
@@ -326,30 +330,17 @@ export async function createProject(
    title: string,
    slug: string,
    typeId: string,
-   mainImage: string,
-   galleryImages: string[],
    award: string,
    description: string,
-   year: number,
-   area: number,
+   year: string,
+   area: string,
    address: string,
    designTeam: string,
    collaboration: string,
-   viewCounter: number,
-   status: boolean
+   viewCounter: number
 ) {
    try {
       await connectMongo();
-
-      if (
-         title === null ||
-         title === '' ||
-         title === undefined ||
-         slug === null ||
-         slug === '' ||
-         slug === undefined
-      )
-         throw new Error('Title or Slug is not provided.');
 
       // We have to check if the request is for a new Types or not.
       const projectDataFromDB = await Projects.findOne({
@@ -367,8 +358,6 @@ export async function createProject(
          title,
          slug,
          typeId,
-         mainImage,
-         galleryImages,
          award,
          description,
          year,
@@ -377,12 +366,38 @@ export async function createProject(
          designTeam,
          collaboration,
          viewCounter,
-         status,
       });
 
       await project.save();
       return project;
    } catch (e) {
+      console.log(e);
       throw new Error('An error occurred on saving the project.');
+   }
+}
+export async function getProjectById(id: string) {
+   try {
+      await connectMongo();
+
+      // We have to check if the request is for a new Types or not.
+      const project = await Projects.findOne({
+         id: id,
+      });
+      return project;
+   } catch (e) {
+      console.log(e);
+   }
+}
+export async function getImageById(id: string) {
+   try {
+      await connectMongo();
+
+      // We have to check if the request is for a new Types or not.
+      const image = await Images.findOne({
+         id: id,
+      });
+      return image;
+   } catch (e) {
+      console.log(e);
    }
 }

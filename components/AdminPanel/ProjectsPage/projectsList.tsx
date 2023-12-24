@@ -5,6 +5,7 @@ import { IProjectsSchema, ProjectsType } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import DeleteProjectModal from './deleteProjectModal';
 import EditProjectModal from './editProjectModal';
+import ModifyImagesModal from './ImageUploader/modifyImagesModal';
 
 const ProjectsList = () => {
    const [projects, setProjects] = useState<ProjectsType[]>([]);
@@ -101,6 +102,7 @@ const ProjectsList = () => {
                                  projectName={project.title}
                                  id={project.id}
                               />
+                              <ModifyImagesModal project={project} />
                            </div>
                         </td>
                      </tr>
