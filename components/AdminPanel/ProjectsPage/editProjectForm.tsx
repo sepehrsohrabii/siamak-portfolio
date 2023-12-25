@@ -44,6 +44,9 @@ const EditProjectForm = ({
       project.collaboration
    );
    const [viewCounter, setViewCounter] = useState<number>(project.viewCounter);
+   const [showOnHomePage, setShowOnHomePage] = useState<boolean>(
+      project.showOnHomePage
+   );
    const [status, setStatus] = useState<boolean>(project.status);
 
    const handleTitleChange = (value: string) => {
@@ -68,6 +71,7 @@ const EditProjectForm = ({
             designTeam,
             collaboration,
             viewCounter,
+            showOnHomePage,
             status
          );
          if (updatedProject) {
@@ -239,7 +243,22 @@ const EditProjectForm = ({
             required
             value={viewCounter}
          />
-         <div className='flex items-center'>
+         <div className='mb-2 flex items-center'>
+            <Label htmlFor='showOnHomePage' className='me-2 text-gray-900'>
+               Show on home page?
+            </Label>
+            <input
+               id='showOnHomePage'
+               name='showOnHomePage'
+               type='checkbox'
+               className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+               checked={showOnHomePage}
+               onChange={(e) => {
+                  setShowOnHomePage(e.target.checked);
+               }}
+            />
+         </div>
+         <div className='mb-2 flex items-center'>
             <Label htmlFor='status' className='me-2 text-gray-900'>
                Active
             </Label>

@@ -31,6 +31,7 @@ export interface IProjectsSchema extends Document {
   designTeam: string;
   collaboration: string;
   viewCounter: number;
+  showOnHomePage: boolean;
   status: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -50,6 +51,7 @@ export interface ProjectsType {
   designTeam: string;
   collaboration: string;
   viewCounter: number;
+  showOnHomePage: boolean;
   status: boolean;
   createdAt: Date;
   updatedAt: Date;

@@ -63,6 +63,10 @@ const ProjectsSchema = new Schema<IProjectsSchema>(
          required: false,
          default: 0,
       },
+      showOnHomePage: {
+         type: Boolean,
+         default: false,
+      },
       status: {
          type: Boolean,
          default: false,

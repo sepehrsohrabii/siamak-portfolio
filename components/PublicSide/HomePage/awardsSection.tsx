@@ -15,8 +15,9 @@ import {
    Paragraph1,
 } from '@/components/General/typography';
 import Image from 'next/image';
+import { ProjectsType } from '@/utils/types';
 
-const AwardsSection: React.FC = () => {
+const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
    const progressCircle = useRef(null);
    const progressContent = useRef(null);
    const onAutoplayTimeLeft = (s, time, progress) => {
@@ -78,70 +79,41 @@ const AwardsSection: React.FC = () => {
                onAutoplayTimeLeft={onAutoplayTimeLeft}
                className='mySwiper'
             >
-               <SwiperSlide>
-                  <div className='flex flex-row justify-between'>
-                     <div className='basis-1/5'>
-                        <h5 className='text-4xl font-medium text-gray-800'>
-                           Lorem ipsum dolor sit amet consectetur adipisicing
-                        </h5>
+               {projects.forEach(() => {
+                  <SwiperSlide>
+                     <div className='flex flex-row justify-between'>
+                        <div className='basis-1/5'>
+                           <h5 className='text-4xl font-medium text-gray-800'>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                           </h5>
+                        </div>
+                        <div className='h-96 basis-2/5'>
+                           <Image
+                              className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                              src='/images/9.jpg'
+                              alt='project image'
+                              height={384}
+                              width={384}
+                           />
+                        </div>
+                        <div className='basis-2/5 self-center ps-40 text-gray-600'>
+                           <Paragraph1 className=''>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Voluptatibus eligendi voluptatum dolore
+                              repellat, quam laboriosam perferendis aperiam nemo
+                              rerum odio laudantium. Aliquid nemo quibusdam
+                              quia, libero quasi excepturi! Alias, quidem.
+                           </Paragraph1>
+                           <a href='#'>
+                              <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
+                                 Read More
+                              </button>
+                           </a>
+                        </div>
                      </div>
-                     <div className='h-96 basis-2/5'>
-                        <Image
-                           className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                           src='/images/9.jpg'
-                           alt='project image'
-                           height={384}
-                           width={384}
-                        />
-                     </div>
-                     <div className='basis-2/5 self-center ps-40 text-gray-600'>
-                        <Paragraph1 className=''>
-                           Lorem ipsum dolor sit amet consectetur adipisicing
-                           elit. Voluptatibus eligendi voluptatum dolore
-                           repellat, quam laboriosam perferendis aperiam nemo
-                           rerum odio laudantium. Aliquid nemo quibusdam quia,
-                           libero quasi excepturi! Alias, quidem.
-                        </Paragraph1>
-                        <a href='#'>
-                           <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
-                              Read More
-                           </button>
-                        </a>
-                     </div>
-                  </div>
-               </SwiperSlide>
-               <SwiperSlide>
-                  <div className='flex flex-row justify-between'>
-                     <div className='basis-1/5'>
-                        <h5 className='text-4xl font-medium text-gray-800'>
-                           Lorem ipsum dolor sit amet consectetur adipisicing
-                        </h5>
-                     </div>
-                     <div className='h-96 basis-2/5'>
-                        <Image
-                           className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                           src='/images/9.jpg'
-                           alt=''
-                           width={384}
-                           height={384}
-                        />
-                     </div>
-                     <div className='basis-2/5 self-center ps-40 text-gray-600'>
-                        <Paragraph1 className=''>
-                           Lorem ipsum dolor sit amet consectetur adipisicing
-                           elit. Voluptatibus eligendi voluptatum dolore
-                           repellat, quam laboriosam perferendis aperiam nemo
-                           rerum odio laudantium. Aliquid nemo quibusdam quia,
-                           libero quasi excepturi! Alias, quidem.
-                        </Paragraph1>
-                        <a href='#'>
-                           <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
-                              Read More
-                           </button>
-                        </a>
-                     </div>
-                  </div>
-               </SwiperSlide>
+                  </SwiperSlide>;
+               })}
+
                <div className='autoplay-progress' slot='container-end'>
                   <svg viewBox='0 0 48 48' ref={progressCircle}>
                      <circle cx='24' cy='24' r='20'></circle>

@@ -183,6 +183,19 @@ export async function getTypes() {
    }
    return [];
 }
+export async function getTypeById(id: string) {
+   try {
+      await connectMongo();
+
+      // We have to check if the request is for a new Types or not.
+      const type = await Types.findOne({
+         id: id,
+      });
+      return type;
+   } catch (e) {
+      console.log(e);
+   }
+}
 export async function createType(
    title: string,
    slug: string,
@@ -316,6 +329,7 @@ export async function getProjects() {
          designTeam: project.designTeam,
          collaboration: project.collaboration,
          viewCounter: project.viewCounter,
+         showOnHomePage: project.showOnHomePage,
          status: project.status,
          createdAt: project.createdAt,
          updatedAt: project.updatedAt,
@@ -338,7 +352,8 @@ export async function createProject(
    address: string,
    designTeam: string,
    collaboration: string,
-   viewCounter: number
+   viewCounter: number,
+   showOnHomePage: boolean
 ) {
    try {
       await connectMongo();
@@ -367,6 +382,7 @@ export async function createProject(
          designTeam,
          collaboration,
          viewCounter,
+         showOnHomePage,
       });
 
       await project.save();
@@ -415,6 +431,7 @@ export async function editProject(
    designTeam: string,
    collaboration: string,
    viewCounter: number,
+   showOnHomePage: boolean,
    status: boolean
 ) {
    try {
@@ -445,6 +462,7 @@ export async function editProject(
                designTeam: designTeam,
                collaboration: collaboration,
                viewCounter: viewCounter,
+               showOnHomePage: showOnHomePage,
                status: status,
             },
          },
@@ -496,4 +514,38 @@ export async function removeProject(id: string) {
       console.log(e);
       throw new Error('An error occurred on removing the Project.');
    }
+}
+// Home Page functions ------------------------------------------------------------------------------------------------------
+export async function getHomePageProjects() {
+   try {
+      await connectMongo();
+      const projects: IProjectsSchema[] = await Projects.find({ status: true, showOnHomePage: true });
+
+      // Convert MongoDB documents to plain JavaScript objects
+      const projectsAsObjects = projects.map((project) => ({
+         id: project.id,
+         title: project.title,
+         slug: project.slug,
+         typeId: project.typeId,
+         mainImageId: project.mainImageId,
+         galleryImagesIds: project.galleryImagesIds,
+         award: project.award,
+         description: project.description,
+         year: project.year,
+         area: project.area,
+         address: project.address,
+         designTeam: project.designTeam,
+         collaboration: project.collaboration,
+         viewCounter: project.viewCounter,
+         showOnHomePage: project.showOnHomePage,
+         status: project.status,
+         createdAt: project.createdAt,
+         updatedAt: project.updatedAt,
+      }));
+
+      return projectsAsObjects;
+   } catch (e) {
+      console.log(e);
+   }
+   return [];
 }

@@ -36,6 +36,7 @@ const AddProjectForm = ({
    const [designTeam, setDesignTeam] = useState<string>('');
    const [collaboration, setCollaboration] = useState<string>('');
    const [viewCounter, setViewCounter] = useState<number>(0);
+   const [showOnHomePage, setShowOnHomePage] = useState<boolean>(false);
    const [status, setStatus] = useState<boolean>(false);
 
    const handleTitleChange = (value: string) => {
@@ -59,7 +60,8 @@ const AddProjectForm = ({
             address,
             designTeam,
             collaboration,
-            viewCounter
+            viewCounter,
+            showOnHomePage
          );
          if (project) {
             setIsLoading(false);
@@ -218,20 +220,20 @@ const AddProjectForm = ({
             onChange={(e) => setViewCounter(Number(e.target.value))}
             required
          />
-         {/* <div className='flex items-center'>
-            <Label htmlFor='status' className='me-2 text-gray-900'>
-               Active
+         <div className='flex items-center'>
+            <Label htmlFor='showOnHomePage' className='me-2 text-gray-900'>
+               Show on home page?
             </Label>
             <input
-               id='status'
-               name='status'
+               id='showOnHomePage'
+               name='showOnHomePage'
                type='checkbox'
                className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
                onChange={(e) => {
-                  setStatus(e.target.checked);
+                  setShowOnHomePage(e.target.checked);
                }}
             />
-         </div> */}
+         </div>
          {error && (
             <div className='my-2 rounded bg-red-100 px-3 py-2'>
                <Paragraph2 className='text-red-700'>{error}</Paragraph2>

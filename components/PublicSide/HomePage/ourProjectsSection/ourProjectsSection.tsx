@@ -3,11 +3,12 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useLayoutEffect, useRef } from 'react';
 import ProjectItem from './projectItem';
 import { Heading2 } from '@/components/General/typography';
+import { ProjectsType } from '@/utils/types';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const OurProjectsSection = () => {
-   const projects = [0, 1, 2, 3, 4, 5];
+const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
    const component = useRef();
    const slider = useRef();
 
@@ -40,9 +41,12 @@ const OurProjectsSection = () => {
                   <Heading2 className='text-gray-700'>Our</Heading2>
                   <Heading2 className='text-gray-700'>Projects</Heading2>
                   <div className='text-end'>
-                     <a className='bg-cyan-700 px-3 py-1 text-white' href='#'>
+                     <Link
+                        className='bg-cyan-700 px-3 py-1 text-white'
+                        href='/projects'
+                     >
                         View All.
-                     </a>
+                     </Link>
                   </div>
                </div>
                {projects.map((project, index) => (

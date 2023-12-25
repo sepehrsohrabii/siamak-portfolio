@@ -35,13 +35,16 @@ const ProjectsList = ({
                         <Heading6 className=''>View Counter</Heading6>
                      </th>
                      <th className='text-start'>
+                        <Heading6 className=''>HomePage?</Heading6>
+                     </th>
+                     <th className='text-start'>
                         <Heading6 className=''>Status</Heading6>
                      </th>
                      <th className='text-start'>
-                        <Heading6 className=''>createdAt</Heading6>
+                        <Heading6 className=''>Created At</Heading6>
                      </th>
                      <th className='text-start'>
-                        <Heading6 className=''>updatedAt</Heading6>
+                        <Heading6 className=''>Updated At</Heading6>
                      </th>
                      <th className='text-start'>
                         <Heading6 className=''>Operation</Heading6>
@@ -77,18 +80,49 @@ const ProjectsList = ({
                            </Paragraph2>
                         </td>
                         <td>
-                           <Paragraph2 className='text-gray-700'>
+                           <Paragraph2
+                              className={`${
+                                 project.showOnHomePage
+                                    ? 'text-blue-700'
+                                    : 'text-gray-700'
+                              }`}
+                           >
+                              {project.showOnHomePage ? 'Yes' : 'No'}
+                           </Paragraph2>
+                        </td>
+                        <td>
+                           <Paragraph2
+                              className={`${
+                                 project.status
+                                    ? 'text-green-700'
+                                    : 'text-gray-700'
+                              }`}
+                           >
                               {project.status ? 'Active' : 'Not Active'}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {String(project.createdAt)}
+                              {`${project.createdAt.getFullYear()}/${(
+                                 project.createdAt.getMonth() + 1
+                              )
+                                 .toString()
+                                 .padStart(2, '0')}/${project.createdAt
+                                 .getDate()
+                                 .toString()
+                                 .padStart(2, '0')}`}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {String(project.updatedAt)}
+                              {`${project.updatedAt.getFullYear()}/${(
+                                 project.updatedAt.getMonth() + 1
+                              )
+                                 .toString()
+                                 .padStart(2, '0')}/${project.updatedAt
+                                 .getDate()
+                                 .toString()
+                                 .padStart(2, '0')}`}
                            </Paragraph2>
                         </td>
                         <td>

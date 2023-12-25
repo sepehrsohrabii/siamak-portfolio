@@ -2,6 +2,7 @@ import { Heading2, Paragraph1 } from '@/components/General/typography';
 import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutUsSection() {
    const container = useRef(null);
@@ -77,12 +78,12 @@ export default function AboutUsSection() {
                </Paragraph1>
 
                <div className='mt-10'>
-                  <a
+                  <Link
                      className='bg-gray-700 px-4 py-1 text-lg text-white'
-                     href='#'
+                     href='/about'
                   >
-                     More --{'>'}
-                  </a>
+                     Read More
+                  </Link>
                </div>
             </motion.div>
          </motion.div>
