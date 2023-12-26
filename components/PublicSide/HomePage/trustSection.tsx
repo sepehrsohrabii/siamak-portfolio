@@ -15,20 +15,20 @@ export default function TrustSection() {
       offset: ['start end', 'end end'],
    });
    return (
-      <div className='mx-40 -mt-52'>
+      <div className='-mt-52 md:mx-40'>
          <motion.div
             ref={container}
-            className='flex flex-row'
+            className='md:flex md:flex-row'
             style={{ opacity: scrollYProgress }}
          >
             <div className='relative w-full'>
                <Lottie animationData={engineers} loop={true} />
             </div>
-            <div className='absolute left-2/3 mr-40 mt-52'>
+            <div className='mt-10 px-5 md:absolute md:left-2/3 md:mr-40 md:mt-52 md:px-0'>
                <Heading2 className='mb-5 text-gray-800'>
                   Trust Professionals
                </Heading2>
-               <Paragraph2 className='text-gray w-full flex-wrap ps-20'>
+               <Paragraph2 className='text-gray w-full flex-wrap md:ps-20'>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
                   sunt? Laboriosam esse cumque, nesciunt exercitationem
                   asperiores, repellat minima natus a, consequatur nihil odio

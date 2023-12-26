@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+'use client';
+import React, { useRef } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { motion, useScroll } from 'framer-motion';
@@ -9,13 +10,9 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import {
-   Heading1,
-   Heading2,
-   Paragraph1,
-} from '@/components/General/typography';
-import Image from 'next/image';
+import { Heading1, Heading2 } from '@/components/General/typography';
 import { ProjectsType } from '@/utils/types';
+import AwardItem from './awardItem';
 
 const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
    const progressCircle = useRef(null);
@@ -29,11 +26,17 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
       target: container,
       offset: ['start end', 'end end'],
    });
+   const projectWithAwards = projects.filter(
+      (project) =>
+         project.award !== '' ||
+         project.award !== null ||
+         project.award !== undefined
+   );
    return (
       <div className='mb-32 bg-stone-300 py-32'>
          <motion.div
             ref={container}
-            className='mx-40'
+            className='mx-5 md:mx-40'
             style={{ opacity: scrollYProgress }}
          >
             <motion.div className='mb-16 flex flex-row items-center justify-center'>
@@ -79,40 +82,11 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
                onAutoplayTimeLeft={onAutoplayTimeLeft}
                className='mySwiper'
             >
-               {projects.forEach(() => {
-                  <SwiperSlide>
-                     <div className='flex flex-row justify-between'>
-                        <div className='basis-1/5'>
-                           <h5 className='text-4xl font-medium text-gray-800'>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                           </h5>
-                        </div>
-                        <div className='h-96 basis-2/5'>
-                           <Image
-                              className='h-full w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                              src='/images/9.jpg'
-                              alt='project image'
-                              height={384}
-                              width={384}
-                           />
-                        </div>
-                        <div className='basis-2/5 self-center ps-40 text-gray-600'>
-                           <Paragraph1 className=''>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Voluptatibus eligendi voluptatum dolore
-                              repellat, quam laboriosam perferendis aperiam nemo
-                              rerum odio laudantium. Aliquid nemo quibusdam
-                              quia, libero quasi excepturi! Alias, quidem.
-                           </Paragraph1>
-                           <a href='#'>
-                              <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
-                                 Read More
-                              </button>
-                           </a>
-                        </div>
-                     </div>
-                  </SwiperSlide>;
-               })}
+               {projectWithAwards.map((project, index) => (
+                  <SwiperSlide key={index}>
+                     <AwardItem project={project} />
+                  </SwiperSlide>
+               ))}
 
                <div className='autoplay-progress' slot='container-end'>
                   <svg viewBox='0 0 48 48' ref={progressCircle}>

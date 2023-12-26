@@ -4,172 +4,95 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { getImageById } from '@/utils/actions';
+import { Heading2 } from '@/components/General/typography';
 
-const GallerySection = () => {
+const GallerySection = ({
+   galleryImagesIds,
+}: {
+   galleryImagesIds: string[] | undefined;
+}) => {
    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+   const [imagesUrlsList, setImagesUrlsList] = useState<string[]>([]);
+   const fetchImageUrls = async () => {
+      const urls = await Promise.all(
+         galleryImagesIds.map(async (id) => {
+            try {
+               const image = await getImageById(id);
+               return image.fileURL || ''; // Handle the case where fileURL is undefined
+            } catch (e) {
+               console.error(`Error fetching image with id ${id}`, e);
+               return ''; // Return an empty string for the failed case
+            }
+         })
+      );
+      setImagesUrlsList(urls);
+   };
+
+   useEffect(() => {
+      if (galleryImagesIds && galleryImagesIds?.length > 0) fetchImageUrls();
+   }, [galleryImagesIds]);
    return (
-      <div className='my-32 bg-stone-300 px-40 py-20'>
-         <h3 className='mb-10 text-center text-7xl font-thin'>GALLERY</h3>
-         <Swiper
-            style={{
-               '--swiper-navigation-color': '#fff',
-               '--swiper-pagination-color': '#fff',
-            }}
-            loop={true}
-            lazy={true}
-            spaceBetween={10}
-            navigation={true}
-            thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className='mySwiper2'
-         >
-            <SwiperSlide>
-               <Image
-                  src='/images/5.jpg'
-                  loading='lazy'
-                  className='h-screen w-full object-cover'
-                  alt='gallery image'
-                  width={384}
-                  height={284}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/6.jpg'
-                  loading='lazy'
-                  className='h-screen w-full object-cover'
-                  alt='gallery image'
-                  width={384}
-                  height={284}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/7.jpg'
-                  loading='lazy'
-                  className='h-screen w-full object-cover'
-                  alt='gallery image'
-                  width={384}
-                  height={284}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/8.jpg'
-                  loading='lazy'
-                  className='h-screen w-full object-cover'
-                  alt='gallery image'
-                  width={384}
-                  height={284}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/1.jpg'
-                  loading='lazy'
-                  className='h-screen w-full object-cover'
-                  alt='gallery image'
-                  width={384}
-                  height={284}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/2.jpg'
-                  loading='lazy'
-                  className='h-screen w-full object-cover'
-                  alt='gallery image'
-                  width={384}
-                  height={284}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-         </Swiper>
-         <Swiper
-            onSwiper={setThumbsSwiper}
-            loop={true}
-            spaceBetween={10}
-            slidesPerView={5}
-            freeMode={true}
-            lazy={true}
-            watchSlidesProgress={true}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className='mySwiper mt-3'
-         >
-            <SwiperSlide>
-               <Image
-                  src='/images/5.jpg'
-                  loading='lazy'
-                  className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                  alt='gallery image'
-                  height={128}
-                  width={228}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/6.jpg'
-                  loading='lazy'
-                  className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                  alt='gallery image'
-                  height={128}
-                  width={228}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/7.jpg'
-                  loading='lazy'
-                  className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                  alt='gallery image'
-                  height={128}
-                  width={228}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/8.jpg'
-                  loading='lazy'
-                  className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                  alt='gallery image'
-                  height={128}
-                  width={228}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/1.jpg'
-                  loading='lazy'
-                  className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                  alt='gallery image'
-                  height={128}
-                  width={228}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-            <SwiperSlide>
-               <Image
-                  src='/images/2.jpg'
-                  loading='lazy'
-                  className='h-32 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                  alt='gallery image'
-                  height={128}
-                  width={228}
-               />
-               <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
-            </SwiperSlide>
-         </Swiper>
+      <div className='my-32 bg-stone-300 px-5 py-20 md:px-40'>
+         <Heading2 className='mb-10 text-center'>GALLERY</Heading2>
+         {imagesUrlsList.length > 0 && (
+            <>
+               <Swiper
+                  style={{
+                     '--swiper-navigation-color': '#fff',
+                     '--swiper-pagination-color': '#fff',
+                  }}
+                  loop={true}
+                  lazy={true}
+                  spaceBetween={10}
+                  navigation={true}
+                  thumbs={{ swiper: thumbsSwiper }}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className='mySwiper2'
+               >
+                  {imagesUrlsList.map((url, index) => (
+                     <SwiperSlide key={index}>
+                        <Image
+                           src={url}
+                           loading='lazy'
+                           className='h-96 w-full object-cover md:h-screen'
+                           alt={`gallery image ${index + 1}`}
+                           width={2000}
+                           height={2000}
+                        />
+                        <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
+               <Swiper
+                  onSwiper={setThumbsSwiper}
+                  loop={true}
+                  spaceBetween={10}
+                  slidesPerView={5}
+                  freeMode={true}
+                  lazy={true}
+                  watchSlidesProgress={true}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className='mt-3'
+               >
+                  {imagesUrlsList.map((url, index) => (
+                     <SwiperSlide key={index}>
+                        <Image
+                           src={url}
+                           loading='lazy'
+                           className='h-16 w-full object-cover md:h-32'
+                           alt={`gallery thumbnail ${index + 1}`}
+                           height={200}
+                           width={200}
+                        />
+                        <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
+            </>
+         )}
       </div>
    );
 };

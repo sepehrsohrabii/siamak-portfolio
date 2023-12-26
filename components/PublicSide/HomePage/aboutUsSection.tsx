@@ -11,14 +11,14 @@ export default function AboutUsSection() {
       offset: ['start end', 'end end'],
    });
    return (
-      <div className='mx-40 mb-32'>
+      <div className='mx-5 mb-32 md:mx-40'>
          <motion.div
             ref={container}
-            className='flex w-full flex-row'
+            className='w-full md:flex md:flex-row'
             style={{ opacity: scrollYProgress }}
          >
-            <motion.div className='basis-1/2'>
-               <div className='grid grid-cols-3 gap-4'>
+            <motion.div className='md:basis-1/2'>
+               <div className='grid grid-cols-3 gap-1 md:gap-4'>
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
@@ -66,7 +66,7 @@ export default function AboutUsSection() {
                   </div>
                </div>
             </motion.div>
-            <motion.div className='basis-1/2 self-center ps-20'>
+            <motion.div className='mt-10 self-center md:mt-0 md:basis-1/2 md:ps-20'>
                <Heading2 className='text-gray-700'>About Graph</Heading2>
 
                <Paragraph1 className='mb-5 mt-5 text-gray-600'>

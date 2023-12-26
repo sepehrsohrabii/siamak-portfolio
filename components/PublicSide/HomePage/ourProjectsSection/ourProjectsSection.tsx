@@ -11,7 +11,12 @@ gsap.registerPlugin(ScrollTrigger);
 const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
    const component = useRef();
    const slider = useRef();
-
+   const projectsWithoutAwards = projects.filter(
+      (project) =>
+         project.award !== '' &&
+         project.award !== null &&
+         project.award !== undefined
+   );
    useLayoutEffect(() => {
       let ctx = gsap.context(() => {
          let panels = gsap.utils.toArray('.panel');
@@ -49,7 +54,7 @@ const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
                      </Link>
                   </div>
                </div>
-               {projects.map((project, index) => (
+               {projectsWithoutAwards.map((project, index) => (
                   <ProjectItem project={project} key={index} />
                ))}
             </div>

@@ -3,7 +3,12 @@ import { signIn, signOut } from '@/auth';
 import Users from '@/schemas/Users';
 import { AuthError } from 'next-auth';
 import connectMongo from './connectMongo';
-import { IProjectsSchema, IServerLogsSchema, ITypesSchema, IUsersSchema } from './types';
+import {
+   IProjectsSchema,
+   IServerLogsSchema,
+   ITypesSchema,
+   IUsersSchema,
+} from './types';
 import Types from '@/schemas/Types';
 import Projects from '@/schemas/Projects';
 import fs from 'fs';
@@ -437,11 +442,7 @@ export async function editProject(
    try {
       await connectMongo();
 
-      if (
-         id === null ||
-         id === '' ||
-         id === null
-      )
+      if (id === null || id === '' || id === null)
          throw new Error('Id is not provided.');
 
       // We have to check if the request is for a new Users or not.
@@ -505,10 +506,10 @@ export async function removeProject(id: string) {
                await serverLog.save();
             }
          });
-      })
+      });
       const deletingImages = await Images.deleteMany({
          projectId: id,
-      })
+      });
       return true;
    } catch (e) {
       console.log(e);
@@ -519,7 +520,112 @@ export async function removeProject(id: string) {
 export async function getHomePageProjects() {
    try {
       await connectMongo();
-      const projects: IProjectsSchema[] = await Projects.find({ status: true, showOnHomePage: true });
+      const projects: IProjectsSchema[] = await Projects.find({
+         status: true,
+         showOnHomePage: true,
+      });
+
+      // Convert MongoDB documents to plain JavaScript objects
+      const projectsAsObjects = projects.map((project) => ({
+         id: project.id,
+         title: project.title,
+         slug: project.slug,
+         typeId: project.typeId,
+         mainImageId: project.mainImageId,
+         galleryImagesIds: project.galleryImagesIds,
+         award: project.award,
+         description: project.description,
+         year: project.year,
+         area: project.area,
+         address: project.address,
+         designTeam: project.designTeam,
+         collaboration: project.collaboration,
+         viewCounter: project.viewCounter,
+         showOnHomePage: project.showOnHomePage,
+         status: project.status,
+         createdAt: project.createdAt,
+         updatedAt: project.updatedAt,
+      }));
+
+      return projectsAsObjects;
+   } catch (e) {
+      console.log(e);
+   }
+   return [];
+}
+// Projects Page functions ------------------------------------------------------------------------------------------------------
+export async function getActiveTypes() {
+   try {
+      await connectMongo();
+      const types: ITypesSchema[] = await Types.find({ status: true });
+
+      // Convert MongoDB documents to plain JavaScript objects
+      const typesAsObjects = types.map((type) => ({
+         id: type.id,
+         title: type.title,
+         slug: type.slug,
+         orderingNumber: type.orderingNumber,
+         status: type.status,
+      }));
+      // Sorting the array based on the orderingNumber property
+      typesAsObjects.sort((a, b) => a.orderingNumber - b.orderingNumber);
+      return typesAsObjects;
+   } catch (e) {
+      console.log(e);
+   }
+   return [];
+}
+export async function getActiveProjects() {
+   try {
+      await connectMongo();
+      const projects: IProjectsSchema[] = await Projects.find({ status: true });
+
+      // Convert MongoDB documents to plain JavaScript objects
+      const projectsAsObjects = projects.map((project) => ({
+         id: project.id,
+         title: project.title,
+         slug: project.slug,
+         typeId: project.typeId,
+         mainImageId: project.mainImageId,
+         galleryImagesIds: project.galleryImagesIds,
+         award: project.award,
+         description: project.description,
+         year: project.year,
+         area: project.area,
+         address: project.address,
+         designTeam: project.designTeam,
+         collaboration: project.collaboration,
+         viewCounter: project.viewCounter,
+         showOnHomePage: project.showOnHomePage,
+         status: project.status,
+         createdAt: project.createdAt,
+         updatedAt: project.updatedAt,
+      }));
+
+      return projectsAsObjects;
+   } catch (e) {
+      console.log(e);
+   }
+   return [];
+}
+// Single Project Page functions ------------------------------------------------------------------------------------------------------
+export async function getProjectBySlug(slug: string) {
+   try {
+      await connectMongo();
+      const project = await Projects.findOne({
+         slug: slug,
+      });
+      return project;
+   } catch (e) {
+      console.log(e);
+   }
+}
+// Awards Page Functions --------------------------------------------------------------------------------------------------------------
+export async function getActiveAwardedProjects() {
+   try {
+      await connectMongo();
+      const projects: IProjectsSchema[] = await Projects.find({ status: true, award: { $ne: "" , $exists: true } });
+
 
       // Convert MongoDB documents to plain JavaScript objects
       const projectsAsObjects = projects.map((project) => ({

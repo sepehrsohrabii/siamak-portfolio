@@ -9,6 +9,7 @@ import {
    useAnimationFrame,
 } from 'framer-motion';
 import { wrap } from '@motionone/utils';
+import { Heading1 } from '@/components/General/typography';
 
 interface ParallaxProps {
    children: string;
@@ -66,10 +67,10 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
             className='scroller text-8xl font-thin text-gray-700'
             style={{ x }}
          >
-            <span className='me-48'>{children} </span>
-            <span className='me-48'>{children} </span>
-            <span className='me-48'>{children} </span>
-            <span className='me-48'>{children} </span>
+            <Heading1 className='me-48 inline'>{children} </Heading1>
+            <Heading1 className='me-48 inline'>{children} </Heading1>
+            <Heading1 className='me-48 inline'>{children} </Heading1>
+            <Heading1 className='me-48 inline'>{children} </Heading1>
          </motion.div>
       </div>
    );

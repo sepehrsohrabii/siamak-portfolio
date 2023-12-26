@@ -1,8 +1,15 @@
 import { motion, useInView, useScroll } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import { getImageById, getTypeById } from '@/utils/actions';
+import {
+   Heading5,
+   Paragraph2,
+   Paragraph3,
+} from '@/components/General/typography';
+import Link from 'next/link';
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,10 +20,7 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
       target: ref,
       offset: ['start end', 'end end'],
    });
-   console.log(scrollYProgress);
-
    const imageRef = useRef(null);
-
    useEffect(() => {
       // Define the animation
       const animation = gsap.fromTo(
@@ -54,67 +58,64 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
          animation.kill();
       };
    }, []);
+   const [imageUrl, setImageUrl] = useState<string>('');
+   const [typeName, setTypeName] = useState<string>('');
+   useEffect(() => {
+      const getImageUrl = async () => {
+         const image = await getImageById(project.mainImageId);
+         if (image.fileURL) {
+            setImageUrl(image.fileURL);
+         }
+      };
+      const getTypeName = async () => {
+         const type = await getTypeById(project.typeId);
+         if (type.title) {
+            setTypeName(type.title);
+         }
+      };
+      getImageUrl();
+      getTypeName();
+   }, []);
    return (
-      <motion.div
-         key={key}
-         className='relative flex h-96 justify-start'
-         ref={ref}
-      >
+      <Link key={key} className='' href={`/projects/${project.slug}`}>
          <motion.div
-            // initial={{ x: -200 }}
-            // animate={{ x: 0 }}
-            // transition={{ duration: 1 }}
-            ref={imageRef}
-            className='group z-10 flex justify-center'
+            key={key}
+            className='relative flex h-96 justify-end'
+            ref={ref}
          >
             <motion.div
-               whileHover={{
-                  scale: 1.05,
-                  boxShadow: '10px 10px 0px 0px #D3D3D3',
-               }}
-               className='w-full'
+               ref={imageRef}
+               className='group absolute left-0 z-10 flex h-full w-full justify-center'
             >
-               <Image
-                  className='w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
-                  src='/images/2.jpg'
-                  alt=''
-                  width={384}
-                  height={384}
-               />
-            </motion.div>
-            <motion.a
-               className='absolute hidden self-center border-2 border-white p-4 text-black duration-500 group-hover:block'
-               href='#'
-            >
-               <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.2}
-                  stroke='currentColor'
-                  className='h-10 w-10 text-white'
+               <motion.div
+                  whileHover={{
+                     scale: 1.05,
+                     boxShadow: '10px 10px 0px 0px #D3D3D3',
+                  }}
+                  className='w-full duration-500'
                >
-                  <path
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                     d='M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z'
-                  />
-                  <path
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                     d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
-                  />
-               </svg>
-            </motion.a>
+                  {imageUrl && (
+                     <Image
+                        className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
+                        src={imageUrl}
+                        alt={`${project.title} image`}
+                        width={500}
+                        height={500}
+                     />
+                  )}
+               </motion.div>
+            </motion.div>
+            <div className='-z-10 flex w-2/5 items-center ps-2 md:ps-5'>
+               <div className='w-full border-s-2 border-slate-400 py-10 ps-2 md:ps-5'>
+                  <Paragraph2 className='text-gray-400'>{typeName}</Paragraph2>
+                  <Heading5 className='text-gray-900'>{project.title}</Heading5>
+                  <Paragraph3 className='mt-10 text-gray-400'>
+                     {project.year}
+                  </Paragraph3>
+               </div>
+            </div>
          </motion.div>
-         <div className='absolute left-2/3 top-1/3 -z-10 -ms-10 border-s-2 border-slate-400 py-10 ps-5'>
-            <p className='text-md font-normal text-gray-400'>Interior</p>
-            <h6 className='text-2xl font-light text-gray-900'>
-               Tehran Building
-            </h6>
-            <p className='mt-10 text-sm font-normal text-gray-400'>Oct. 2019</p>
-         </div>
-      </motion.div>
+      </Link>
    );
 };
 export default SingleProjectItem;

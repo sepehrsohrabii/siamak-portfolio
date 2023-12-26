@@ -1,6 +1,6 @@
 'use client';
 import AboutUsSection from '@/components/PublicSide/HomePage/aboutUsSection';
-import AwardsSection from '@/components/PublicSide/HomePage/awardsSection';
+import AwardsSection from '@/components/PublicSide/HomePage/awardsSection/awardsSection';
 import CallUsSection from '@/components/PublicSide/HomePage/callUsSection';
 import HeroSection from '@/components/PublicSide/HomePage/heroSection';
 import OurProjectsSection from '@/components/PublicSide/HomePage/ourProjectsSection/ourProjectsSection';
@@ -16,7 +16,6 @@ const HomePage: React.FC = () => {
    const [error, setError] = useState(null);
    const fetchProjects = async () => {
       const projectsList: ProjectsType[] = await getHomePageProjects();
-      console.log(projectsList);
       setProjects(projectsList);
    };
    useEffect(() => {

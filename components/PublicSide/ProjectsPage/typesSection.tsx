@@ -2,25 +2,33 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import { Heading1, Heading4 } from '@/components/General/typography';
+import { useEffect, useState } from 'react';
+import { TypesType } from '@/utils/types';
+import { getActiveTypes } from '@/utils/actions';
 
-const TypesSection: React.FC = () => {
-   const types = [
-      'Commercial',
-      'Complex',
-      'Hospitality',
-      'Renovation',
-      'Residential',
-      'Public',
-      'Urban Design',
-      'Industrial',
-      'Villa',
-      'Office',
-      'Interior Design',
-   ];
+const TypesSection = ({
+   typeId,
+   setTypeId,
+}: {
+   typeId: string;
+   setTypeId: (typeId: string) => void;
+}) => {
+   const [types, setTypes] = useState<TypesType[]>([]);
+   const [error, setError] = useState(null);
+   const fetchTypes = async () => {
+      const typesList: TypesType[] = await getActiveTypes();
+      setTypes(typesList);
+   };
+   useEffect(() => {
+      fetchTypes();
+   }, []);
    return (
-      <div className='mx-40'>
+      <div className='mx-5 md:mx-40'>
          <div className='flex w-full flex-row'>
-            <h5 className='-me-36 text-9xl font-thin text-stone-300'>TYPES</h5>
+            <Heading1 className='-me-24 font-thin text-stone-300 md:-me-36'>
+               TYPES
+            </Heading1>
             <button className='prev text-4xl text-black'>
                <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -38,21 +46,39 @@ const TypesSection: React.FC = () => {
                </svg>
             </button>
             <Swiper
-               slidesPerView={6}
-               spaceBetween={0}
+               slidesPerView={2}
+               spaceBetween={10}
+               breakpoints={{
+                  768: {
+                     slidesPerView: 6,
+                     spaceBetween: 40,
+                  },
+               }}
                modules={[Navigation]}
-               className='mySwiper flex'
+               className='mySwiper w-full'
                navigation={{ prevEl: '.prev', nextEl: '.next' }}
             >
                <SwiperSlide className='items-center'>
-                  <button className='ms-10 w-fit text-3xl font-bold text-cyan-700'>
-                     All
+                  <button
+                     className={`ms-10 w-fit ${
+                        typeId === '' &&
+                        'border-b-2 border-cyan-700 font-bold text-cyan-700'
+                     }`}
+                     onClick={() => setTypeId('')}
+                  >
+                     <Heading4 className=''>All</Heading4>
                   </button>
                </SwiperSlide>
                {types.map((type) => (
                   <SwiperSlide className='items-center'>
-                     <button className='w-fit text-3xl font-thin'>
-                        {type}
+                     <button
+                        className={`w-fit ${
+                           type.id === typeId &&
+                           'border-b-2 border-cyan-700 font-bold text-cyan-700'
+                        }`}
+                        onClick={() => setTypeId(type.id)}
+                     >
+                        <Heading4 className=''>{type.title}</Heading4>
                      </button>
                   </SwiperSlide>
                ))}

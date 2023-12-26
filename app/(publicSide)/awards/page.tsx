@@ -2,15 +2,26 @@
 import { ScrollerMotion } from 'scroller-motion';
 import AwardsHeader from '@/components/PublicSide/AwardsPage/header';
 import SingleAwardItem from '@/components/PublicSide/AwardsPage/singleAward';
+import { useEffect, useState } from 'react';
+import { ProjectsType } from '@/utils/types';
+import { getActiveAwardedProjects } from '@/utils/actions';
 
 const Awards: React.FC = () => {
-   const awards = [0, 1, 2, 3, 4, 5];
+   const [projects, setProjects] = useState<ProjectsType[]>([]);
+   const [error, setError] = useState(null);
+   const fetchProjects = async () => {
+      const projectsList: ProjectsType[] = await getActiveAwardedProjects();
+      setProjects(projectsList);
+   };
+   useEffect(() => {
+      fetchProjects();
+   }, []);
    return (
       <>
          <AwardsHeader />
-         <div className='mx-40 my-20'>
-            {awards.map((award, index) => (
-               <SingleAwardItem award={award} key={index} />
+         <div className='mx-5 my-20 md:mx-40'>
+            {projects.map((project, index) => (
+               <SingleAwardItem project={project} key={index} />
             ))}
          </div>
       </>

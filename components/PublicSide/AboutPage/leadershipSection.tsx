@@ -1,48 +1,56 @@
+import {
+   Heading2,
+   Heading3,
+   Heading4,
+   Paragraph2,
+} from '@/components/General/typography';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const LeadershipSection: React.FC = () => {
    return (
-      <div className='my-20 flex w-full flex-row bg-stone-300 px-40 py-20'>
+      <div className='my-10 w-full bg-stone-300 px-5 py-20 md:my-20 md:flex md:flex-row md:px-40'>
          <div className='basis-1/5 self-center'>
-            <motion.h3
+            <motion.div
                initial={{ x: -200 }}
                animate={{ x: 0 }}
                transition={{ duration: 1 }}
-               className='text-5xl font-thin uppercase text-gray-700'
+               className='mb-10 md:mb-0'
             >
-               Meet Our
-               <br />
-               Leadership
-            </motion.h3>
+               <Heading3 className='uppercase text-gray-700'>
+                  Meet Our
+                  <br />
+                  Leadership
+               </Heading3>
+            </motion.div>
          </div>
-         <motion.div className='group relative flex basis-2/5 self-center duration-500'>
-            <div className='relative h-96 w-80 overflow-hidden'>
+         <motion.div className='group relative basis-2/5 self-center duration-500 md:flex'>
+            <div className='relative h-96 w-full overflow-hidden md:w-80'>
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
                   src='/images/sample-man-1.jpg'
-                  alt='Default'
-                  width={150}
-                  height={250}
+                  alt='Siamak Mortaz Hejri Image'
+                  width={900}
+                  height={900}
                />
 
                {/* Hover Image */}
                <Image
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
                   src='/images/sample-man-2.jpg'
-                  alt='Hover'
-                  width={150}
-                  height={250}
+                  alt='Siamak Mortaz Hejri Hover Image'
+                  width={900}
+                  height={900}
                />
             </div>
-            <div className='self-center ps-5'>
-               <h2 className='text-6xl font-thin'>Siamak</h2>
-               <h4 className='ms-20 text-3xl font-thin'>Mortaz Hejri</h4>
-               <p className='text-md mt-10 font-normal text-gray-500'>
+            <div className='mt-5 self-center md:mt-0 md:ps-5'>
+               <Heading2 className=''>Siamak</Heading2>
+               <Heading4 className='ms-10 md:ms-20'>Mortaz Hejri</Heading4>
+               <Paragraph2 className='mt-5 text-gray-500 md:mt-10'>
                   Co-Founder / Architecture
-               </p>
-               <div className='mt-10 flex'>
+               </Paragraph2>
+               <div className='mt-5 flex md:mt-10'>
                   <a href='#' className='me-5'>
                      <Image
                         src='/icons/phone-solid.svg'
@@ -91,15 +99,15 @@ const LeadershipSection: React.FC = () => {
                </div>
             </div>
          </motion.div>
-         <motion.div className='group relative flex basis-2/5 self-center duration-500'>
-            <div className='relative h-96 w-80 overflow-hidden'>
+         <motion.div className='group relative mt-20 basis-2/5 self-center duration-500 md:mt-0 md:flex'>
+            <div className='relative h-96 w-full overflow-hidden md:w-80'>
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
                   src='/images/sample-girl-1.jpg'
                   alt='Default'
-                  width={150}
-                  height={250}
+                  width={900}
+                  height={900}
                />
 
                {/* Hover Image */}
@@ -107,17 +115,17 @@ const LeadershipSection: React.FC = () => {
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
                   src='/images/sample-girl-2.jpg'
                   alt='Hover'
-                  width={150}
-                  height={250}
+                  width={900}
+                  height={900}
                />
             </div>
-            <div className='self-center ps-5'>
-               <h2 className='text-6xl font-thin'>Maryam</h2>
-               <h4 className='ms-20 text-3xl font-thin'>KhoshAndam</h4>
-               <p className='text-md mt-10 font-normal text-gray-500'>
+            <div className='mt-5 self-center md:mt-0 md:ps-5'>
+               <Heading2 className=''>Maryam</Heading2>
+               <Heading4 className='ms-10 md:ms-20'>KhoshAndam</Heading4>
+               <Paragraph2 className='mt-5 text-gray-500 md:mt-10'>
                   Co-Founder / Architecture
-               </p>
-               <div className='mt-10 flex'>
+               </Paragraph2>
+               <div className='mt-5 flex md:mt-10'>
                   <a href='#' className='me-5'>
                      <Image
                         src='/icons/phone-solid.svg'

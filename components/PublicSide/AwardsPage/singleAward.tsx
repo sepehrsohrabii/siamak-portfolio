@@ -1,12 +1,30 @@
 import { motion, useInView, useScroll } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ProjectsType } from '@/utils/types';
+import { getImageById, getTypeById } from '@/utils/actions';
+import {
+   Heading2,
+   Heading3,
+   Heading4,
+   Heading6,
+   Paragraph1,
+   Paragraph2,
+   Paragraph3,
+} from '@/components/General/typography';
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
-const SingleAwardItem = ({ award, key }: { award: any; key: number }) => {
+const SingleAwardItem = ({
+   project,
+   key,
+}: {
+   project: ProjectsType;
+   key: number;
+}) => {
    const ref = useRef(null);
    const imageRef = useRef(null);
 
@@ -48,85 +66,80 @@ const SingleAwardItem = ({ award, key }: { award: any; key: number }) => {
          animation.kill();
       };
    }, []);
+   const [imageUrl, setImageUrl] = useState<string>('');
+   const [typeName, setTypeName] = useState<string>('');
+   useEffect(() => {
+      const getImageUrl = async () => {
+         const image = await getImageById(project.mainImageId);
+         if (image.fileURL) {
+            setImageUrl(image.fileURL);
+         }
+      };
+      const getTypeName = async () => {
+         const type = await getTypeById(project.typeId);
+         if (type.title) {
+            setTypeName(type.title);
+         }
+      };
+      getImageUrl();
+      getTypeName();
+   }, []);
    return (
-      <motion.div
-         key={key}
-         className='relative my-10 flex h-96 justify-start'
-         ref={ref}
-      >
+      <Link href={`/projects/${project.slug}`}>
          <motion.div
-            // initial={{ x: -200 }}
-            // animate={{ x: 0 }}
-            // transition={{ duration: 1 }}
-            ref={imageRef}
-            className='group z-10 flex justify-center'
+            key={key}
+            className='my-20 justify-start md:relative md:flex md:h-96'
+            ref={ref}
          >
             <motion.div
-               className='w-full'
-               whileHover={{
-                  scale: 1.05,
-                  boxShadow: '10px 10px 0px 0px #D3D3D3',
-               }}
+               // initial={{ x: -200 }}
+               // animate={{ x: 0 }}
+               // transition={{ duration: 1 }}
+               ref={imageRef}
+               className='group z-10 justify-center md:flex'
             >
-               <Image
-                  className='w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
-                  src='/images/2.jpg'
-                  alt='Graph Award image'
-                  width={250}
-                  height={150}
-               />
-            </motion.div>
-            <motion.a
-               className='absolute hidden self-center border-2 border-white p-4 text-black duration-500 group-hover:block'
-               href='#'
-            >
-               <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.2}
-                  stroke='currentColor'
-                  className='h-10 w-10 text-white'
+               <motion.div
+                  className='w-full'
+                  whileHover={{
+                     scale: 1.05,
+                     boxShadow: '10px 10px 0px 0px #D3D3D3',
+                  }}
                >
-                  <path
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                     d='M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z'
+                  <Image
+                     className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
+                     src={imageUrl}
+                     alt={`${project.title} image`}
+                     width={800}
+                     height={800}
                   />
-                  <path
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                     d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
-                  />
-               </svg>
-            </motion.a>
-         </motion.div>
-         <div className='absolute w-full'>
-            <div className='flex flex-row items-center justify-between'>
-               <div className='basis-1/5 self-center'>
-                  <h4 className='text-4xl font-light text-gray-900'>
-                     Tehran Building
-                  </h4>
-               </div>
-               <div className='basis-2/5'>image</div>
-               <div className='basis-1/3 self-center'>
-                  <p className='text-md font-normal text-gray-400'>Interior</p>
-                  <h6 className='text-2xl font-light text-gray-900'>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Deleniti beatae hic cum voluptatum iure? Doloremque, at.
-                     Error voluptatibus, vitae quis veritatis maiores aperiam!
-                     Neque sunt, officia minima in nemo sit!
-                  </h6>
-                  <div className='mt-10 flex items-center justify-between'>
-                     <button>Read More</button>
-                     <p className='text-sm font-normal text-gray-400'>
-                        Oct. 2019
-                     </p>
+               </motion.div>
+            </motion.div>
+            <div className='w-full md:absolute'>
+               <div className='items-center justify-between md:flex md:flex-row'>
+                  <div className='mt-5 basis-1/5 self-center md:mt-0'>
+                     <Heading2 className='text-gray-800'>
+                        {project.award}
+                     </Heading2>
+                  </div>
+                  <div className='basis-2/5'></div>
+                  <div className='basis-1/3 self-center'>
+                     <Paragraph2 className='text-gray-400'>
+                        {typeName}
+                     </Paragraph2>
+                     <Paragraph1 className='text-gray-700'>
+                        {project.description}
+                     </Paragraph1>
+                     <div className='mt-5 flex items-center justify-between md:mt-10'>
+                        <button>Read More</button>
+                        <Paragraph3 className='text-gray-400'>
+                           {project.designTeam}
+                        </Paragraph3>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </motion.div>
+         </motion.div>
+      </Link>
    );
 };
 export default SingleAwardItem;

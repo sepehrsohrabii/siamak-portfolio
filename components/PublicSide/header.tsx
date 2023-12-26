@@ -18,15 +18,15 @@ export default function Header() {
    ];
    return (
       <header className='absolute top-0 z-20 w-full py-10'>
-         <div className='mx-40 flex justify-between'>
+         <div className='mx-5 flex justify-between md:mx-40'>
             <h1 className='border-b border-black text-4xl font-thin'>
                Graph Studio
             </h1>
-            <div className='menu-container flex flex-row '>
+            <div className='menu-container flex flex-col-reverse md:flex-row'>
                <div className={`menu ${isMenuVisible ? 'visible' : ''}`}>
                   <ul className='header-ul'>
                      {links.map((link) => (
-                        <li className='header-li'>
+                        <li className='header-li mt-5 md:mt-0'>
                            <Link
                               className={`flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
                                  path === link.path ? 'border-b-cyan-700' : ''

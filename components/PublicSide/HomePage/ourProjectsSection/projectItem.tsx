@@ -53,7 +53,7 @@ export default function ProjectItem({
                <Image
                   className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
                   src={imageUrl}
-                  alt='Graph Project Image'
+                  alt={`${project.title} Image`}
                   width={450}
                   height={450}
                />
