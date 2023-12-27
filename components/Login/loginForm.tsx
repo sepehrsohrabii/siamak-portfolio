@@ -10,10 +10,7 @@ import { authenticate } from '@/utils/actions';
 import { Heading5 } from '../General/typography';
 
 export default function LoginForm() {
-   const [errorMessage, dispatch] = useFormState<string | undefined, FormData>(
-      (prevState, formData) => authenticate(prevState, formData),
-      undefined
-   );
+   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
    return (
       <form action={dispatch} className='space-y-3'>

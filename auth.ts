@@ -35,14 +35,13 @@ export const { auth, signIn, signOut } = NextAuth({
             if (parsedCredentials.success) {
                const { email, password } = parsedCredentials.data;
                const user = await getUser(email);
-
-               if (user) {
-                  // Assuming user.password is the hashed password stored in the database
-                  const passwordsMatch = await bcrypt.compare(password, user.password);
-                  if (passwordsMatch) {
-                     return user;
-                  }
-               }
+               if (!user) return null;
+               // Assuming user.password is the hashed password stored in the database
+               const passwordsMatch = await bcrypt.compare(
+                  password,
+                  user.password
+               );
+               if (passwordsMatch) return user;
             }
             return null;
          },
