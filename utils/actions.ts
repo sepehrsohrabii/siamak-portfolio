@@ -12,7 +12,7 @@ import {
 import Types from '@/schemas/Types';
 import Projects from '@/schemas/Projects';
 import fs from 'fs';
-import { NextResponse } from 'next/server';
+import bcrypt from 'bcrypt';
 import Images from '@/schemas/Images';
 import ServerLogs from '@/schemas/ServerLogs';
 
@@ -86,11 +86,13 @@ export async function createUser(
          .toString()
          .padStart(6, '0');
 
+      const hashedPass = await bcrypt.hash(password, 10);
+      
       const user: IUsersSchema = new Users({
          id,
          name,
          email,
-         password,
+         password: hashedPass,
          status,
       });
 
@@ -118,7 +120,8 @@ export async function editUser(
          password === undefined
       )
          throw new Error('Email or password is not provided.');
-
+      
+      const hashedPass = await bcrypt.hash(password, 10);
       // We have to check if the request is for a new Users or not.
       const updatedUser = await Users.findOneAndUpdate(
          {
@@ -128,7 +131,7 @@ export async function editUser(
             $set: {
                name: name,
                email: email,
-               password: password,
+               password: hashedPass,
                status: status,
             },
          },
