@@ -38,8 +38,8 @@ export default function DeleteUserModal({
             fetchUsers();
          }
       } catch (e) {
-         //  console.log(e.message);
-         setError(e.message);
+         //  console.log((e as Error).message);
+         setError((e as Error).message);
          setIsLoading(false);
       }
    };
@@ -100,8 +100,8 @@ export default function DeleteUserModal({
                                  </Dialog.Title>
                               </div>
                               <Paragraph2 className=''>
-                                 By confirming this {userName} user's data will
-                                 delete completely. Are you sure?
+                                 By confirming this {userName} user&apos;s data
+                                 will delete completely. Are you sure?
                               </Paragraph2>
                               {error && (
                                  <div className='my-2 rounded bg-red-100 px-3 py-2'>

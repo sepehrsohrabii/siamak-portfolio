@@ -32,8 +32,8 @@ export default function Footer() {
                <Heading3 className='text-4xl'>Graph Studio</Heading3>
             </div>
             <div className='mt-5 justify-between md:mt-0 md:flex md:basis-2/4 md:flex-row md:text-right'>
-               {links.map((link) => (
-                  <div>
+               {links.map((link, index) => (
+                  <div key={index}>
                      <Link href={link.path} target='_blank'>
                         <Paragraph2 className='text-gray-500'>
                            {link.name}

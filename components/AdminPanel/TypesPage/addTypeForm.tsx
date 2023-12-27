@@ -31,15 +31,15 @@ const AddTypeForm = ({
       setIsLoading(true);
       try {
          const type = await createType(title, slug, orderingNumber, status);
-         console.log(type);
+         //console.log(type);
          if (type) {
             setIsLoading(false);
             setOpen(false);
             fetchTypes();
          }
       } catch (e) {
-         //  console.log(e.message);
-         setError(e.message);
+         //  console.log((e as Error).message);
+         setError((e as Error).message);
          setIsLoading(false);
       }
    };

@@ -25,8 +25,8 @@ export default function Header() {
             <div className='menu-container flex flex-col-reverse md:flex-row'>
                <div className={`menu ${isMenuVisible ? 'visible' : ''}`}>
                   <ul className='header-ul'>
-                     {links.map((link) => (
-                        <li className='header-li mt-5 md:mt-0'>
+                     {links.map((link, index) => (
+                        <li className='header-li mt-5 md:mt-0' key={index}>
                            <Link
                               className={`flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
                                  path === link.path ? 'border-b-cyan-700' : ''

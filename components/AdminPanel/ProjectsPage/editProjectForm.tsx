@@ -80,8 +80,8 @@ const EditProjectForm = ({
             fetchProjects();
          }
       } catch (e) {
-         //  console.log(e.message);
-         setError(e.message);
+         //  console.log((e as Error).message);
+         setError((e as Error).message);
          setIsLoading(false);
       }
    };
@@ -93,7 +93,7 @@ const EditProjectForm = ({
       try {
          fetchTypes();
       } catch (e) {
-         setError(e.message);
+         setError((e as Error).message);
       }
    }, []);
    return (

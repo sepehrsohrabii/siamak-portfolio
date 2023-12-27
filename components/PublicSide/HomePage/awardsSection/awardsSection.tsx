@@ -17,9 +17,18 @@ import AwardItem from './awardItem';
 const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
    const progressCircle = useRef(null);
    const progressContent = useRef(null);
-   const onAutoplayTimeLeft = (s, time, progress) => {
-      progressCircle.current.style.setProperty('--progress', 1 - progress);
-      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+   const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
+      if (progressCircle.current) {
+         (progressCircle.current as HTMLElement).style.setProperty(
+            '--progress',
+            String(1 - progress)
+         );
+      }
+      if (progressContent.current) {
+         (progressContent.current as HTMLElement).textContent = `${Math.ceil(
+            time / 1000
+         )}s`;
+      }
    };
    const container = useRef(null);
    const { scrollYProgress } = useScroll({

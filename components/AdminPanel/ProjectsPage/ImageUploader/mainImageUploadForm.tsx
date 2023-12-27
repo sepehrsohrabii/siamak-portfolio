@@ -31,7 +31,7 @@ const MainImageUploadForm = ({
          }
 
          // Handle success, e.g., show a success message
-         console.log('Images removed successfully');
+         //console.log('Images removed successfully');
       } catch (error) {
          console.error('Error removing images', error);
       } finally {
@@ -71,7 +71,7 @@ const MainImageUploadForm = ({
                }
 
                // Handle success, e.g., show a success message
-               console.log('Images uploaded successfully');
+               //console.log('Images uploaded successfully');
             } catch (error) {
                console.error('Error uploading images', error);
             } finally {
@@ -98,6 +98,7 @@ const MainImageUploadForm = ({
 
    useEffect(() => {
       const getImageUrl = async () => {
+         if (!updatedProject) return;
          const image = await getImageById(updatedProject.mainImageId);
          if (image) setMainImageUrl(image.fileURL);
       };

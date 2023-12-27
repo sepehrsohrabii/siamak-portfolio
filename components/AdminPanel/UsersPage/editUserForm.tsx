@@ -32,15 +32,15 @@ const EditUserForm = ({
             password,
             status
          );
-         console.log(updatedUser);
+         //console.log(updatedUser);
          if (updatedUser) {
             setIsLoading(false);
             setOpen(false);
             fetchUsers();
          }
       } catch (e) {
-         //  console.log(e.message);
-         setError(e.message);
+         //  console.log((e as Error).message);
+         setError((e as Error).message);
          setIsLoading(false);
       }
    };

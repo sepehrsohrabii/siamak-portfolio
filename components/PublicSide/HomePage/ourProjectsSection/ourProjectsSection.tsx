@@ -9,8 +9,8 @@ import Link from 'next/link';
 gsap.registerPlugin(ScrollTrigger);
 
 const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
-   const component = useRef();
-   const slider = useRef();
+   const component = useRef<HTMLDivElement>(null);
+   const slider = useRef<HTMLDivElement>(null);
    const projectsWithoutAwards = projects.filter(
       (project) =>
          project.award !== '' &&
@@ -30,7 +30,7 @@ const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
                scrub: 1,
                snap: 0,
                start: 'center center',
-               end: () => '+=' + slider.current.offsetWidth,
+               end: () => '+=' + (slider.current?.offsetWidth || 0),
                markers: false,
             },
          });

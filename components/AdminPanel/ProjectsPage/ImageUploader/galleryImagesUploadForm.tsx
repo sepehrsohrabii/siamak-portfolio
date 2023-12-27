@@ -69,13 +69,14 @@ const GalleryImagesUploadForm = ({
                const response = await axios.post('/api/image/add', formData, {
                   onUploadProgress: (progressEvent) => {
                      const percentCompleted = Math.round(
-                        (progressEvent.loaded * 100) / progressEvent.total
+                        (progressEvent.loaded * 100) /
+                           (progressEvent.total ?? 1)
                      );
-                     console.log('percentCompleted: ', percentCompleted);
+                     //console.log('percentCompleted: ', percentCompleted);
                      setTotalUploaded(percentCompleted);
                   },
                });
-               console.log('Images uploaded successfully');
+               //console.log('Images uploaded successfully');
             } catch (error) {
                console.error('Error uploading images', error);
             } finally {

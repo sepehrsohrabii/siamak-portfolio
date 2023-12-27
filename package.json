@@ -33,6 +33,7 @@
     "react-spring": "^9.7.3",
     "resize-observer-polyfill": "^1.5.1",
     "scroller-motion": "^1.2.3",
+    "sharp": "^0.33.1",
     "swiper": "^11.0.5",
     "zod": "^3.22.4"
   },

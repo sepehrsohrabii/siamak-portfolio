@@ -69,8 +69,8 @@ const TypesSection = ({
                      <Heading4 className=''>All</Heading4>
                   </button>
                </SwiperSlide>
-               {types.map((type) => (
-                  <SwiperSlide className='items-center'>
+               {types.map((type, index) => (
+                  <SwiperSlide className='items-center' key={index}>
                      <button
                         className={`w-fit ${
                            type.id === typeId &&

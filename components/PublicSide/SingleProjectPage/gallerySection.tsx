@@ -12,7 +12,7 @@ import { Heading2 } from '@/components/General/typography';
 const GallerySection = ({
    galleryImagesIds,
 }: {
-   galleryImagesIds: string[] | undefined;
+   galleryImagesIds: string[];
 }) => {
    const [thumbsSwiper, setThumbsSwiper] = useState(null);
    const [imagesUrlsList, setImagesUrlsList] = useState<string[]>([]);
@@ -40,12 +40,14 @@ const GallerySection = ({
          {imagesUrlsList.length > 0 && (
             <>
                <Swiper
-                  style={{
-                     '--swiper-navigation-color': '#fff',
-                     '--swiper-pagination-color': '#fff',
-                  }}
+                  style={
+                     {
+                        '--swiper-navigation-color': '#fff',
+                        '--swiper-pagination-color': '#fff',
+                     } as { [key: string]: string }
+                  }
                   loop={true}
-                  lazy={true}
+                  // lazy={true}
                   spaceBetween={10}
                   navigation={true}
                   thumbs={{ swiper: thumbsSwiper }}
@@ -67,12 +69,12 @@ const GallerySection = ({
                   ))}
                </Swiper>
                <Swiper
-                  onSwiper={setThumbsSwiper}
+                  onSwiper={() => setThumbsSwiper}
                   loop={true}
                   spaceBetween={10}
                   slidesPerView={5}
                   freeMode={true}
-                  lazy={true}
+                  // lazy={true}
                   watchSlidesProgress={true}
                   modules={[FreeMode, Navigation, Thumbs]}
                   className='mt-3'

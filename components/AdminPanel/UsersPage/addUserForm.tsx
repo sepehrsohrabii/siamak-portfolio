@@ -29,15 +29,15 @@ const AddUserForm = ({
       setIsLoading(true);
       try {
          const user = await createUser(name, email, password, status);
-         console.log(user);
+         //console.log(user);
          if (user) {
             setIsLoading(false);
             setOpen(false);
             fetchUsers();
          }
       } catch (e) {
-         //  console.log(e.message);
-         setError(e.message);
+         //  console.log((e as Error).message);
+         setError((e as Error).message);
          setIsLoading(false);
       }
    };

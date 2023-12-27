@@ -14,11 +14,12 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const SingleProject = ({ params }: { params: { slug: string } }) => {
-   const [project, setProject] = useState<ProjectsType>();
+   const [project, setProject] = useState<ProjectsType | null>(null);
    const [mainImageUrl, setMainImageUrl] = useState<string>('');
    const [typeName, setTypeName] = useState<string>('');
 
    const getImageUrl = async () => {
+      if (!project) return;
       try {
          const image = await getImageById(project.mainImageId);
          if (image.fileURL) {
@@ -29,6 +30,7 @@ const SingleProject = ({ params }: { params: { slug: string } }) => {
       }
    };
    const getTypeName = async () => {
+      if (!project) return;
       const type = await getTypeById(project.typeId);
       if (type.title) {
          setTypeName(type.title);
@@ -120,7 +122,9 @@ const SingleProject = ({ params }: { params: { slug: string } }) => {
                </Paragraph1>
             </Heading6>
          </div>
-         <GallerySection galleryImagesIds={project?.galleryImagesIds} />
+         {project && (
+            <GallerySection galleryImagesIds={project.galleryImagesIds} />
+         )}
       </div>
    );
 };

@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
             typeof formDataEntryValue === 'object' &&
             'arrayBuffer' in formDataEntryValue
          ) {
-            console.log('server: ', formDataEntryValue);
+            //console.log('server: ', formDataEntryValue);
             const file = formDataEntryValue as unknown as Blob;
             const buffer = Buffer.from(await file.arrayBuffer());
             const relativeUploadDir: string = `/uploads/${projectId}/${imageType}`;

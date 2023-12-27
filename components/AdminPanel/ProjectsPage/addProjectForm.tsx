@@ -1,7 +1,7 @@
 'use client';
 import LoadingSpin from '@/components/General/loadingSpin';
 import { Label, Paragraph1, Paragraph2 } from '@/components/General/typography';
-import { FileUploader, createProject, getTypes } from '@/utils/actions';
+import { createProject, getTypes } from '@/utils/actions';
 import slugify from '@/utils/functions';
 import { TypesType } from '@/utils/types';
 import {
@@ -11,7 +11,7 @@ import {
    useEffect,
    useState,
 } from 'react';
-import ImagePreview from './ImageUploader/ImagePreview';
+// import ImagePreview from './ImageUploader/ImagePreview';
 
 const AddProjectForm = ({
    setOpen,
@@ -69,8 +69,8 @@ const AddProjectForm = ({
             fetchProjects();
          }
       } catch (e) {
-         //  console.log(e.message);
-         setError(e.message);
+         //  console.log((e as Error).message);
+         setError((e as Error).message);
          setIsLoading(false);
       }
    };
@@ -82,7 +82,7 @@ const AddProjectForm = ({
       try {
          fetchTypes();
       } catch (e) {
-         setError(e.message);
+         setError((e as Error).message);
       }
    }, []);
    return (

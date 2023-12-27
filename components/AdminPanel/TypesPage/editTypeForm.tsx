@@ -53,8 +53,8 @@ const EditTypeForm = ({
             fetchTypes();
          }
       } catch (e) {
-         //  console.log(e.message);
-         setError(e.message);
+         //  console.log((e as Error).message);
+         setError((e as Error).message);
          setIsLoading(false);
       }
    };
