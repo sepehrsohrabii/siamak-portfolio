@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
    const [error, setError] = useState(null);
    const fetchProjects = async () => {
       const projectsList: ProjectsType[] = await getHomePageProjects();
-      setProjects(projectsList);
+      if (projectsList) setProjects(projectsList);
    };
    useEffect(() => {
       fetchProjects();
@@ -24,10 +24,14 @@ const HomePage: React.FC = () => {
    return (
       <div>
          <HeroSection />
-         {projects.length > 0 && <OurProjectsSection projects={projects} />}
+         {projects && projects.length > 0 && (
+            <OurProjectsSection projects={projects} />
+         )}
          <AboutUsSection />
          <SloganSection />
-         {projects.length > 0 && <AwardsSection projects={projects} />}
+         {projects && projects.length > 0 && (
+            <AwardsSection projects={projects} />
+         )}
          <TrustSection />
          <StatisticsSection />
          <CallUsSection />

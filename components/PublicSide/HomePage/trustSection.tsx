@@ -24,7 +24,7 @@ export default function TrustSection() {
             <div className='relative w-full'>
                <Lottie animationData={engineers} loop={true} />
             </div>
-            <div className='mt-10 px-5 md:absolute md:left-2/3 md:mr-40 md:mt-52 md:px-0'>
+            <div className='mt-10 px-5 md:absolute md:right-0 md:mr-40 md:mt-52 md:w-2/5 md:px-0'>
                <Heading2 className='mb-5 text-gray-800'>
                   Trust Professionals
                </Heading2>

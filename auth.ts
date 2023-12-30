@@ -12,6 +12,7 @@ async function getUser(email: string): Promise<IUsersSchema | undefined> {
       await connectMongo();
       const user = await Users.findOne({
          email: email,
+         status: true
       });
       return user;
    } catch (error) {

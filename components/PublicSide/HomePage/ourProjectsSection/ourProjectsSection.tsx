@@ -2,7 +2,11 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useLayoutEffect, useRef } from 'react';
 import ProjectItem from './projectItem';
-import { Heading2 } from '@/components/General/typography';
+import {
+   Heading2,
+   Paragraph1,
+   Paragraph2,
+} from '@/components/General/typography';
 import { ProjectsType } from '@/utils/types';
 import Link from 'next/link';
 
@@ -46,12 +50,14 @@ const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
                   <Heading2 className='text-gray-700'>Our</Heading2>
                   <Heading2 className='text-gray-700'>Projects</Heading2>
                   <div className='text-end'>
-                     <Link
-                        className='bg-cyan-700 px-3 py-1 text-white'
-                        href='/projects'
-                     >
-                        View All.
-                     </Link>
+                     <Paragraph1 className=''>
+                        <Link
+                           className='bg-cyan-700 px-3 py-1 text-white duration-500 hover:bg-cyan-900'
+                           href='/projects'
+                        >
+                           View All.
+                        </Link>
+                     </Paragraph1>
                   </div>
                </div>
                {projectsWithoutAwards.map((project, index) => (

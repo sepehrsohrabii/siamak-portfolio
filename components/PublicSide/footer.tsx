@@ -35,9 +35,9 @@ export default function Footer() {
                {links.map((link, index) => (
                   <div key={index}>
                      <Link href={link.path} target='_blank'>
-                        <Paragraph2 className='text-gray-500'>
+                        <Paragraph1 className='text-gray-500'>
                            {link.name}
-                        </Paragraph2>
+                        </Paragraph1>
                      </Link>
                   </div>
                ))}

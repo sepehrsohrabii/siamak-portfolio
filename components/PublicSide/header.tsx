@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { Heading5, Paragraph1 } from '../General/typography';
 
 export default function Header() {
    const [isMenuVisible, setMenuVisibility] = useState(false);
@@ -41,7 +42,7 @@ export default function Header() {
                </div>
                <button
                   onClick={toggleMenu}
-                  className={`flex h-fit flex-row items-center justify-between border-2 border-white bg-white px-4 py-0 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
+                  className={`flex h-fit flex-row items-center justify-between border-2 border-white bg-white px-4 py-0 duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
                      isMenuVisible ? 'border-b-cyan-700' : ''
                   }`}
                >
@@ -49,9 +50,9 @@ export default function Header() {
                      xmlns='http://www.w3.org/2000/svg'
                      fill='none'
                      viewBox='0 0 24 24'
-                     strokeWidth={1}
+                     strokeWidth={1.2}
                      stroke='currentColor'
-                     className='me-2 h-6 w-6'
+                     className='me-2 h-8 w-8'
                   >
                      <path
                         strokeLinecap='round'
@@ -59,7 +60,7 @@ export default function Header() {
                         d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
                      />
                   </svg>
-                  Menu
+                  <Heading5 className='uppercase'>Menu</Heading5>
                </button>
             </div>
          </div>

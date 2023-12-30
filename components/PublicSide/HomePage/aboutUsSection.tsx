@@ -11,7 +11,7 @@ export default function AboutUsSection() {
       offset: ['start end', 'end end'],
    });
    return (
-      <div className='mx-5 mb-32 md:mx-40'>
+      <div className='mx-5 mb-36 md:mx-40'>
          <motion.div
             ref={container}
             className='w-full md:flex md:flex-row'
@@ -69,7 +69,7 @@ export default function AboutUsSection() {
             <motion.div className='mt-10 self-center md:mt-0 md:basis-1/2 md:ps-20'>
                <Heading2 className='text-gray-700'>About Graph</Heading2>
 
-               <Paragraph1 className='mb-5 mt-5 text-gray-600'>
+               <Paragraph1 className='mb-5 mt-5 text-justify text-gray-600	'>
                   buildings in the world Lorem ipsum dolor, sit amet consectetur
                   adipisicing elit. Vitae, labore quod veritatis explicabo
                   maiores consectetur. Suscipit dolor, ex nemo aperiam
@@ -78,12 +78,14 @@ export default function AboutUsSection() {
                </Paragraph1>
 
                <div className='mt-10'>
-                  <Link
-                     className='bg-gray-700 px-4 py-1 text-lg text-white'
-                     href='/about'
-                  >
-                     Read More
-                  </Link>
+                  <Paragraph1 className=''>
+                     <Link
+                        className='bg-cyan-700 px-4 py-1 text-white duration-500 hover:bg-cyan-900'
+                        href='/about'
+                     >
+                        Read More
+                     </Link>
+                  </Paragraph1>
                </div>
             </motion.div>
          </motion.div>

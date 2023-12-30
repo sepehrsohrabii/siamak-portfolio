@@ -18,10 +18,8 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
    }, []);
    return (
       <div className='w-full justify-between md:flex md:flex-row'>
-         <div className='mb-5 basis-1/5 md:mb-0 md:pe-10'>
-            <Heading3 className='text-4xl font-medium text-gray-800'>
-               {project.title}
-            </Heading3>
+         <div className='mb-5 basis-1/5 md:mb-0 md:pe-5'>
+            <Heading3 className=' text-gray-800'>{project.award}</Heading3>
          </div>
          <div className='h-96 basis-2/5'>
             <Image
@@ -32,8 +30,10 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
                width={700}
             />
          </div>
-         <div className='mt-5 basis-2/5 self-center text-gray-600 md:mt-0 md:ps-40'>
-            <Paragraph1 className=''>{project.description}</Paragraph1>
+         <div className='mt-5 basis-2/5 self-center text-gray-600 md:mt-0 md:ps-20'>
+            <Paragraph1 className='line-clamp-3 text-justify'>
+               {project.description}
+            </Paragraph1>
             <Link href={`/projects/${project.slug}`}>
                <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
                   Read More

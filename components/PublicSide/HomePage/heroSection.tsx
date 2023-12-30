@@ -4,6 +4,7 @@ import engineers from '@/public/animations/scroll-down.json';
 import {
    Heading1,
    Heading5,
+   Paragraph1,
    Paragraph2,
 } from '@/components/General/typography';
 import Image from 'next/image';
@@ -59,17 +60,17 @@ export default function HeroSection() {
                   </Heading5>
                </motion.div>
                <motion.div className='w-fit' variants={item}>
-                  <Heading1 className='mt-2 w-fit text-gray-800 md:-ms-20'>
+                  <Heading1 className='mt-2 w-fit tracking-wide text-gray-800 md:-ms-20'>
                      Explore Old
                      <br className='inline' />
-                     <span className='md:ps-20'>Classic Building</span>
+                     <span className='md:ps-20'>Classic Builds</span>
                   </Heading1>
                </motion.div>
                <motion.div
                   className='mt-5 w-full md:mt-10 md:pe-40 md:ps-20'
                   variants={item}
                >
-                  <Paragraph2 className='text-gray-600'>
+                  <Paragraph2 className='text-justify text-gray-600'>
                      buildings in the world Lorem ipsum dolor, sit amet
                      consectetur adipisicing elit. Vitae, labore quod veritatis
                      explicabo maiores consectetur. Suscipit dolor, ex nemo

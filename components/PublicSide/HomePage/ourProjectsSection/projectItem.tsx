@@ -39,10 +39,10 @@ export default function ProjectItem({
    return (
       <Link
          key={key}
-         className='panel ms-32 w-96 overflow-y-visible'
+         className='panel group ms-32 w-96 overflow-y-visible'
          href={`/projects/${project.slug}`}
       >
-         <motion.div className='group relative flex justify-center'>
+         <motion.div className='relative flex justify-center'>
             <motion.div
                className='h-96 w-full duration-500 '
                whileHover={{
@@ -59,9 +59,11 @@ export default function ProjectItem({
                />
             </motion.div>
          </motion.div>
-         <div className='border-s-2 border-slate-400 py-10 ps-5'>
+         <div className='border-s-2 border-slate-400 py-10 ps-5 duration-500 group-hover:border-cyan-700'>
             <Paragraph2 className='text-gray-400'>{typeName}</Paragraph2>
-            <Heading5 className='text-gray-900'>{project.title}</Heading5>
+            <Heading5 className='line-clamp-1 text-gray-900'>
+               {project.title}
+            </Heading5>
             <Paragraph3 className='mt-10 text-gray-400'>
                {project.year}
             </Paragraph3>
