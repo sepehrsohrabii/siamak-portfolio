@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Heading5, Paragraph1 } from '../General/typography';
+import { Heading5, Heading6, Paragraph1 } from '../General/typography';
 
 export default function Header() {
    const [isMenuVisible, setMenuVisibility] = useState(false);
@@ -29,7 +29,7 @@ export default function Header() {
                      {links.map((link, index) => (
                         <li className='header-li mt-5 md:mt-0' key={index}>
                            <Link
-                              className={`flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-lg font-light duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
+                              className={`flex flex-row items-center justify-between border-2 border-white bg-white px-4 text-base font-light duration-200 hover:border-b-2 hover:border-b-cyan-700 ${
                                  path === link.path ? 'border-b-cyan-700' : ''
                               }`}
                               href={link.path}
@@ -52,7 +52,7 @@ export default function Header() {
                      viewBox='0 0 24 24'
                      strokeWidth={1.2}
                      stroke='currentColor'
-                     className='me-2 h-8 w-8'
+                     className='me-2 h-6 w-6'
                   >
                      <path
                         strokeLinecap='round'
@@ -60,7 +60,7 @@ export default function Header() {
                         d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
                      />
                   </svg>
-                  <Heading5 className='uppercase'>Menu</Heading5>
+                  <Heading6 className='uppercase'>Menu</Heading6>
                </button>
             </div>
          </div>

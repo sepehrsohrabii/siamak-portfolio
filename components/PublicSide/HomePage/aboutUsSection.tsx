@@ -17,7 +17,7 @@ export default function AboutUsSection() {
             className='w-full md:flex md:flex-row'
             style={{ opacity: scrollYProgress }}
          >
-            <motion.div className='md:basis-1/2'>
+            <motion.div className='md:basis-3/5'>
                <div className='grid grid-cols-3 gap-1 md:gap-4'>
                   <div className=' overflow-hidden'>
                      <Image
@@ -66,7 +66,7 @@ export default function AboutUsSection() {
                   </div>
                </div>
             </motion.div>
-            <motion.div className='mt-10 self-center md:mt-0 md:basis-1/2 md:ps-20'>
+            <motion.div className='mt-10 self-center md:mt-0 md:basis-2/5 md:ps-20'>
                <Heading2 className='text-gray-700'>About Graph</Heading2>
 
                <Paragraph1 className='mb-5 mt-5 text-justify text-gray-600	'>

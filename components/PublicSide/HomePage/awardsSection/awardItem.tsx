@@ -1,4 +1,10 @@
-import { Heading3, Paragraph1 } from '@/components/General/typography';
+import {
+   Heading3,
+   Heading5,
+   Paragraph1,
+   Paragraph2,
+   Paragraph3,
+} from '@/components/General/typography';
 import { getImageById } from '@/utils/actions';
 import { ProjectsType } from '@/utils/types';
 import Image from 'next/image';
@@ -18,27 +24,38 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
    }, []);
    return (
       <div className='w-full justify-between md:flex md:flex-row'>
-         <div className='mb-5 basis-1/5 md:mb-0 md:pe-5'>
-            <Heading3 className=' text-gray-800'>{project.award}</Heading3>
+         <div className='mb-5 basis-2/5 md:mb-0 md:pe-5'>
+            <div className='h-full bg-white p-10'>
+               <div className='w-fit bg-cyan-700 px-2'>
+                  <Paragraph3 className='text-white'>{project.year}</Paragraph3>
+               </div>
+               <Heading3 className=' line-clamp-1 text-gray-800'>
+                  {project.title}
+               </Heading3>
+               <Heading5 className=' mb-4 mt-2 line-clamp-2 text-cyan-700'>
+                  {project.award}
+               </Heading5>
+               <Paragraph2 className='line-clamp-3 text-justify text-gray-500'>
+                  {project.description}
+               </Paragraph2>
+               <Paragraph3 className='mt-5'>
+                  <Link
+                     className='bg-cyan-700 px-4 py-1 text-white duration-500 hover:bg-cyan-900'
+                     href={`/projects/${project.slug}`}
+                  >
+                     Read More
+                  </Link>
+               </Paragraph3>
+            </div>
          </div>
-         <div className='h-96 basis-2/5'>
+         <div className='h-80 basis-3/5'>
             <Image
-               className='h-96 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+               className='h-80 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                src={imageUrl}
                alt='project image'
                height={500}
                width={700}
             />
-         </div>
-         <div className='mt-5 basis-2/5 self-center text-gray-600 md:mt-0 md:ps-20'>
-            <Paragraph1 className='line-clamp-3 text-justify'>
-               {project.description}
-            </Paragraph1>
-            <Link href={`/projects/${project.slug}`}>
-               <button className='mt-5 bg-white px-5 py-2 text-cyan-700 duration-200 hover:bg-gray-400'>
-                  Read More
-               </button>
-            </Link>
          </div>
       </div>
    );

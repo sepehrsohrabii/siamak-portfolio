@@ -39,19 +39,19 @@ export default function ProjectItem({
    return (
       <Link
          key={key}
-         className='panel group ms-32 w-96 overflow-y-visible'
+         className='panel group ms-32 w-80 overflow-y-visible'
          href={`/projects/${project.slug}`}
       >
          <motion.div className='relative flex justify-center'>
             <motion.div
-               className='h-96 w-full duration-500 '
+               className='h-80 w-full duration-500 '
                whileHover={{
                   scale: 1.1,
                   boxShadow: '10px 10px 0px 0px #D3D3D3',
                }}
             >
                <Image
-                  className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
+                  className='h-80 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
                   src={imageUrl}
                   alt={`${project.title} Image`}
                   width={450}

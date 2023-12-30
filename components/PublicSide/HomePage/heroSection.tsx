@@ -32,19 +32,7 @@ export default function HeroSection() {
    };
    return (
       <div className='w-full items-center justify-between overflow-hidden md:flex md:h-screen'>
-         <motion.div
-            // initial={{ width: '100%' }}
-            // animate={{ width: '60%' }}
-            transition={{ duration: 0.5 }}
-            className='z-0 h-[600px] w-full pe-10 saturate-0 duration-500 hover:saturate-100 md:static md:h-screen md:w-3/5 md:basis-3/5 md:pe-0'
-         >
-            <Image
-               src={pic}
-               alt='Picture of the author'
-               className='h-full w-full object-cover object-center'
-            />
-         </motion.div>
-         <div className='flex flex-initial items-center p-6 md:basis-2/5 md:p-0'>
+         <div className='flex flex-initial items-center p-6 md:basis-2/5 md:ps-40'>
             <motion.div
                className='md:w-30 block md:absolute'
                variants={container}
@@ -52,7 +40,7 @@ export default function HeroSection() {
                animate='visible'
             >
                <motion.div
-                  className='w-fit bg-cyan-700 px-3 py-1 md:-ms-20'
+                  className='w-fit bg-cyan-700 px-3 py-1'
                   variants={item}
                >
                   <Heading5 className='w-fit uppercase text-white'>
@@ -60,14 +48,14 @@ export default function HeroSection() {
                   </Heading5>
                </motion.div>
                <motion.div className='w-fit' variants={item}>
-                  <Heading1 className='mt-2 w-fit tracking-wide text-gray-800 md:-ms-20'>
+                  <Heading1 className='mt-2 w-fit tracking-wide text-gray-800'>
                      Explore Old
                      <br className='inline' />
-                     <span className='md:ps-20'>Classic Builds</span>
+                     <span className=''>Classic Builds</span>
                   </Heading1>
                </motion.div>
                <motion.div
-                  className='mt-5 w-full md:mt-10 md:pe-40 md:ps-20'
+                  className='mt-5 w-full md:ms-14 md:mt-5 md:w-96 md:pe-10'
                   variants={item}
                >
                   <Paragraph2 className='text-justify text-gray-600'>
@@ -83,6 +71,18 @@ export default function HeroSection() {
                </motion.div>
             </motion.div>
          </div>
+         <motion.div
+            // initial={{ width: '100%' }}
+            // animate={{ width: '60%' }}
+            transition={{ duration: 0.5 }}
+            className='z-0 h-[600px] w-full pe-10 saturate-0 duration-500 hover:saturate-100 md:static md:h-screen md:w-3/5 md:basis-3/5 md:pe-0'
+         >
+            <Image
+               src={pic}
+               alt='Picture of the author'
+               className='h-full w-full object-cover object-center'
+            />
+         </motion.div>
       </div>
    );
 }

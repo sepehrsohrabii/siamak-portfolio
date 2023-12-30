@@ -25,7 +25,7 @@ const LeadershipSection: React.FC = () => {
             </motion.div>
          </div>
          <motion.div className='group relative basis-2/5 self-center duration-500 md:flex'>
-            <div className='relative h-96 w-full overflow-hidden md:w-80'>
+            <div className='relative h-64 w-full overflow-hidden md:w-52'>
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
@@ -100,7 +100,7 @@ const LeadershipSection: React.FC = () => {
             </div>
          </motion.div>
          <motion.div className='group relative mt-20 basis-2/5 self-center duration-500 md:mt-0 md:flex'>
-            <div className='relative h-96 w-full overflow-hidden md:w-80'>
+            <div className='relative h-64 w-full overflow-hidden md:w-52'>
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'

@@ -56,7 +56,7 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
                      viewBox='0 0 24 24'
                      strokeWidth={0.7}
                      stroke='currentColor'
-                     className='h-20 w-20'
+                     className='h-11 w-11'
                   >
                      <path
                         strokeLinecap='round'
@@ -65,7 +65,7 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
                      />
                   </svg>
                </Heading2>
-               <Heading1 className='text-center text-gray-800'>Awards</Heading1>
+               <Heading2 className='text-center text-gray-800'>Awards</Heading2>
             </motion.div>
             <motion.div
                className='box'
@@ -80,7 +80,7 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
                spaceBetween={30}
                centeredSlides={true}
                autoplay={{
-                  delay: 4000,
+                  delay: 6000,
                   disableOnInteraction: false,
                }}
                pagination={{
