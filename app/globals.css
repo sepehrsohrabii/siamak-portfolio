@@ -13,6 +13,7 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+
   }
 }
 
@@ -25,6 +26,7 @@ body {
     )
     rgb(var(--background-start-rgb)); */
   background-color: white;
+  color: #1f2937;
   overscroll-behavior: none;
   -ms-overflow-style: none;
   text-rendering: optimizeLegibility;
