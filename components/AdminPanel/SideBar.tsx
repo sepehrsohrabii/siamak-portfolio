@@ -29,7 +29,7 @@ const SideBar = () => {
    ];
    return (
       <div className='flex h-full w-96 flex-col p-5'>
-         <div className='flex h-60 items-end rounded-lg bg-blue-500 p-5 shadow-lg'>
+         <div className='flex h-52 items-end rounded-lg bg-blue-500 p-5 shadow-lg'>
             <Heading5 className='w-full text-right text-white'>
                Graph Studio
             </Heading5>
