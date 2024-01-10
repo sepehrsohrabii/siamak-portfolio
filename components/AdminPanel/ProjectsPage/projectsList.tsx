@@ -103,26 +103,28 @@ const ProjectsList = ({
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {`${project.createdAt.getFullYear()}/${(
-                                 project.createdAt.getMonth() + 1
-                              )
-                                 .toString()
-                                 .padStart(2, '0')}/${project.createdAt
-                                 .getDate()
-                                 .toString()
-                                 .padStart(2, '0')}`}
+                              {project.createdAt &&
+                                 `${project.createdAt.getFullYear()}/${(
+                                    project.createdAt.getMonth() + 1
+                                 )
+                                    .toString()
+                                    .padStart(2, '0')}/${project.createdAt
+                                    .getDate()
+                                    .toString()
+                                    .padStart(2, '0')}`}
                            </Paragraph2>
                         </td>
                         <td>
                            <Paragraph2 className='text-gray-700'>
-                              {`${project.updatedAt.getFullYear()}/${(
-                                 project.updatedAt.getMonth() + 1
-                              )
-                                 .toString()
-                                 .padStart(2, '0')}/${project.updatedAt
-                                 .getDate()
-                                 .toString()
-                                 .padStart(2, '0')}`}
+                              {project.updatedAt &&
+                                 `${project.updatedAt.getFullYear()}/${(
+                                    project.updatedAt.getMonth() + 1
+                                 )
+                                    .toString()
+                                    .padStart(2, '0')}/${project.updatedAt
+                                    .getDate()
+                                    .toString()
+                                    .padStart(2, '0')}`}
                            </Paragraph2>
                         </td>
                         <td>
