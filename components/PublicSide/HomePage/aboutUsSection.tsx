@@ -3,6 +3,11 @@ import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import image1 from '@/public/icons/services5.png';
+import image2 from '@/public/icons/services5.png';
+import image3 from '@/public/icons/services5.png';
+import image4 from '@/public/icons/services5.png';
+import image5 from '@/public/icons/services5.png';
 
 export default function AboutUsSection() {
    const container = useRef(null);
@@ -22,46 +27,51 @@ export default function AboutUsSection() {
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/8.jpg'
+                        src={image1}
                         alt='Awards'
                         height={224}
                         width={324}
+                        placeholder='blur'
                      />
                   </div>
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/8.jpg'
+                        src={image2}
                         alt='Awards'
                         height={224}
                         width={324}
+                        placeholder='blur'
                      />
                   </div>
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/8.jpg'
+                        src={image3}
                         alt='Awards'
                         height={224}
                         width={324}
+                        placeholder='blur'
                      />
                   </div>
                   <div className=' col-span-2  overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/8.jpg'
+                        src={image4}
                         alt='Awards'
                         height={224}
                         width={324}
+                        placeholder='blur'
                      />
                   </div>
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/8.jpg'
+                        src={image5}
                         alt='Awards'
                         height={224}
                         width={324}
+                        placeholder='blur'
                      />
                   </div>
                </div>

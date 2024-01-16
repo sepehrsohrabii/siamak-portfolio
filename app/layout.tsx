@@ -3,7 +3,10 @@ import './globals.css';
 import { roboto_c } from '@/components/fonts';
 
 export const metadata: Metadata = {
-   title: 'Graph Studio',
+   title: {
+      template: '%s | Graph Studio',
+      default: 'Graph Studio',
+   },
    description: 'Graph Architecture Studio Website',
 };
 

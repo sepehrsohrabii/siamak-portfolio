@@ -101,6 +101,7 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
                         alt={`${project.title} image`}
                         width={500}
                         height={500}
+                        placeholder='blur'
                      />
                   )}
                </motion.div>

@@ -5,10 +5,9 @@ import {
    Paragraph1,
 } from '@/components/General/typography';
 import LeadershipSection from '@/components/PublicSide/AboutPage/leadershipSection';
-import MissionSection from '@/components/PublicSide/AboutPage/ourMissionSection';
 import SloganSection from '@/components/PublicSide/AboutPage/sloganSection';
 import { motion } from 'framer-motion';
-
+import { Metadata } from 'next';
 const AboutPage: React.FC = () => {
    return (
       <>

@@ -1,7 +1,9 @@
 import Lottie from 'lottie-react';
 import line from '@/public/animations/line.json';
 import Image from 'next/image';
-
+import servicesIcon from '@/public/icons/services1.png';
+import servicesIcon2 from '@/public/icons/services2.png';
+import servicesIcon3 from '@/public/icons/services5.png';
 export default function MissionSection() {
    return (
       <div className='mx-40 my-32'>
@@ -19,10 +21,11 @@ export default function MissionSection() {
             <div className='basis-1/4 text-center'>
                <Image
                   className='mx-auto mb-5 w-20'
-                  src='/icons/services1.png'
+                  src={servicesIcon}
                   alt='services'
                   width={100}
                   height={100}
+                  placeholder='blur'
                />
                <h5 className='text-center text-2xl font-bold text-gray-700'>
                   Our Services
@@ -35,10 +38,11 @@ export default function MissionSection() {
             <div className='basis-1/4 text-center'>
                <Image
                   className='mx-auto mb-5 w-20'
-                  src='/icons/services2.png'
+                  src={servicesIcon2}
                   alt='services'
                   width={100}
                   height={100}
+                  placeholder='blur'
                />
                <h5 className='text-center text-2xl font-bold text-gray-700'>
                   Our Services
@@ -51,10 +55,11 @@ export default function MissionSection() {
             <div className='basis-1/4 text-center'>
                <Image
                   className='mx-auto mb-5 w-20'
-                  src='/icons/services5.png'
+                  src={servicesIcon3}
                   alt='services'
                   width={100}
                   height={100}
+                  placeholder='blur'
                />
                <h5 className='text-center text-2xl font-bold text-gray-700'>
                   Our Services

@@ -6,7 +6,11 @@ import {
    Heading6,
 } from '@/components/General/typography';
 import LoginForm from '@/components/Login/loginForm';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+   title: 'Login',
+};
 export default function LoginPage() {
    return (
       <main className='flex items-center justify-center md:h-screen'>

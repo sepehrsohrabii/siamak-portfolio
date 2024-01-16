@@ -9,6 +9,12 @@ import LocationMap from '@/components/PublicSide/ContactPage/LocationMap';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import phoneCallIcon from '@/public/icons/phone-call.png';
+import gmailIcon from '@/public/icons/gmail.png';
+import addressIcon from '@/public/icons/address.png';
+import instaIcon from '@/public/icons/instagram.png';
+import telegramIcon from '@/public/icons/telegram.png';
+import whatsAppIcon from '@/public/icons/whatsapp.png';
 
 const ContactPage = () => {
    return (
@@ -43,8 +49,9 @@ const ContactPage = () => {
                               >
                                  <Image
                                     className='w-10 md:w-14'
-                                    src='/icons/phone-call.png'
+                                    src={phoneCallIcon}
                                     alt='Phone Icon'
+                                    placeholder='blur'
                                     width={64}
                                     height={64}
                                  />
@@ -60,10 +67,11 @@ const ContactPage = () => {
                               >
                                  <Image
                                     className='w-10 md:w-14'
-                                    src='/icons/gmail.png'
+                                    src={gmailIcon}
                                     alt='Phone Icon'
                                     width={64}
                                     height={64}
+                                    placeholder='blur'
                                  />
                                  <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
                                     graph@gmail.com
@@ -77,10 +85,11 @@ const ContactPage = () => {
                               >
                                  <Image
                                     className='w-10 md:w-14'
-                                    src='/icons/address.png'
+                                    src={addressIcon}
                                     alt='Phone Icon'
                                     width={64}
                                     height={64}
+                                    placeholder='blur'
                                  />
                                  <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
                                     Rasht, Iran
@@ -107,10 +116,11 @@ const ContactPage = () => {
                      <div className='mt-5 md:mt-0'>
                         <Link href='#' className='flex flex-col items-center'>
                            <Image
-                              src='/icons/instagram.png'
+                              src={instaIcon}
                               alt='Phone Icon'
                               width={40}
                               height={40}
+                              placeholder='blur'
                            />
                            <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
                               @graph_arch_studio
@@ -120,10 +130,11 @@ const ContactPage = () => {
                      <div className='mt-5 md:mt-0'>
                         <Link href='#' className='flex flex-col items-center'>
                            <Image
-                              src='/icons/telegram.png'
+                              src={telegramIcon}
                               alt='Phone Icon'
                               width={40}
                               height={40}
+                              placeholder='blur'
                            />
                            <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
                               +989112345678
@@ -133,10 +144,11 @@ const ContactPage = () => {
                      <div className='mt-5 md:mt-0'>
                         <Link href='#' className='flex flex-col items-center'>
                            <Image
-                              src='/icons/whatsapp.png'
+                              src={whatsAppIcon}
                               alt='Phone Icon'
                               width={40}
                               height={40}
+                              placeholder='blur'
                            />
                            <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
                               +989112345678

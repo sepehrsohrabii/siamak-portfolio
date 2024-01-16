@@ -55,6 +55,7 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
                alt='project image'
                height={500}
                width={700}
+               placeholder='blur'
             />
          </div>
       </div>

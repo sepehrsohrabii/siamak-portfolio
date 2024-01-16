@@ -6,6 +6,15 @@ import {
 } from '@/components/General/typography';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import siamakImage from '@/public/images/sample-man-1.jpg';
+import siamakHoverImage from '@/public/images/sample-man-2.jpg';
+import maryamImage from '@/public/images/sample-girl-1.jpg';
+import maryamHoverImage from '@/public/images/sample-girl-2.jpg';
+import phoneIcon from '@/public/icons/phone-solid.svg';
+import emailIcon from '@/public/icons/envelope-solid.svg';
+import instagramIcon from '@/public/icons/instagram.svg';
+import telegramIcon from '@/public/icons/telegram.svg';
+import whatsAppIcon from '@/public/icons/whatsapp.svg';
 
 const LeadershipSection: React.FC = () => {
    return (
@@ -29,19 +38,21 @@ const LeadershipSection: React.FC = () => {
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
-                  src='/images/sample-man-1.jpg'
+                  src={siamakImage}
                   alt='Siamak Mortaz Hejri Image'
                   width={900}
                   height={900}
+                  placeholder='blur'
                />
 
                {/* Hover Image */}
                <Image
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
-                  src='/images/sample-man-2.jpg'
+                  src={siamakHoverImage}
                   alt='Siamak Mortaz Hejri Hover Image'
                   width={900}
                   height={900}
+                  placeholder='blur'
                />
             </div>
             <div className='mt-5 self-center md:mt-0 md:ps-5'>
@@ -53,47 +64,52 @@ const LeadershipSection: React.FC = () => {
                <div className='mt-5 flex md:mt-10'>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/phone-solid.svg'
+                        src={phoneIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='phone icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/envelope-solid.svg'
+                        src={emailIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='email icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/instagram.svg'
+                        src={instagramIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='instagram icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/telegram.svg'
+                        src={telegramIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='telegram icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/whatsapp.svg'
+                        src={whatsAppIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='whatsapp icon'
+                        placeholder='blur'
                      />
                   </a>
                </div>
@@ -104,19 +120,21 @@ const LeadershipSection: React.FC = () => {
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
-                  src='/images/sample-girl-1.jpg'
+                  src={maryamImage}
                   alt='Default'
                   width={900}
                   height={900}
+                  placeholder='blur'
                />
 
                {/* Hover Image */}
                <Image
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
-                  src='/images/sample-girl-2.jpg'
+                  src={maryamHoverImage}
                   alt='Hover'
                   width={900}
                   height={900}
+                  placeholder='blur'
                />
             </div>
             <div className='mt-5 self-center md:mt-0 md:ps-5'>
@@ -128,47 +146,52 @@ const LeadershipSection: React.FC = () => {
                <div className='mt-5 flex md:mt-10'>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/phone-solid.svg'
+                        src={phoneIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='phone icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/envelope-solid.svg'
+                        src={emailIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='email icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/instagram.svg'
+                        src={instagramIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='instagram icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/telegram.svg'
+                        src={telegramIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='telegram icon'
+                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
                      <Image
-                        src='/icons/whatsapp.svg'
+                        src={whatsAppIcon}
                         className='opacity-80 saturate-0'
                         width={20}
                         height={20}
                         alt='whatsapp icon'
+                        placeholder='blur'
                      />
                   </a>
                </div>

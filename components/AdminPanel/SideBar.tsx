@@ -9,7 +9,7 @@ import usersIcon from '@/public/icons/group.png';
 import typesIcon from '@/public/icons/menu.png';
 import projectsIcon from '@/public/icons/modeling.png';
 import Image from 'next/image';
-
+import turnOffIcon from '@/public/icons/turn-off.png';
 const SideBar = () => {
    const path = usePathname();
    const links = [
@@ -48,6 +48,7 @@ const SideBar = () => {
                   alt={`${link.name} icon`}
                   width={20}
                   height={20}
+                  placeholder='blur'
                />
 
                <Heading5 className=''>{link.name}</Heading5>
@@ -61,11 +62,12 @@ const SideBar = () => {
          >
             <button className='mt-2 flex h-[48px] w-full grow items-center justify-center gap-2 rounded-lg bg-slate-200 p-3 px-5 py-2 text-sm font-medium shadow-lg duration-500 hover:bg-sky-100 md:flex-none md:justify-start'>
                <Image
-                  src='/icons/turn-off.png'
+                  src={turnOffIcon}
                   className='me-2'
                   width={20}
                   height={20}
                   alt='sign out icon'
+                  placeholder='blur'
                />
                <Heading5 className=''>Sign Out</Heading5>
             </button>
