@@ -42,7 +42,6 @@ const LeadershipSection: React.FC = () => {
                   alt='Siamak Mortaz Hejri Image'
                   width={900}
                   height={900}
-                  placeholder='blur'
                />
 
                {/* Hover Image */}
@@ -52,7 +51,6 @@ const LeadershipSection: React.FC = () => {
                   alt='Siamak Mortaz Hejri Hover Image'
                   width={900}
                   height={900}
-                  placeholder='blur'
                />
             </div>
             <div className='mt-5 self-center md:mt-0 md:ps-5'>
@@ -69,7 +67,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='phone icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -79,7 +76,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='email icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -89,7 +85,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='instagram icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -99,7 +94,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='telegram icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -109,7 +103,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='whatsapp icon'
-                        placeholder='blur'
                      />
                   </a>
                </div>
@@ -124,7 +117,6 @@ const LeadershipSection: React.FC = () => {
                   alt='Default'
                   width={900}
                   height={900}
-                  placeholder='blur'
                />
 
                {/* Hover Image */}
@@ -134,7 +126,6 @@ const LeadershipSection: React.FC = () => {
                   alt='Hover'
                   width={900}
                   height={900}
-                  placeholder='blur'
                />
             </div>
             <div className='mt-5 self-center md:mt-0 md:ps-5'>
@@ -151,7 +142,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='phone icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -161,7 +151,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='email icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -171,7 +160,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='instagram icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -181,7 +169,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='telegram icon'
-                        placeholder='blur'
                      />
                   </a>
                   <a href='#' className='me-5'>
@@ -191,7 +178,6 @@ const LeadershipSection: React.FC = () => {
                         width={20}
                         height={20}
                         alt='whatsapp icon'
-                        placeholder='blur'
                      />
                   </a>
                </div>

@@ -611,6 +611,23 @@ export async function getActiveProjects() {
    }
    return [];
 }
+export async function getActiveProjectsSlugs() {
+   try {
+      await connectMongo();
+      const projects: IProjectsSchema[] = await Projects.find({ status: true });
+
+      // Convert MongoDB documents to plain JavaScript objects
+      const projectsAsObjects = projects.map((project) => ({
+         slug: project.slug,
+         updatedAt: project.updatedAt,
+      }));
+
+      return projectsAsObjects;
+   } catch (e) {
+      console.log(e);
+   }
+   return [];
+}
 // Single Project Page functions ------------------------------------------------------------------------------------------------------
 export async function getProjectBySlug(slug: string) {
    try {

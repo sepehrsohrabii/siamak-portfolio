@@ -48,7 +48,6 @@ const SideBar = () => {
                   alt={`${link.name} icon`}
                   width={20}
                   height={20}
-                  placeholder='blur'
                />
 
                <Heading5 className=''>{link.name}</Heading5>
@@ -67,7 +66,6 @@ const SideBar = () => {
                   width={20}
                   height={20}
                   alt='sign out icon'
-                  placeholder='blur'
                />
                <Heading5 className=''>Sign Out</Heading5>
             </button>

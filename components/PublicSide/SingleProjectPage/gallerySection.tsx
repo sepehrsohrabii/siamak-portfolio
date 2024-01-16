@@ -63,7 +63,6 @@ const GallerySection = ({
                            alt={`gallery image ${index + 1}`}
                            width={2000}
                            height={2000}
-                           placeholder='blur'
                         />
                         <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
                      </SwiperSlide>
@@ -89,7 +88,6 @@ const GallerySection = ({
                            alt={`gallery thumbnail ${index + 1}`}
                            height={200}
                            width={200}
-                           placeholder='blur'
                         />
                         <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
                      </SwiperSlide>

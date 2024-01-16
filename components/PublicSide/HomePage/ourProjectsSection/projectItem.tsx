@@ -56,7 +56,6 @@ export default function ProjectItem({
                   alt={`${project.title} Image`}
                   width={450}
                   height={450}
-                  placeholder='blur'
                />
             </motion.div>
          </motion.div>

@@ -25,7 +25,6 @@ export default function MissionSection() {
                   alt='services'
                   width={100}
                   height={100}
-                  placeholder='blur'
                />
                <h5 className='text-center text-2xl font-bold text-gray-700'>
                   Our Services
@@ -42,7 +41,6 @@ export default function MissionSection() {
                   alt='services'
                   width={100}
                   height={100}
-                  placeholder='blur'
                />
                <h5 className='text-center text-2xl font-bold text-gray-700'>
                   Our Services
@@ -59,7 +57,6 @@ export default function MissionSection() {
                   alt='services'
                   width={100}
                   height={100}
-                  placeholder='blur'
                />
                <h5 className='text-center text-2xl font-bold text-gray-700'>
                   Our Services

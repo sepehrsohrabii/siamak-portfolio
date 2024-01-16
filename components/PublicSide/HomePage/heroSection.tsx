@@ -81,7 +81,7 @@ export default function HeroSection() {
                src={pic}
                alt='Picture of the author'
                className='h-full w-full object-cover object-center'
-               placeholder='blur'
+               priority
             />
          </motion.div>
       </div>

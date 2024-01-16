@@ -111,7 +111,6 @@ const SingleAwardItem = ({
                      alt={`${project.title} image`}
                      width={800}
                      height={800}
-                     placeholder='blur'
                   />
                </motion.div>
             </motion.div>
