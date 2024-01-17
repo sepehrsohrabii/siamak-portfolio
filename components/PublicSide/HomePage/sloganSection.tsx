@@ -63,7 +63,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
    return (
       <div className='parallax -mb-12 overflow-hidden'>
          <motion.div
-            className='scroller text-8xl font-thin text-gray-700'
+            className='scroller text-8xl font-thin uppercase text-gray-700'
             style={{ x }}
          >
             <span className='me-48'>{children} </span>
@@ -78,7 +78,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 export default function SloganSection() {
    return (
       <ParallaxText baseVelocity={-5}>
-         WE ARE PROUD OF OUR PROJECTS.
+         Crafting Spaces, Weaving Dreams
       </ParallaxText>
    );
 }

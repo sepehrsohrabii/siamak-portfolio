@@ -34,7 +34,7 @@ export default function HeroSection() {
       <div className='flex w-full flex-col-reverse items-center justify-between overflow-hidden md:h-screen md:flex-row'>
          <div className='flex flex-initial items-center p-6 md:basis-2/5 md:ps-40'>
             <motion.div
-               className='md:w-30 block md:absolute'
+               className='md:w-30 relative'
                variants={container}
                initial='hidden'
                animate='visible'
@@ -44,14 +44,12 @@ export default function HeroSection() {
                   variants={item}
                >
                   <Heading5 className='w-fit uppercase text-white'>
-                     Explore the most beautiful
+                     Graph Architecture
                   </Heading5>
                </motion.div>
                <motion.div className='w-fit' variants={item}>
                   <Heading1 className='mt-2 w-fit tracking-wide text-gray-800'>
-                     Explore Old
-                     <br className='inline' />
-                     <span className=''>Classic Builds</span>
+                     Design Your Dreams, Build Your Reality
                   </Heading1>
                </motion.div>
                <motion.div
@@ -59,16 +57,21 @@ export default function HeroSection() {
                   variants={item}
                >
                   <Paragraph2 className='text-justify text-gray-600'>
-                     buildings in the world Lorem ipsum dolor, sit amet
-                     consectetur adipisicing elit. Vitae, labore quod veritatis
-                     explicabo maiores consectetur. Suscipit dolor, ex nemo
-                     aperiam reprehenderit ea non doloribus velit quidem omnis
-                     labore, enim soluta?
+                     Correct design is the art of finding balance and harmony
+                     between form and function. It is a meticulous process that
+                     goes beyond aesthetics, delving into the intricate dance of
+                     purpose and aesthetics. In the realm of correct design,
+                     every line, curve, and element serves a purpose,
+                     contributing to the overall functionality and visual appeal
+                     of a space.
                   </Paragraph2>
                </motion.div>
-               <motion.div className='absolute -bottom-36 w-16 md:-ms-10 md:w-20'>
+               <motion.a
+                  className='absolute -bottom-32 z-10 w-16 md:left-0 md:w-20'
+                  href='#projects'
+               >
                   <Lottie animationData={engineers} loop={true} />
-               </motion.div>
+               </motion.a>
             </motion.div>
          </div>
          <motion.div

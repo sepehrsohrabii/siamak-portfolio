@@ -36,8 +36,7 @@ const ContactPageMainContainer = () => {
                         className=''
                      >
                         <Heading4 className='text-gray-700'>
-                           Lorem ipsum dolor sit amet consectetur adipisicing
-                           elit.
+                           In the below you can find our contact information.
                         </Heading4>
                      </motion.div>
                      <div className='mt-7 md:mt-16'>
@@ -55,7 +54,7 @@ const ContactPageMainContainer = () => {
                                     height={64}
                                  />
                                  <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
-                                    +989113332222
+                                    +989113373811
                                  </Paragraph1>
                               </Link>
                            </div>
@@ -72,7 +71,7 @@ const ContactPageMainContainer = () => {
                                     height={64}
                                  />
                                  <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
-                                    graph@gmail.com
+                                    grapharch.design@gmail.com
                                  </Paragraph1>
                               </Link>
                            </div>
@@ -88,7 +87,13 @@ const ContactPageMainContainer = () => {
                                     width={64}
                                     height={64}
                                  />
-                                 <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
+                                 <Paragraph1 className='mt-2 text-center text-gray-700 md:mt-5'>
+                                    Korosh Building,
+                                    <br />
+                                    Taleghani Street,
+                                    <br />
+                                    Moalem Phase 2,
+                                    <br />
                                     Rasht, Iran
                                  </Paragraph1>
                               </Link>
@@ -119,7 +124,7 @@ const ContactPageMainContainer = () => {
                               height={40}
                            />
                            <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
-                              @graph_arch_studio
+                              @graph.architecture.studio
                            </Paragraph1>
                         </Link>
                      </div>
@@ -132,7 +137,7 @@ const ContactPageMainContainer = () => {
                               height={40}
                            />
                            <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
-                              +989112345678
+                              +989113373811
                            </Paragraph1>
                         </Link>
                      </div>
@@ -145,7 +150,7 @@ const ContactPageMainContainer = () => {
                               height={40}
                            />
                            <Paragraph1 className='mt-2 text-gray-700 md:mt-5'>
-                              +989112345678
+                              +989113373811
                            </Paragraph1>
                         </Link>
                      </div>

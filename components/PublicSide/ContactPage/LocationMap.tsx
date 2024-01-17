@@ -3,12 +3,12 @@ import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
 
 const LocationMap: React.FC = () => {
-   const [geoData, setGeoData] = useState({ lat: 64.536634, lng: 16.779852 });
+   const [geoData, setGeoData] = useState({ lat: 37.294199, lng: 49.574631 });
 
    return (
       <MapContainer
          center={[geoData.lat, geoData.lng]}
-         zoom={12}
+         zoom={15}
          style={{ height: '50vh' }}
          scrollWheelZoom={false}
       >

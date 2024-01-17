@@ -43,7 +43,7 @@ const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
    });
 
    return (
-      <div className='overflow-hidden'>
+      <div className='overflow-hidden' id='projects'>
          <div className='my-36 overflow-y-visible' ref={component}>
             <div ref={slider} className='flex w-fit flex-row overflow-visible'>
                <div className='panel ms-40'>

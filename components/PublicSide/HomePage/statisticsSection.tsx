@@ -35,12 +35,11 @@ export default function StatisticsSection() {
                      Work with us
                   </Heading2>
                   <Paragraph1 className='mt-6 text-gray-800'>
-                     Anim aute id magna aliqua ad ad non deserunt sunt. Qui
-                     irure qui lorem cupidatat commodo. Elit sunt amet fugiat
-                     veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad
-                     ad non deserunt sunt. Qui irure qui lorem cupidatat
-                     commodo. Elit sunt amet fugiat veniam occaecat fugiat
-                     aliqua.
+                     By choosing to work with us, you're not just engaging
+                     architects; you're joining hands with creators dedicated to
+                     bringing your dreams to life. At Graph, we value the unique
+                     essence of each project, fostering a partnership that is as
+                     dynamic as it is visionary.
                   </Paragraph1>
                </div>
                <div className='mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none'>

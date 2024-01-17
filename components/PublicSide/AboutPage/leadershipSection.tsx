@@ -6,10 +6,10 @@ import {
 } from '@/components/General/typography';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import siamakImage from '@/public/images/sample-man-1.jpg';
-import siamakHoverImage from '@/public/images/sample-man-2.jpg';
-import maryamImage from '@/public/images/sample-girl-1.jpg';
-import maryamHoverImage from '@/public/images/sample-girl-2.jpg';
+import siamakImage from '@/public/images/Siamak.jpg';
+import siamakHoverImage from '@/public/images/Siamak.jpg';
+import maryamImage from '@/public/images/Maryam.jpg';
+import maryamHoverImage from '@/public/images/Maryam.jpg';
 import phoneIcon from '@/public/icons/phone-solid.svg';
 import emailIcon from '@/public/icons/envelope-solid.svg';
 import instagramIcon from '@/public/icons/instagram.svg';
@@ -60,7 +60,7 @@ const LeadershipSection: React.FC = () => {
                   Co-Founder / Architecture
                </Paragraph2>
                <div className='mt-5 flex md:mt-10'>
-                  <a href='#' className='me-5'>
+                  <a href='tel:+989113373811' className='me-5'>
                      <Image
                         src={phoneIcon}
                         className='opacity-80 saturate-0'
@@ -69,7 +69,7 @@ const LeadershipSection: React.FC = () => {
                         alt='phone icon'
                      />
                   </a>
-                  <a href='#' className='me-5'>
+                  <a href='mailto:siamakm.hejri@gmail.com' className='me-5'>
                      <Image
                         src={emailIcon}
                         className='opacity-80 saturate-0'
@@ -135,7 +135,7 @@ const LeadershipSection: React.FC = () => {
                   Co-Founder / Architecture
                </Paragraph2>
                <div className='mt-5 flex md:mt-10'>
-                  <a href='#' className='me-5'>
+                  <a href='tel:+989112362719' className='me-5'>
                      <Image
                         src={phoneIcon}
                         className='opacity-80 saturate-0'
@@ -144,7 +144,7 @@ const LeadershipSection: React.FC = () => {
                         alt='phone icon'
                      />
                   </a>
-                  <a href='#' className='me-5'>
+                  <a href='mailto:maryam.ka22@gmail.com' className='me-5'>
                      <Image
                         src={emailIcon}
                         className='opacity-80 saturate-0'

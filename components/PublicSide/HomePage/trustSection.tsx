@@ -29,10 +29,14 @@ export default function TrustSection() {
                   Trust Professionals
                </Heading2>
                <Paragraph2 className='text-gray w-full flex-wrap md:ps-20'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
-                  sunt? Laboriosam esse cumque, nesciunt exercitationem
-                  asperiores, repellat minima natus a, consequatur nihil odio
-                  delectus rem dolor laudantium eligendi animi modi.
+                  Correct design is not only about meeting the needs of the
+                  present but also anticipating the future, creating timeless
+                  and enduring solutions. It is a language spoken through shapes
+                  and spaces, resonating with both the intellect and the senses.
+                  In essence, correct design is a journey of thoughtful
+                  decisions, where each choice contributes to the creation of
+                  environments that stand as testaments to the elegance of
+                  purposeful, well-balanced design.
                </Paragraph2>
             </div>
          </motion.div>
