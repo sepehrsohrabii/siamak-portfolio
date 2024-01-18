@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 import logo from '@/public/Logo.svg';
 import pic from '@/public/images/01.jpg';
+import Background from '@/components/General/bg';
 
 export default function HeroSection() {
    const container = {
@@ -34,6 +35,7 @@ export default function HeroSection() {
    };
    return (
       <div className='flex w-full flex-col-reverse items-center justify-between overflow-hidden md:h-screen md:flex-row'>
+         <Background />
          <div className='flex flex-initial items-center p-6 md:basis-2/5 md:ps-40'>
             <motion.div
                className='md:w-30 relative'
