@@ -3,11 +3,11 @@ import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import image1 from '@/public/images/8.jpg';
-import image2 from '@/public/images/8.jpg';
-import image3 from '@/public/images/8.jpg';
-import image4 from '@/public/images/8.jpg';
-import image5 from '@/public/images/8.jpg';
+import image1 from '@/public/images/Project 28-min.jpg';
+import image2 from '@/public/images/Project 27-min.jpg';
+import image3 from '@/public/images/Project 26-min.jpg';
+import image4 from '@/public/images/Project 12-min.jpg';
+import image5 from '@/public/images/Project 16-min.jpg';
 
 export default function AboutUsSection() {
    const container = useRef(null);
@@ -29,8 +29,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src={image1}
                         alt='Awards'
-                        height={224}
-                        width={324}
+                        height={800}
+                        width={800}
                      />
                   </div>
                   <div className=' overflow-hidden'>
@@ -38,8 +38,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src={image2}
                         alt='Awards'
-                        height={224}
-                        width={324}
+                        height={800}
+                        width={800}
                      />
                   </div>
                   <div className=' overflow-hidden'>
@@ -47,8 +47,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src={image3}
                         alt='Awards'
-                        height={224}
-                        width={324}
+                        height={800}
+                        width={800}
                      />
                   </div>
                   <div className=' col-span-2  overflow-hidden'>
@@ -56,8 +56,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src={image4}
                         alt='Awards'
-                        height={224}
-                        width={324}
+                        height={800}
+                        width={800}
                      />
                   </div>
                   <div className=' overflow-hidden'>
@@ -65,8 +65,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src={image5}
                         alt='Awards'
-                        height={224}
-                        width={324}
+                        height={800}
+                        width={800}
                      />
                   </div>
                </div>

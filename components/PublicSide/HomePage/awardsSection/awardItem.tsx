@@ -25,10 +25,8 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
    return (
       <div className='w-full justify-between md:flex md:flex-row'>
          <div className='mb-5 basis-2/5 md:mb-0 md:pe-5'>
-            <div className='h-full bg-white p-10'>
-               <div className='w-fit bg-cyan-700 px-2'>
-                  <Paragraph3 className='text-white'>{project.year}</Paragraph3>
-               </div>
+            <div className='flex h-full flex-col justify-center p-10'>
+               <Paragraph1 className='text-white'>{project.year}</Paragraph1>
                <Heading3 className=' line-clamp-1 text-gray-800'>
                   {project.title}
                </Heading3>
@@ -40,7 +38,7 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
                </Paragraph2>
                <Paragraph3 className='mt-5'>
                   <Link
-                     className='bg-cyan-700 px-4 py-1 text-white duration-500 hover:bg-cyan-900'
+                     className='text-gray-800'
                      href={`/projects/${project.slug}`}
                   >
                      Read More

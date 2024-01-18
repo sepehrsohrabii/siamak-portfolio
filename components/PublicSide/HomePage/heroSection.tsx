@@ -4,6 +4,7 @@ import engineers from '@/public/animations/scroll-down.json';
 import {
    Heading1,
    Heading5,
+   Heading6,
    Paragraph1,
    Paragraph2,
 } from '@/components/General/typography';
@@ -39,21 +40,22 @@ export default function HeroSection() {
                initial='hidden'
                animate='visible'
             >
-               <motion.div
-                  className='w-fit bg-cyan-700 px-3 py-1'
-                  variants={item}
-               >
-                  <Heading5 className='w-fit uppercase text-white'>
-                     Graph Architecture
-                  </Heading5>
-               </motion.div>
                <motion.div className='w-fit' variants={item}>
                   <Heading1 className='mt-2 w-fit tracking-wide text-gray-800'>
-                     Design Your Dreams, Build Your Reality
+                     We Design Your Dreams,
                   </Heading1>
                </motion.div>
                <motion.div
-                  className='mt-5 w-full md:ms-14 md:mt-5 md:w-96 md:pe-10'
+                  className='absolute right-0 w-fit bg-cyan-700 px-3 py-1'
+                  variants={item}
+               >
+                  <Heading6 className='w-fit uppercase text-white'>
+                     {/* Graph Architecture */}
+                     By Building Your Reality
+                  </Heading6>
+               </motion.div>
+               <motion.div
+                  className='mt-5 w-full md:ms-0 md:mt-10 md:pe-0'
                   variants={item}
                >
                   <Paragraph2 className='text-justify text-gray-600'>
