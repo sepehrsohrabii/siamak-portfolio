@@ -665,6 +665,27 @@ export async function getProjectBySlug(slug: string) {
       console.log(e);
    }
 }
+export async function increaseProjectViewCounter(slug: string) {
+   try {
+      await connectMongo();
+      const project = await Projects.findOneAndUpdate(
+         {
+            slug: slug,
+         },
+         {
+            $inc: {
+               viewCounter: 1,
+            },
+         },
+         {
+            new: true,
+         }
+      );
+      return project;
+   } catch (e) {
+      console.log(e);
+   }
+}
 // Awards Page Functions --------------------------------------------------------------------------------------------------------------
 export async function getActiveAwardedProjects() {
    try {

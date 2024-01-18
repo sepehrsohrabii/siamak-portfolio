@@ -7,11 +7,16 @@ import {
    Paragraph4,
 } from '@/components/General/typography';
 import GallerySection from '@/components/PublicSide/SingleProjectPage/gallerySection';
-import { getImageById, getProjectBySlug, getTypeById } from '@/utils/actions';
+import {
+   getImageById,
+   getProjectBySlug,
+   getTypeById,
+   increaseProjectViewCounter,
+} from '@/utils/actions';
 import { ProjectsType } from '@/utils/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import awardIcon from '@/public/icons/award.png';
 
 const SingleProjectMainContainer = ({
@@ -22,6 +27,7 @@ const SingleProjectMainContainer = ({
    const [project, setProject] = useState<ProjectsType | null>(null);
    const [mainImageUrl, setMainImageUrl] = useState<string>('');
    const [typeName, setTypeName] = useState<string>('');
+   const isViewCounterSet = useRef(false);
 
    const getImageUrl = async () => {
       if (!project) return;
@@ -49,6 +55,16 @@ const SingleProjectMainContainer = ({
          console.log(error);
       }
    };
+   // const setViewCounter = async () => {
+   //    if (!isViewCounterSet.current) {
+   //       try {
+   //          await increaseProjectViewCounter(params.slug);
+   //       } catch (e) {
+   //          console.error(e);
+   //       }
+   //       isViewCounterSet.current = true; // Set flag to prevent repeated execution
+   //    }
+   // };
    useEffect(() => {
       fetchProject();
    }, []);

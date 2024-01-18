@@ -152,3 +152,11 @@ export async function POST(request: NextRequest) {
       data: null,
    });
 }
+
+export const config = {
+   api: {
+      bodyParser: {
+         sizeLimit: '20mb',
+      },
+   },
+};
