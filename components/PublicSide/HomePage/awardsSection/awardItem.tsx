@@ -51,8 +51,8 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
                className='h-80 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                src={imageUrl}
                alt='project image'
-               height={500}
-               width={700}
+               height={900}
+               width={900}
             />
          </div>
       </div>

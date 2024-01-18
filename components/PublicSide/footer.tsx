@@ -8,7 +8,7 @@ import {
    Paragraph3,
 } from '../General/typography';
 import Image from 'next/image';
-import logo from '@/public/Logo.png';
+import logo from '@/public/Logo.svg';
 
 export default function Footer() {
    const container = useRef(null);
@@ -91,19 +91,19 @@ export default function Footer() {
                   </Link>
                </div>
                <span className='text-lg'>Follow us on </span>
-               <Link href='https://instagram.com/graph.architecture.studio'>
+               <Link href='https://www.instagram.com/graph.architecture.studio/'>
                   <Paragraph1 className='inline text-gray-500'>
                      Instagram,
                   </Paragraph1>
                </Link>
-               <Link href='https://instagram.com/graph.architecture.studio'>
+               <Link href='https://www.instagram.com/graph.architecture.studio/'>
                   <Paragraph1 className='inline text-gray-500'>
                      Youtube
                   </Paragraph1>
                </Link>
                <span className='text-lg'>, and </span>
 
-               <Link href='https://instagram.com/graph.architecture.studio'>
+               <Link href='https://www.instagram.com/graph.architecture.studio/'>
                   <Paragraph1 className='inline text-gray-500'>
                      Linkedin
                   </Paragraph1>
@@ -118,7 +118,8 @@ export default function Footer() {
             </div>
             <div className='basis-1/4'>
                <Paragraph3 className='w-full text-gray-500 md:text-right'>
-                  Design and Developed by Sepehr.
+                  Design and Developed by
+                  <Link href='https://sepehrsohrabi.dev/'> Sepehr</Link>.
                </Paragraph3>
             </div>
          </div>

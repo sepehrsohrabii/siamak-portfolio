@@ -1,7 +1,8 @@
 import { Heading2, Paragraph1 } from '@/components/General/typography';
+import { awardsCounter, projectsCounter } from '@/utils/actions';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const links = [
    // { name: 'Open roles', href: '#' },
@@ -9,15 +10,31 @@ const links = [
    // { name: 'Our values', href: '#' },
    { name: 'Meet our leadership', href: '/about' },
 ];
-const stats = [
-   { name: 'Projects', value: '87+' },
-   { name: 'Awards', value: '15+' },
-   { name: 'Clients', value: '10+' },
-   { name: 'Paid time off', value: 'Unlimited' },
-];
 
 export default function StatisticsSection() {
    const container = useRef(null);
+   const [projectsNumber, setProjectsNumber] = useState<number>(0);
+   const [awardsNumber, setAwardsNumber] = useState<number>(0);
+   const stats = [
+      { name: 'Projects', value: projectsNumber || 0 },
+      { name: 'Awards', value: awardsNumber || 0 },
+      { name: 'Clients', value: '50+' },
+      { name: 'Paid time off', value: 'Unlimited' },
+   ];
+   useEffect(() => {
+      const getProjectsNumber = async () => {
+         const res = await projectsCounter();
+         if (res) setProjectsNumber(res);
+      };
+      const getAwardsNumber = async () => {
+         const res = await awardsCounter();
+         if (res) setAwardsNumber(res);
+      };
+      getProjectsNumber();
+      getAwardsNumber();
+      if (projectsNumber && awardsNumber) {
+      }
+   }, [projectsNumber, awardsNumber]);
    const { scrollYProgress } = useScroll({
       target: container,
       offset: ['start end', 'end end'],
@@ -35,11 +52,11 @@ export default function StatisticsSection() {
                      Work with us
                   </Heading2>
                   <Paragraph1 className='mt-6 text-gray-800'>
-                     By choosing to work with us, you're not just engaging
-                     architects; you're joining hands with creators dedicated to
-                     bringing your dreams to life. At Graph, we value the unique
-                     essence of each project, fostering a partnership that is as
-                     dynamic as it is visionary.
+                     By choosing to work with us, you{"'"}re not just engaging
+                     architects; you{"'"}re joining hands with creators
+                     dedicated to bringing your dreams to life. At Graph, we
+                     value the unique essence of each project, fostering a
+                     partnership that is as dynamic as it is visionary.
                   </Paragraph1>
                </div>
                <div className='mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none'>
@@ -54,16 +71,17 @@ export default function StatisticsSection() {
             </div>
             <div className='basis-1/4 md:basis-1/2 md:ps-40'>
                <dl className='grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-2'>
-                  {stats.map((stat) => (
-                     <div key={stat.name} className='flex flex-col-reverse'>
-                        <dt className='text-base leading-7 text-gray-800'>
-                           {stat.name}
-                        </dt>
-                        <dd className='text-2xl font-bold leading-9 tracking-tight text-black'>
-                           {stat.value}
-                        </dd>
-                     </div>
-                  ))}
+                  {stats &&
+                     stats.map((stat) => (
+                        <div key={stat.name} className='flex flex-col-reverse'>
+                           <dt className='text-base leading-7 text-gray-800'>
+                              {stat.name}
+                           </dt>
+                           <dd className='text-2xl font-bold leading-9 tracking-tight text-black'>
+                              {stat.value}
+                           </dd>
+                        </div>
+                     ))}
                </dl>
             </div>
          </motion.div>

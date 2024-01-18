@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Heading6 } from '../General/typography';
 import Image from 'next/image';
-import logo from '@/public/Logo2.png';
+import logo from '@/public/Logo.svg';
 export default function Header() {
    const [isMenuVisible, setMenuVisibility] = useState(false);
    const path = usePathname();
@@ -21,12 +21,19 @@ export default function Header() {
    return (
       <header className='absolute top-0 z-20 w-full py-10'>
          <div className='mx-5 flex justify-between md:mx-40'>
-            <Image
-               height={50}
-               src={logo}
-               alt='The Logo of Graph Studio'
-               priority
-            />
+            <div className='h-16'>
+               <Link href='/'>
+                  <Image
+                     className={`${
+                        path === '/' ? 'hidden' : 'h-20'
+                     } w-full md:block md:h-24`}
+                     height={100}
+                     src={logo}
+                     alt='The Logo of Graph Studio'
+                     priority
+                  />
+               </Link>
+            </div>
             <div className='menu-container flex flex-col-reverse md:flex-row'>
                <div className={`menu ${isMenuVisible ? 'visible' : ''}`}>
                   <ul className='header-ul'>

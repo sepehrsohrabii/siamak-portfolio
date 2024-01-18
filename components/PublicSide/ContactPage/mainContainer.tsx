@@ -43,7 +43,7 @@ const ContactPageMainContainer = () => {
                         <div className='md:flex md:justify-between md:pe-36'>
                            <div className='mt-10 md:mt-0'>
                               <Link
-                                 href='#'
+                                 href='tel:+989113373811'
                                  className='items-center md:flex md:flex-col'
                               >
                                  <Image
@@ -60,13 +60,13 @@ const ContactPageMainContainer = () => {
                            </div>
                            <div className='mt-10 md:mt-0'>
                               <Link
-                                 href='#'
+                                 href='mailto:grapharch.design@gmail.com'
                                  className='items-center md:flex md:flex-col'
                               >
                                  <Image
                                     className='w-10 md:w-14'
                                     src={gmailIcon}
-                                    alt='Phone Icon'
+                                    alt='Gmail Icon'
                                     width={64}
                                     height={64}
                                  />
@@ -77,17 +77,17 @@ const ContactPageMainContainer = () => {
                            </div>
                            <div className='mt-10 md:mt-0'>
                               <Link
-                                 href='#'
+                                 href='https://maps.app.goo.gl/u7VUwzBvp5QREhxL6'
                                  className='items-center md:flex md:flex-col'
                               >
                                  <Image
                                     className='w-10 md:w-14'
                                     src={addressIcon}
-                                    alt='Phone Icon'
+                                    alt='Address Icon'
                                     width={64}
                                     height={64}
                                  />
-                                 <Paragraph1 className='mt-2 text-center text-gray-700 md:mt-5'>
+                                 <Paragraph1 className='mt-2 text-gray-700 md:mt-5 md:text-center'>
                                     Korosh Building,
                                     <br />
                                     Taleghani Street,
@@ -116,10 +116,13 @@ const ContactPageMainContainer = () => {
                         Social Media
                      </Heading3>
                      <div className='mt-5 md:mt-0'>
-                        <Link href='#' className='flex flex-col items-center'>
+                        <Link
+                           href='https://www.instagram.com/graph.architecture.studio/'
+                           className='flex flex-col items-center'
+                        >
                            <Image
                               src={instaIcon}
-                              alt='Phone Icon'
+                              alt='Instagram Icon'
                               width={40}
                               height={40}
                            />
@@ -129,10 +132,13 @@ const ContactPageMainContainer = () => {
                         </Link>
                      </div>
                      <div className='mt-5 md:mt-0'>
-                        <Link href='#' className='flex flex-col items-center'>
+                        <Link
+                           href='https://t.me/Siamakmhe'
+                           className='flex flex-col items-center'
+                        >
                            <Image
                               src={telegramIcon}
-                              alt='Phone Icon'
+                              alt='Telegram Icon'
                               width={40}
                               height={40}
                            />
@@ -142,10 +148,13 @@ const ContactPageMainContainer = () => {
                         </Link>
                      </div>
                      <div className='mt-5 md:mt-0'>
-                        <Link href='#' className='flex flex-col items-center'>
+                        <Link
+                           href='https://wa.me/+989113373811'
+                           className='flex flex-col items-center'
+                        >
                            <Image
                               src={whatsAppIcon}
-                              alt='Phone Icon'
+                              alt='Whatsapp Icon'
                               width={40}
                               height={40}
                            />

@@ -556,6 +556,31 @@ export async function getHomePageProjects() {
    }
    return [];
 }
+export async function projectsCounter() {
+   try {
+      await connectMongo();
+      const projects: IProjectsSchema[] = await Projects.find({
+         status: true,
+      });
+      return projects.length;
+   } catch (e) {
+      console.log(e);
+   }
+   return null;
+}
+export async function awardsCounter() {
+   try {
+      await connectMongo();
+      const projects: IProjectsSchema[] = await Projects.find({
+         status: true,
+         award: { $ne: "" , $exists: true }
+      });
+      return projects.length;
+   } catch (e) {
+      console.log(e);
+   }
+   return null;
+}
 // Projects Page functions ------------------------------------------------------------------------------------------------------
 export async function getActiveTypes() {
    try {
@@ -675,3 +700,4 @@ export async function getActiveAwardedProjects() {
    }
    return [];
 }
+

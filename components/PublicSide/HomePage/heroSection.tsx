@@ -9,6 +9,7 @@ import {
    Paragraph2,
 } from '@/components/General/typography';
 import Image from 'next/image';
+import logo from '@/public/Logo.svg';
 import pic from '@/public/images/01.jpg';
 
 export default function HeroSection() {
@@ -55,7 +56,7 @@ export default function HeroSection() {
                   </Heading6>
                </motion.div>
                <motion.div
-                  className='mt-5 w-full md:ms-0 md:mt-10 md:pe-0'
+                  className='mt-10 w-full md:ms-0 md:mt-10 md:pe-0'
                   variants={item}
                >
                   <Paragraph2 className='text-justify text-gray-600'>
