@@ -80,7 +80,7 @@ const SingleProjectMainContainer = ({
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
                transition={{ duration: 1 }}
-               className='my-32 flex items-center bg-stone-300 p-5 px-5 md:px-40'
+               className='mb-36 mt-40 flex items-center bg-stone-300 p-5 px-5 md:px-40'
             >
                <Image
                   src='/icons/award.png'

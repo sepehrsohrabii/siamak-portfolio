@@ -19,8 +19,8 @@ export default function Header() {
       { name: 'Contact', path: '/contact' },
    ];
    return (
-      <header className='absolute top-0 z-20 w-full py-10'>
-         <div className='mx-5 flex justify-between md:mx-40'>
+      <header className='absolute top-0 z-20 w-full py-7'>
+         <div className='mx-5 flex justify-between md:mx-40 md:items-center'>
             <div className='h-16'>
                <Link href='/'>
                   <Image

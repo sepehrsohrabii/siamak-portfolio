@@ -9,19 +9,13 @@ import LocationMap from '@/components/PublicSide/ContactPage/LocationMap';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import phoneCallIcon from '/icons/phone-call.png';
-import gmailIcon from '/icons/gmail.png';
-import addressIcon from '/icons/address.png';
-import instaIcon from '/icons/instagram.png';
-import telegramIcon from '/icons/telegram.png';
-import whatsAppIcon from '/icons/whatsapp.png';
 
 const ContactPageMainContainer = () => {
    return (
       <>
          {typeof window !== 'undefined' && (
             <>
-               <motion.div className='ms-5 items-center pt-32 md:ms-40 md:flex'>
+               <motion.div className='ms-5 items-center pt-40 md:ms-40 md:flex'>
                   <motion.div
                      initial={{ x: -200 }}
                      animate={{ x: 0 }}
