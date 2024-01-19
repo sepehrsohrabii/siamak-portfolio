@@ -75,21 +75,23 @@ const SingleProjectMainContainer = ({
    }, [project]);
    return (
       <div>
-         <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className='my-32 flex items-center bg-stone-300 p-5 px-5 md:px-40'
-         >
-            <Image
-               src='/icons/award.png'
-               alt='award icon'
-               className='me-2 md:me-5'
-               width={32}
-               height={32}
-            />
-            <Heading4 className='text-gray-700'>{project?.award}</Heading4>
-         </motion.div>
+         {project?.award !== '' && (
+            <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               transition={{ duration: 1 }}
+               className='my-32 flex items-center bg-stone-300 p-5 px-5 md:px-40'
+            >
+               <Image
+                  src='/icons/award.png'
+                  alt='award icon'
+                  className='me-2 md:me-5'
+                  width={32}
+                  height={32}
+               />
+               <Heading4 className='text-gray-700'>{project?.award}</Heading4>
+            </motion.div>
+         )}
          <div className='mx-5 my-32 md:mx-40'>
             <Heading1 className='text-gray-800'>{project?.title}</Heading1>
          </div>
