@@ -37,8 +37,8 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
    });
    const projectWithAwards = projects.filter(
       (project) =>
-         project.award !== '' ||
-         project.award !== null ||
+         project.award !== '' &&
+         project.award !== null &&
          project.award !== undefined
    );
    return (

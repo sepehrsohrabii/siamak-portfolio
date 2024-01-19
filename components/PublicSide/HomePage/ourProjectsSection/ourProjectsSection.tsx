@@ -15,12 +15,13 @@ gsap.registerPlugin(ScrollTrigger);
 const OurProjectsSection = ({ projects }: { projects: ProjectsType[] }) => {
    const component = useRef<HTMLDivElement>(null);
    const slider = useRef<HTMLDivElement>(null);
-   const projectsWithoutAwards = projects.filter(
-      (project) =>
-         project.award !== '' &&
-         project.award !== null &&
-         project.award !== undefined
-   );
+   const projectsWithoutAwards = projects;
+   // const projectsWithoutAwards = projects.filter(
+   //    (project) =>
+   //       project.award !== '' &&
+   //       project.award !== null &&
+   //       project.award !== undefined
+   // );
    useLayoutEffect(() => {
       let ctx = gsap.context(() => {
          let panels = gsap.utils.toArray('.panel');
