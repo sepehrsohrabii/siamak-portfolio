@@ -6,10 +6,6 @@ import {
 } from '@/components/General/typography';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import siamakImage from '@/public/images/Siamak.jpg';
-import siamakHoverImage from '@/public/images/Siamak.jpg';
-import maryamImage from '@/public/images/Maryam.jpg';
-import maryamHoverImage from '@/public/images/Maryam.jpg';
 import phoneIcon from '@/public/icons/phone-solid.svg';
 import emailIcon from '@/public/icons/envelope-solid.svg';
 import instagramIcon from '@/public/icons/instagram.svg';
@@ -38,7 +34,7 @@ const LeadershipSection: React.FC = () => {
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
-                  src={siamakImage}
+                  src='/images/Siamak.jpg'
                   alt='Siamak Mortaz Hejri Image'
                   width={900}
                   height={900}
@@ -47,7 +43,7 @@ const LeadershipSection: React.FC = () => {
                {/* Hover Image */}
                <Image
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
-                  src={siamakHoverImage}
+                  src='/images/Siamak.jpg'
                   alt='Siamak Mortaz Hejri Hover Image'
                   width={900}
                   height={900}
@@ -113,7 +109,7 @@ const LeadershipSection: React.FC = () => {
                {/* Default Image */}
                <Image
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
-                  src={maryamImage}
+                  src='/images/Maryam.jpg'
                   alt='Default'
                   width={900}
                   height={900}
@@ -122,7 +118,7 @@ const LeadershipSection: React.FC = () => {
                {/* Hover Image */}
                <Image
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
-                  src={maryamHoverImage}
+                  src='/images/Maryam.jpg'
                   alt='Hover'
                   width={900}
                   height={900}

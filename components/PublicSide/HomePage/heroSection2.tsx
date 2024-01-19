@@ -8,8 +8,6 @@ import {
    Paragraph1,
    Paragraph2,
 } from '@/components/General/typography';
-import Image from 'next/image';
-import pic from '@/public/images/01.jpg';
 
 export default function HeroSection() {
    const container = {

@@ -9,12 +9,12 @@ import LocationMap from '@/components/PublicSide/ContactPage/LocationMap';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import phoneCallIcon from '@/public/icons/phone-call.png';
-import gmailIcon from '@/public/icons/gmail.png';
-import addressIcon from '@/public/icons/address.png';
-import instaIcon from '@/public/icons/instagram.png';
-import telegramIcon from '@/public/icons/telegram.png';
-import whatsAppIcon from '@/public/icons/whatsapp.png';
+import phoneCallIcon from '/icons/phone-call.png';
+import gmailIcon from '/icons/gmail.png';
+import addressIcon from '/icons/address.png';
+import instaIcon from '/icons/instagram.png';
+import telegramIcon from '/icons/telegram.png';
+import whatsAppIcon from '/icons/whatsapp.png';
 
 const ContactPageMainContainer = () => {
    return (
@@ -48,7 +48,7 @@ const ContactPageMainContainer = () => {
                               >
                                  <Image
                                     className='w-10 md:w-14'
-                                    src={phoneCallIcon}
+                                    src='/icons/phone-call.png'
                                     alt='Phone Icon'
                                     width={64}
                                     height={64}
@@ -65,7 +65,7 @@ const ContactPageMainContainer = () => {
                               >
                                  <Image
                                     className='w-10 md:w-14'
-                                    src={gmailIcon}
+                                    src='/icons/gmail.png'
                                     alt='Gmail Icon'
                                     width={64}
                                     height={64}
@@ -82,7 +82,7 @@ const ContactPageMainContainer = () => {
                               >
                                  <Image
                                     className='w-10 md:w-14'
-                                    src={addressIcon}
+                                    src='/icons/address.png'
                                     alt='Address Icon'
                                     width={64}
                                     height={64}
@@ -121,7 +121,7 @@ const ContactPageMainContainer = () => {
                            className='flex flex-col items-center'
                         >
                            <Image
-                              src={instaIcon}
+                              src='/icons/instagram.png'
                               alt='Instagram Icon'
                               width={40}
                               height={40}
@@ -137,7 +137,7 @@ const ContactPageMainContainer = () => {
                            className='flex flex-col items-center'
                         >
                            <Image
-                              src={telegramIcon}
+                              src='/icons/telegram.png'
                               alt='Telegram Icon'
                               width={40}
                               height={40}
@@ -153,7 +153,7 @@ const ContactPageMainContainer = () => {
                            className='flex flex-col items-center'
                         >
                            <Image
-                              src={whatsAppIcon}
+                              src='/icons/whatsapp.png'
                               alt='Whatsapp Icon'
                               width={40}
                               height={40}

@@ -34,6 +34,7 @@ export default function Footer() {
                {/* <Heading3 className='text-4xl'>Graph Studio</Heading3> */}
                <Image
                   className='-ms-2'
+                  width={150}
                   height={150}
                   src={logo}
                   alt='The Logo of Graph Studio'

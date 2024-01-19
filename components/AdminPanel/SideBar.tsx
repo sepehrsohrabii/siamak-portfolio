@@ -3,28 +3,22 @@ import Link from 'next/link';
 import { Heading5 } from '../General/typography';
 import { usePathname } from 'next/navigation';
 import { signOutFunc } from '@/utils/actions';
-import homeIcon from '@/public/icons/home.png';
-import statisticsIcon from '@/public/icons/bar-chart.png';
-import usersIcon from '@/public/icons/group.png';
-import typesIcon from '@/public/icons/menu.png';
-import projectsIcon from '@/public/icons/modeling.png';
 import Image from 'next/image';
-import turnOffIcon from '@/public/icons/turn-off.png';
 const SideBar = () => {
    const path = usePathname();
    const links = [
-      { name: 'Home', path: '/dashboard', imgPath: homeIcon },
+      { name: 'Home', path: '/dashboard', imgPath: '/icons/home.png' },
       {
          name: 'Statistics',
          path: '/dashboard/statistics',
-         imgPath: statisticsIcon,
+         imgPath: '/icons/bar-chart.png',
       },
-      { name: 'Users', path: '/dashboard/users', imgPath: usersIcon },
-      { name: 'Types', path: '/dashboard/types', imgPath: typesIcon },
+      { name: 'Users', path: '/dashboard/users', imgPath: '/icons/group.png' },
+      { name: 'Types', path: '/dashboard/types', imgPath: '/icons/menu.png' },
       {
          name: 'Projects',
          path: '/dashboard/projects',
-         imgPath: projectsIcon,
+         imgPath: '/icons/modeling.png',
       },
    ];
    return (
@@ -61,7 +55,7 @@ const SideBar = () => {
          >
             <button className='mt-2 flex h-[48px] w-full grow items-center justify-center gap-2 rounded-lg bg-slate-200 p-3 px-5 py-2 text-sm font-medium shadow-lg duration-500 hover:bg-sky-100 md:flex-none md:justify-start'>
                <Image
-                  src={turnOffIcon}
+                  src='/icons/turn-off.png'
                   className='me-2'
                   width={20}
                   height={20}

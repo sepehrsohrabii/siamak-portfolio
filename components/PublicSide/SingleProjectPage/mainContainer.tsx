@@ -17,7 +17,6 @@ import { ProjectsType } from '@/utils/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import awardIcon from '@/public/icons/award.png';
 
 const SingleProjectMainContainer = ({
    params,
@@ -83,7 +82,7 @@ const SingleProjectMainContainer = ({
             className='my-32 flex items-center bg-stone-300 p-5 px-5 md:px-40'
          >
             <Image
-               src={awardIcon}
+               src='/icons/award.png'
                alt='award icon'
                className='me-2 md:me-5'
                width={32}

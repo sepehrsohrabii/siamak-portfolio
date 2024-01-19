@@ -28,6 +28,7 @@ export default function Header() {
                         path === '/' ? 'hidden' : 'h-20'
                      } w-full md:block md:h-24`}
                      height={100}
+                     width={100}
                      src={logo}
                      alt='The Logo of Graph Studio'
                      priority

@@ -9,8 +9,6 @@ import {
    Paragraph2,
 } from '@/components/General/typography';
 import Image from 'next/image';
-import logo from '@/public/Logo.svg';
-import pic from '@/public/images/01.jpg';
 import Background from '@/components/General/bg';
 
 export default function HeroSection() {
@@ -86,9 +84,11 @@ export default function HeroSection() {
             className='z-0 h-[600px] w-full pe-10 saturate-0 duration-500 hover:saturate-100 md:static md:h-screen md:w-3/5 md:basis-3/5 md:pe-0'
          >
             <Image
-               src={pic}
+               src='/images/01.jpg'
                alt='Picture of the author'
                className='h-full w-full object-cover object-center'
+               width={800}
+               height={800}
                priority
             />
          </motion.div>
