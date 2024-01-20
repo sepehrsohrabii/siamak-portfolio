@@ -45,37 +45,37 @@ export async function DELETE(
             await Images.findOneAndDelete({ id: params.id });
 
             // Update the project's image IDs and status if needed
-            const updatedProject = await Projects.findOneAndUpdate(
-               {
-                  $or: [
-                     { mainImageId: params.id },
-                     { galleryImagesIds: { $in: [params.id] } },
-                  ],
-               },
-               {
-                  $pull: {
-                     galleryImagesIds: params.id,
+            const project = await Projects.findOne({
+               $or: [
+                  { mainImageId: params.id },
+                  { galleryImagesIds: { $in: [params.id] } },
+               ],
+            });
+            if (project.mainImageId === params.id) {
+               await Projects.findOneAndUpdate(
+                  {
+                     mainImageId: params.id,
                   },
-                  $set: {
-                     mainImageId: {
-                        $cond: {
-                           if: { $eq: ['$mainImageId', params.id] },
-                           then: { $ifNull: [null, ''] },
-                           else: '$mainImageId',
-                        },
-                     },
-                     status: {
-                        $cond: {
-                           if: { $eq: ['$mainImageId', '']},
-                           then: false,
-                           else: '$status',
-                        },
+                  {
+                     $set: {
+                        mainImageId: '',
                      },
                   },
-               },
-               { new: true }
-            );
-
+                  { new: true }
+               );
+            } else if (project.galleryImagesIds.includes(params.id)) {
+               await Projects.findOneAndUpdate(
+                  {
+                     galleryImagesIds: { $in: [params.id] },
+                  },
+                  {
+                     $pull: {
+                        galleryImagesIds: params.id,
+                     },
+                  },
+                  { new: true }
+               );
+            }
             // Return success response
             return NextResponse.json({
                success: true,
@@ -88,6 +88,7 @@ export async function DELETE(
                logUrl: `api/image/delete/${params.id}/route.ts`,
                logText: e,
             });
+            console.log(e);
             await serverLog.save();
             return NextResponse.json({
                success: false,
@@ -100,6 +101,7 @@ export async function DELETE(
          logUrl: `api/image/delete/${params.id}/route.ts`,
          logText: e,
       });
+      console.log(e);
       await serverLog.save();
       return NextResponse.json({
          success: false,
@@ -107,4 +109,9 @@ export async function DELETE(
          data: null,
       });
    }
+   return NextResponse.json({
+      success: null,
+      error: null,
+      data: null,
+   });
 }
