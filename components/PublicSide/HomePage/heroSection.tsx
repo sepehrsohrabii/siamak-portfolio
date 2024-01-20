@@ -9,7 +9,6 @@ import {
    Paragraph2,
 } from '@/components/General/typography';
 import Image from 'next/image';
-import Background from '@/components/General/bg';
 
 export default function HeroSection() {
    const container = {
@@ -33,7 +32,6 @@ export default function HeroSection() {
    };
    return (
       <div className='flex w-full flex-col-reverse items-center justify-between overflow-hidden md:h-screen md:flex-row'>
-         <Background />
          <div className='flex flex-initial items-center p-6 md:basis-2/5 md:ps-40'>
             <motion.div
                className='md:w-30 relative'
@@ -87,8 +85,8 @@ export default function HeroSection() {
                src='/images/01.jpg'
                alt='Picture of the author'
                className='h-full w-full object-cover object-center'
-               width={800}
-               height={800}
+               width={1000}
+               height={1000}
                priority
             />
          </motion.div>

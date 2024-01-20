@@ -88,7 +88,7 @@ const SingleAwardItem = ({
       <Link href={`/projects/${project.slug}`}>
          <motion.div
             key={key}
-            className='my-20 justify-start md:relative md:flex md:h-96'
+            className='my-20 items-center justify-start md:relative md:flex md:h-96'
             ref={ref}
          >
             <motion.div
@@ -109,8 +109,8 @@ const SingleAwardItem = ({
                      className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
                      src={imageUrl}
                      alt={`${project.title} image`}
-                     width={800}
-                     height={800}
+                     width={450}
+                     height={450}
                   />
                </motion.div>
             </motion.div>

@@ -61,8 +61,8 @@ const GallerySection = ({
                            loading='lazy'
                            className='h-96 w-full object-cover md:h-screen'
                            alt={`gallery image ${index + 1}`}
-                           width={2000}
-                           height={2000}
+                           width={1500}
+                           height={1500}
                         />
                         <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
                      </SwiperSlide>
@@ -77,7 +77,7 @@ const GallerySection = ({
                   // lazy={true}
                   watchSlidesProgress={true}
                   modules={[FreeMode, Navigation, Thumbs]}
-                  className='mt-3'
+                  className='mySwiper mt-3'
                >
                   {imagesUrlsList.map((url, index) => (
                      <SwiperSlide key={index}>

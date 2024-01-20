@@ -3,11 +3,6 @@ import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import image1 from '/images/Project 28-min.jpg';
-import image2 from '/images/Project 27-min.jpg';
-import image3 from '/images/Project 26-min.jpg';
-import image4 from '/images/Project 12-min.jpg';
-import image5 from '/images/Project 16-min.jpg';
 
 export default function AboutUsSection() {
    const container = useRef(null);
@@ -29,8 +24,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/Project 28-min.jpg'
                         alt='Awards'
-                        height={800}
-                        width={800}
+                        height={400}
+                        width={400}
                      />
                   </div>
                   <div className=' overflow-hidden'>
@@ -38,8 +33,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/Project 27-min.jpg'
                         alt='Awards'
-                        height={800}
-                        width={800}
+                        height={400}
+                        width={400}
                      />
                   </div>
                   <div className=' overflow-hidden'>
@@ -47,8 +42,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/Project 26-min.jpg'
                         alt='Awards'
-                        height={800}
-                        width={800}
+                        height={400}
+                        width={400}
                      />
                   </div>
                   <div className=' col-span-2  overflow-hidden'>
@@ -56,8 +51,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/Project 12-min.jpg'
                         alt='Awards'
-                        height={800}
-                        width={800}
+                        height={400}
+                        width={400}
                      />
                   </div>
                   <div className=' overflow-hidden'>
@@ -65,8 +60,8 @@ export default function AboutUsSection() {
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
                         src='/images/Project 16-min.jpg'
                         alt='Awards'
-                        height={800}
-                        width={800}
+                        height={400}
+                        width={400}
                      />
                   </div>
                </div>

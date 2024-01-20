@@ -36,8 +36,8 @@ const LeadershipSection: React.FC = () => {
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
                   src='/images/Siamak.jpg'
                   alt='Siamak Mortaz Hejri Image'
-                  width={900}
-                  height={900}
+                  width={400}
+                  height={400}
                />
 
                {/* Hover Image */}
@@ -45,8 +45,8 @@ const LeadershipSection: React.FC = () => {
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
                   src='/images/Siamak.jpg'
                   alt='Siamak Mortaz Hejri Hover Image'
-                  width={900}
-                  height={900}
+                  width={400}
+                  height={400}
                />
             </div>
             <div className='mt-5 self-center md:mt-0 md:ps-5'>
@@ -111,8 +111,8 @@ const LeadershipSection: React.FC = () => {
                   className='h-full w-full transform object-cover saturate-0 transition-transform duration-500 hover:scale-110'
                   src='/images/Maryam.jpg'
                   alt='Default'
-                  width={900}
-                  height={900}
+                  width={400}
+                  height={400}
                />
 
                {/* Hover Image */}
@@ -120,8 +120,8 @@ const LeadershipSection: React.FC = () => {
                   className='absolute left-0 top-0 h-full w-full transform object-cover opacity-0 transition-opacity duration-500 hover:opacity-100 hover:saturate-100'
                   src='/images/Maryam.jpg'
                   alt='Hover'
-                  width={900}
-                  height={900}
+                  width={400}
+                  height={400}
                />
             </div>
             <div className='mt-5 self-center md:mt-0 md:ps-5'>

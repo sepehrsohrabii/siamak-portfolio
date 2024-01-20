@@ -1,6 +1,5 @@
 import {
    Heading5,
-   Paragraph1,
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
@@ -54,8 +53,8 @@ export default function ProjectItem({
                   className='h-80 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
                   src={imageUrl}
                   alt={`${project.title} Image`}
-                  width={450}
-                  height={450}
+                  width={400}
+                  height={400}
                />
             </motion.div>
          </motion.div>

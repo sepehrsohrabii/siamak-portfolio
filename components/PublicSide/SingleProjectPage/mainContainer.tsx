@@ -7,16 +7,11 @@ import {
    Paragraph4,
 } from '@/components/General/typography';
 import GallerySection from '@/components/PublicSide/SingleProjectPage/gallerySection';
-import {
-   getImageById,
-   getProjectBySlug,
-   getTypeById,
-   increaseProjectViewCounter,
-} from '@/utils/actions';
+import { getImageById, getProjectBySlug, getTypeById } from '@/utils/actions';
 import { ProjectsType } from '@/utils/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const SingleProjectMainContainer = ({
    params,
@@ -26,8 +21,6 @@ const SingleProjectMainContainer = ({
    const [project, setProject] = useState<ProjectsType | null>(null);
    const [mainImageUrl, setMainImageUrl] = useState<string>('');
    const [typeName, setTypeName] = useState<string>('');
-   const isViewCounterSet = useRef(false);
-
    const getImageUrl = async () => {
       if (!project) return;
       try {
@@ -54,16 +47,6 @@ const SingleProjectMainContainer = ({
          console.log(error);
       }
    };
-   // const setViewCounter = async () => {
-   //    if (!isViewCounterSet.current) {
-   //       try {
-   //          await increaseProjectViewCounter(params.slug);
-   //       } catch (e) {
-   //          console.error(e);
-   //       }
-   //       isViewCounterSet.current = true; // Set flag to prevent repeated execution
-   //    }
-   // };
    useEffect(() => {
       fetchProject();
    }, []);
@@ -96,10 +79,37 @@ const SingleProjectMainContainer = ({
             <Heading1 className='text-gray-800'>{project?.title}</Heading1>
          </div>
          {mainImageUrl && (
+            // <div
+            //    className={`my-32 h-96 bg-cover bg-fixed bg-center`}
+            //    style={{ backgroundImage: `url(${mainImageUrl})` }}
+            // ></div>
             <div
-               className={`my-32 h-96 bg-cover bg-fixed bg-center`}
-               style={{ backgroundImage: `url(${mainImageUrl})` }}
-            ></div>
+               style={{
+                  position: 'relative',
+                  height: '60vh',
+                  width: '100%',
+                  clipPath: 'inset(0 0 0 0)',
+               }}
+            >
+               <div
+                  style={{
+                     position: 'fixed',
+                     height: '100%',
+                     width: '100%',
+                     left: '0',
+                     top: '0',
+                  }}
+               >
+                  <Image
+                     src={mainImageUrl}
+                     alt='main image'
+                     fill
+                     objectFit='cover'
+                     quality={75}
+                     sizes='100vw'
+                  />
+               </div>
+            </div>
          )}
          <div className='mx-5 my-32 md:mx-40'>
             <Paragraph4 className='text-gray-700'>

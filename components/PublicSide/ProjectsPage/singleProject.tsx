@@ -42,18 +42,6 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
 
       // Pause the animation by default
       animation.pause();
-
-      // // Toggle play/pause on scroll
-      // ScrollTrigger.create({
-      //    trigger: imageRef.current,
-      //    start: 'center',
-      //    end: 'top 100%',
-      //    onEnter: () => animation.play(),
-      //    onLeaveBack: () => animation.reverse(),
-      //    markers: true,
-      // });
-
-      // Cleanup on component unmount
       return () => {
          animation.kill();
       };
@@ -99,8 +87,8 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
                         className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
                         src={imageUrl}
                         alt={`${project.title} image`}
-                        width={500}
-                        height={500}
+                        width={450}
+                        height={450}
                      />
                   )}
                </motion.div>
