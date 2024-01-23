@@ -1,6 +1,4 @@
-import ServerLogs from '@/schemas/ServerLogs';
-import { IServerLogsSchema } from './types';
-export function slugify(text: string) {
+export default function slugify(text: string) {
    return text
       .toString()
       .toLowerCase()
