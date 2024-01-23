@@ -8,6 +8,7 @@ export async function GET(
    { params }: { params: { id: string } }
 ) {
    try {
+      console.log('params:', params);
       const imageDatafromDB = await Images.findOne({
          id: params.id,
       });
