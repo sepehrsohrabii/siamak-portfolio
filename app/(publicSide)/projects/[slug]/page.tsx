@@ -1,5 +1,6 @@
 import SingleProjectMainContainer from '@/components/PublicSide/SingleProjectPage/mainContainer';
-import { getImageById, getProjectBySlug } from '@/utils/actions';
+import { getProjectBySlug } from '@/utils/actions';
+import { getImageById } from '@/utils/functions';
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {

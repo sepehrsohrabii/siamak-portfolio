@@ -7,7 +7,8 @@ import {
    Paragraph4,
 } from '@/components/General/typography';
 import GallerySection from '@/components/PublicSide/SingleProjectPage/gallerySection';
-import { getImageById, getProjectBySlug, getTypeById } from '@/utils/actions';
+import { getProjectBySlug, getTypeById } from '@/utils/actions';
+import { getImageById } from '@/utils/functions';
 import { ProjectsType } from '@/utils/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';

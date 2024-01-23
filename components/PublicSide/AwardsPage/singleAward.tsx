@@ -1,20 +1,18 @@
-import { motion, useInView, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ProjectsType } from '@/utils/types';
-import { getImageById, getTypeById } from '@/utils/actions';
+import { getTypeById } from '@/utils/actions';
 import {
    Heading2,
-   Heading3,
-   Heading4,
-   Heading6,
    Paragraph1,
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
+import { getImageById } from '@/utils/functions';
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 

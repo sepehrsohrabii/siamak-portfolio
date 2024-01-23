@@ -413,34 +413,7 @@ export async function getProjectById(id: string) {
       console.log(e);
    }
 }
-export async function getImageById(id: string) {
-   try {
-      const response = await fetch(`/api/image/read/${id}`, {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
 
-      const data = await response.json();
-
-      if (response.ok) {
-         return data.data;
-      } else {
-         const serverLog: IServerLogsSchema = new ServerLogs({
-            logUrl: `/api/image/read/${id}/route.ts`,
-            logText: data.error,
-         });
-         await serverLog.save();
-      }
-   } catch (error) {
-      const serverLog: IServerLogsSchema = new ServerLogs({
-         logUrl: `/api/image/read/${id}/route.ts`,
-         logText: error,
-      });
-      await serverLog.save();
-   }
-}
 export async function editProject(
    id: string,
    title: string,

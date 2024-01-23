@@ -3,7 +3,8 @@ import {
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
-import { getImageById, getTypeById } from '@/utils/actions';
+import { getTypeById } from '@/utils/actions';
+import { getImageById } from '@/utils/functions';
 import { ProjectsType } from '@/utils/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';

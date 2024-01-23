@@ -5,7 +5,7 @@ import {
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
-import { getImageById } from '@/utils/actions';
+import { getImageById } from '@/utils/functions';
 import { ProjectsType } from '@/utils/types';
 import Image from 'next/image';
 import Link from 'next/link';

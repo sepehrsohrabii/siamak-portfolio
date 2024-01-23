@@ -1,6 +1,6 @@
-import { getImageById } from './actions';
-
-export default function slugify(text: string) {
+import ServerLogs from '@/schemas/ServerLogs';
+import { IServerLogsSchema } from './types';
+export function slugify(text: string) {
    return text
       .toString()
       .toLowerCase()
@@ -10,8 +10,23 @@ export default function slugify(text: string) {
       .replace(/--+/g, '-'); // Replace multiple - with single -
 }
 
-export async function getImageURL(imageId: string) {
-   const image = await getImageById(imageId);
-   const imageUrl = image?.fileURL;
-   return imageUrl;
+export async function getImageById(id: string) {
+   try {
+      const response = await fetch(`/api/image/read/${id}`, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+         return data.data;
+      } else {
+         console.log(data.error);
+      }
+   } catch (error) {
+      console.log(error);
+   }
 }

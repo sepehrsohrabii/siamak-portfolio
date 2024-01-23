@@ -2,10 +2,11 @@ import { Label, Paragraph3 } from '@/components/General/typography';
 import { IImagesSchema, ProjectsType } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getProjectById, getImageById } from '@/utils/actions';
+import { getProjectById } from '@/utils/actions';
 import { MinusIcon } from '@heroicons/react/24/solid';
 import LoadingSpinSM from '@/components/General/loadingSpinSM';
 import axios from 'axios';
+import { getImageById } from '@/utils/functions';
 
 const GalleryImagesUploadForm = ({
    project,

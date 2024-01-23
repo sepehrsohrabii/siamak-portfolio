@@ -6,8 +6,8 @@ import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { getImageById } from '@/utils/actions';
 import { Heading2 } from '@/components/General/typography';
+import { getImageById } from '@/utils/functions';
 
 const GallerySection = ({
    galleryImagesIds,
