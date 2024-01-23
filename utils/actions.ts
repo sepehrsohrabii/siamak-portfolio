@@ -87,7 +87,7 @@ export async function createUser(
          .padStart(6, '0');
 
       const hashedPass = await bcrypt.hash(password, 10);
-      
+
       const user: IUsersSchema = new Users({
          id,
          name,
@@ -120,7 +120,7 @@ export async function editUser(
          password === undefined
       )
          throw new Error('Email or password is not provided.');
-      
+
       const hashedPass = await bcrypt.hash(password, 10);
       // We have to check if the request is for a new Users or not.
       const updatedUser = await Users.findOneAndUpdate(
@@ -415,15 +415,30 @@ export async function getProjectById(id: string) {
 }
 export async function getImageById(id: string) {
    try {
-      await connectMongo();
-
-      // We have to check if the request is for a new Types or not.
-      const image = await Images.findOne({
-         id: id,
+      const response = await fetch(`/api/image/read/${id}`, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+         },
       });
-      return image;
-   } catch (e) {
-      console.log(e);
+
+      const data = await response.json();
+
+      if (response.ok) {
+         return data.data;
+      } else {
+         const serverLog: IServerLogsSchema = new ServerLogs({
+            logUrl: `/api/image/read/${id}/route.ts`,
+            logText: data.error,
+         });
+         await serverLog.save();
+      }
+   } catch (error) {
+      const serverLog: IServerLogsSchema = new ServerLogs({
+         logUrl: `/api/image/read/${id}/route.ts`,
+         logText: error,
+      });
+      await serverLog.save();
    }
 }
 export async function editProject(
@@ -573,7 +588,7 @@ export async function awardsCounter() {
       await connectMongo();
       const projects: IProjectsSchema[] = await Projects.find({
          status: true,
-         award: { $ne: "" , $exists: true }
+         award: { $ne: '', $exists: true },
       });
       return projects.length;
    } catch (e) {
@@ -690,8 +705,10 @@ export async function increaseProjectViewCounter(slug: string) {
 export async function getActiveAwardedProjects() {
    try {
       await connectMongo();
-      const projects: IProjectsSchema[] = await Projects.find({ status: true, award: { $ne: "" , $exists: true } });
-
+      const projects: IProjectsSchema[] = await Projects.find({
+         status: true,
+         award: { $ne: '', $exists: true },
+      });
 
       // Convert MongoDB documents to plain JavaScript objects
       const projectsAsObjects = projects.map((project) => ({
@@ -721,4 +738,3 @@ export async function getActiveAwardedProjects() {
    }
    return [];
 }
-
