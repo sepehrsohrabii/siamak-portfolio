@@ -1,8 +1,13 @@
-import { stat, mkdir, writeFile } from 'fs/promises';
 import mime from 'mime';
 import { NextRequest, NextResponse } from 'next/server';
-import { join } from 'path';
-
+const {
+   S3Client,
+   PutObjectCommand,
+   GetObjectCommand,
+} = require('@aws-sdk/client-s3');
+const { S3RequestPresigner } = require('@aws-sdk/s3-request-presigner');
+const { createRequest } = require('@aws-sdk/util-create-request');
+const { formatUrl } = require('@aws-sdk/util-format-url');
 import { IImagesSchema, IServerLogsSchema } from '@/utils/types';
 import ServerLogs from '@/schemas/ServerLogs';
 import Projects from '@/schemas/Projects';
@@ -25,7 +30,14 @@ export async function POST(request: NextRequest) {
          { status: 400 }
       );
    }
-
+   const s3 = new S3Client({
+      region: 'default',
+      endpoint: process.env.ARVAN_STORAGE_DOMAIN,
+      credentials: {
+         accessKeyId: process.env.ARVAN_STORAGE_ACCESS_KEY,
+         secretAccessKey: process.env.ARVAN_STORAGE_SECRET_KEY,
+      },
+   });
    const formDataEntryValues = Array.from(formData.values());
 
    // Use Promise.all to wait for all asynchronous operations to complete
@@ -35,100 +47,88 @@ export async function POST(request: NextRequest) {
             typeof formDataEntryValue === 'object' &&
             'arrayBuffer' in formDataEntryValue
          ) {
-            //console.log('server: ', formDataEntryValue);
             const file = formDataEntryValue as unknown as Blob;
             const buffer = Buffer.from(await file.arrayBuffer());
-            const relativeUploadDir: string = `/uploads/${projectId}/${imageType}`;
-            const uploadDir = join(process.cwd(), 'public', relativeUploadDir);
+
+            const uniqueSuffix = Math.floor(Math.random() * 1000000)
+               .toString()
+               .padStart(6, '0');
+
+            const filename = `${uniqueSuffix}.${mime.getExtension(file.type)}`;
+            const uploadPath: string = `${projectId}/${imageType}/${filename}`;
 
             try {
-               await stat(uploadDir);
-            } catch (e: any) {
-               const serverLog: IServerLogsSchema = new ServerLogs({
-                  logUrl: 'api/image/add/route.ts',
-                  logText: e,
+               const uploadParams = {
+                  Bucket: process.env.ARVAN_STORAGE_NAME,
+                  Key: uploadPath,
+                  Body: buffer,
+                  ContentType: file.type,
+               };
+               const data = await s3.send(new PutObjectCommand(uploadParams));
+               console.log('Success', data);
+
+               const downloadParams = {
+                  Bucket: process.env.ARVAN_STORAGE_NAME,
+                  Key: uploadPath,
+               };
+               const request = await createRequest(
+                  s3,
+                  // new GetObjectCommand(clientParams)
+                  new GetObjectCommand(downloadParams)
+               );
+               // Create and format presigned URL
+               const signedUrl = formatUrl(
+                  await signedRequest.presign(request)
+               );
+               console.log(`download url: ${signedUrl}`);
+               const image: IImagesSchema = new Images({
+                  id: uniqueSuffix,
+                  projectId: projectId,
+                  fileKey: uploadPath,
+                  fileURL: signedUrl,
+                  status: true,
                });
-               await serverLog.save();
-               if (e.code === 'ENOENT') {
-                  await mkdir(uploadDir, { recursive: true });
-               } else {
-                  console.error('Error on creating the uploads directory\n', e);
-                  throw new Error('Something went wrong.');
+               await image.save();
+               // We have to check if the request is for new Users or not.
+               if (imageType === 'mainImage') {
+                  const updatedProject = await Projects.findOneAndUpdate(
+                     {
+                        id: projectId,
+                     },
+                     {
+                        $set: {
+                           mainImageId: uniqueSuffix,
+                           status: true,
+                        },
+                     },
+                     {
+                        new: true,
+                     }
+                  );
+                  if (!updatedProject)
+                     throw new Error('Project does not exist.');
+               } else if (imageType === 'galleryImages') {
+                  const updatedProject = await Projects.findOneAndUpdate(
+                     {
+                        id: projectId,
+                     },
+                     {
+                        $push: {
+                           galleryImagesIds: uniqueSuffix,
+                        },
+                     },
+                     {
+                        new: true,
+                     }
+                  );
+                  if (!updatedProject)
+                     throw new Error('Project does not exist.');
                }
-            }
-
-            const fs = require('fs').promises;
-            try {
-               const uniqueSuffix = Math.floor(Math.random() * 1000000)
-                  .toString()
-                  .padStart(6, '0');
-
-               const filename = `${uniqueSuffix}.${mime.getExtension(
-                  file.type
-               )}`;
-               const filePath = `${uploadDir}/${filename}`;
-
-               // Write the file
-               await writeFile(filePath, buffer);
-
-               // Check if the file exists
-               const fileExists = await fs
-                  .access(filePath)
-                  .then(() => true)
-                  .catch(() => false);
-
-               if (fileExists) {
-                  const image: IImagesSchema = new Images({
-                     id: uniqueSuffix,
-                     projectId: projectId,
-                     fileURL: `${relativeUploadDir}/${filename}`,
-                     status: true,
-                  });
-                  await image.save();
-                  // We have to check if the request is for new Users or not.
-                  if (imageType === 'mainImage') {
-                     const updatedProject = await Projects.findOneAndUpdate(
-                        {
-                           id: projectId,
-                        },
-                        {
-                           $set: {
-                              mainImageId: uniqueSuffix,
-                              status: true,
-                           },
-                        },
-                        {
-                           new: true,
-                        }
-                     );
-                     if (!updatedProject)
-                        throw new Error('Project does not exist.');
-                  } else if (imageType === 'galleryImages') {
-                     const updatedProject = await Projects.findOneAndUpdate(
-                        {
-                           id: projectId,
-                        },
-                        {
-                           $push: {
-                              galleryImagesIds: uniqueSuffix,
-                           },
-                        },
-                        {
-                           new: true,
-                        }
-                     );
-                     if (!updatedProject)
-                        throw new Error('Project does not exist.');
-                  }
-                  return NextResponse.json({
-                     success: true,
-                     error: null,
-                     data: `${relativeUploadDir}/${filename}`,
-                  });
-               } else {
-                  // File does not exist, handle the error
-                  throw new Error('File upload failed.');
-               }
+               return NextResponse.json({
+                  success: true,
+                  error: null,
+                  data: `${relativeUploadDir}/${filename}`,
+               });
             } catch (e) {
                const serverLog: IServerLogsSchema = new ServerLogs({
                   logUrl: '2api/image/add/route.ts',

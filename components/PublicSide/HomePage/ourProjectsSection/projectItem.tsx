@@ -10,8 +10,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import path from 'path';
-import { GetServerSideProps } from 'next';
+
 export default function ProjectItem({
    project,
    key,
@@ -75,15 +74,3 @@ export default function ProjectItem({
       </Link>
    );
 }
-// export const getServerSideProps: GetServerSideProps = async () => {
-//    try {
-//       const fs = require('fs').promises;
-//       const image = await getImageById(project.mainImageId);
-//       const file = await fs.readFile(
-//          path.join(process.cwd(), 'public' + image.fileURL)
-//       );
-//       console.log('file: ', file);
-//    } catch (e) {
-//       console.log(e);
-//    }
-// };

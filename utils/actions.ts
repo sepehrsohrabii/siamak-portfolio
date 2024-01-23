@@ -711,3 +711,15 @@ export async function getActiveAwardedProjects() {
    }
    return [];
 }
+
+export async function getImageFile(imageId: string) {
+   try {
+      await fs.readFile(imageId, (err, data) => {
+         if (err) throw err;
+         return data;
+      });
+   } catch (e) {
+      console.log(e);
+   }
+   return null;
+}

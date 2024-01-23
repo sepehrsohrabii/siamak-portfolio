@@ -13,6 +13,10 @@ const ImagesSchema = new Schema<IImagesSchema>(
          type: String,
          required: true,
       },
+      fileKey: {
+         type: String,
+         required: true,
+      },
       fileURL: {
          type: String,
          required: true,

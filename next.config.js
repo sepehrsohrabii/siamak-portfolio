@@ -19,12 +19,9 @@
 //     },
 //  };
 //  module.exports = nextConfig;
- 
+
 //  const withImages = require('next-images');
 //  module.exports = withImages({});
 
-const withImages = require('next-images')
-module.exports = withImages({
-  inlineImageLimit: false,
-  dynamicAssetPrefix: true,
-})
+const withImages = require('next-images');
+module.exports = withImages();
