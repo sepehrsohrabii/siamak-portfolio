@@ -7,7 +7,7 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Heading2 } from '@/components/General/typography';
-import { getImageById } from '@/utils/functions';
+import { getImageById } from '@/utils/actions';
 
 const GallerySection = ({
    galleryImagesIds,

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { NextResponse, type NextRequest } from 'next/server';
+import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';
 
 import ServerLogs from '@/schemas/ServerLogs';
 import { IImagesSchema, IServerLogsSchema } from '@/utils/types';
@@ -23,11 +24,23 @@ export async function DELETE(
             data: null,
          });
       }
-
+      const s3 = new S3Client({
+         region: 'default',
+         endpoint: process.env.ARVAN_STORAGE_ENDPOINT_URL,
+         credentials: {
+            accessKeyId: process.env.ARVAN_STORAGE_ACCESS_KEY || '',
+            secretAccessKey: process.env.ARVAN_STORAGE_SECRET_KEY || '',
+         },
+      });
       // Delete the file from the filesystem using a Promise chain
       const handleFileDeletion = async () => {
          try {
-            fs.unlinkSync(`./public${imageDatafromDB.fileURL}`);
+            await s3.send(
+               new DeleteObjectCommand({
+                  Bucket: process.env.ARVAN_STORAGE_NAME,
+                  Key: imageDatafromDB.fileKey,
+               })
+            );
          } catch (err) {
             const serverLog: IServerLogsSchema = new ServerLogs({
                logUrl: `api/image/delete/${params.id}/route.ts`,

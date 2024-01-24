@@ -3,14 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import { getTypeById } from '@/utils/actions';
+import { getTypeById, getImageById } from '@/utils/actions';
 import {
    Heading5,
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
 import Link from 'next/link';
-import { getImageById } from '@/utils/functions';
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 

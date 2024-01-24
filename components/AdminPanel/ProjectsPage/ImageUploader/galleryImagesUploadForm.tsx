@@ -2,11 +2,10 @@ import { Label, Paragraph3 } from '@/components/General/typography';
 import { IImagesSchema, ProjectsType } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getProjectById } from '@/utils/actions';
+import { getProjectById, getImageById } from '@/utils/actions';
 import { MinusIcon } from '@heroicons/react/24/solid';
 import LoadingSpinSM from '@/components/General/loadingSpinSM';
 import axios from 'axios';
-import { getImageById } from '@/utils/functions';
 
 const GalleryImagesUploadForm = ({
    project,
@@ -162,22 +161,24 @@ const GalleryImagesUploadForm = ({
                   key={image.id}
                   className='my-2 flex items-center justify-between rounded bg-gray-300 px-3 py-2'
                >
-                  <input
-                     id='status'
-                     name='status'
-                     type='checkbox'
-                     checked={image.status}
-                     className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
-                     onChange={(e) =>
-                        handleImageStatusChange(e.target.checked, image.id)
-                     }
-                  />
-                  <Paragraph3 className='text-gray-900'>
-                     Image URL:{' '}
-                     <Link href={image.fileURL} className='text-blue-700'>
-                        {image.fileURL}
-                     </Link>
-                  </Paragraph3>
+                  <div className='my-2 flex items-center justify-start'>
+                     <input
+                        id='status'
+                        name='status'
+                        type='checkbox'
+                        checked={image.status}
+                        className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                        onChange={(e) =>
+                           handleImageStatusChange(e.target.checked, image.id)
+                        }
+                     />
+                     <Paragraph3 className='ms-5 text-gray-900'>
+                        Image URL:{' '}
+                        <Link href={image.fileURL} className='text-blue-700'>
+                           {image.id}
+                        </Link>
+                     </Paragraph3>
+                  </div>
                   {!isLoading ? (
                      <button
                         className='rounded bg-red-500 px-1 text-white'

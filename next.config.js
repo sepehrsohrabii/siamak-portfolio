@@ -1,7 +1,21 @@
 /** @type {import('next').NextConfig} */
 
-// const nextConfig = {};
-// module.exports = nextConfig;
+const nextConfig = {
+   experimental: {
+      serverActions: {
+         bodySizeLimit: '20mb',
+      },
+   },
+   images: {
+      remotePatterns: [
+         {
+            protocol: 'https',
+            hostname: process.env.ARVAN_STORAGE_BASE_URL,
+         },
+      ],
+   },
+};
+module.exports = nextConfig;
 
 // const withImages = require('next-images');
 // module.exports = withImages({
@@ -22,6 +36,3 @@
 
 //  const withImages = require('next-images');
 //  module.exports = withImages({});
-
-const withImages = require('next-images');
-module.exports = withImages();

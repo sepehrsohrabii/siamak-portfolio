@@ -1,13 +1,13 @@
 import mime from 'mime';
 import { NextRequest, NextResponse } from 'next/server';
-const {
+import {
    S3Client,
    PutObjectCommand,
    GetObjectCommand,
-} = require('@aws-sdk/client-s3');
-const { S3RequestPresigner } = require('@aws-sdk/s3-request-presigner');
-const { createRequest } = require('@aws-sdk/util-create-request');
-const { formatUrl } = require('@aws-sdk/util-format-url');
+} from '@aws-sdk/client-s3';
+import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner';
+import { createRequest } from '@aws-sdk/util-create-request';
+import { formatUrl } from '@aws-sdk/util-format-url';
 import { IImagesSchema, IServerLogsSchema } from '@/utils/types';
 import ServerLogs from '@/schemas/ServerLogs';
 import Projects from '@/schemas/Projects';
@@ -32,10 +32,10 @@ export async function POST(request: NextRequest) {
    }
    const s3 = new S3Client({
       region: 'default',
-      endpoint: process.env.ARVAN_STORAGE_DOMAIN,
+      endpoint: process.env.ARVAN_STORAGE_ENDPOINT_URL,
       credentials: {
-         accessKeyId: process.env.ARVAN_STORAGE_ACCESS_KEY,
-         secretAccessKey: process.env.ARVAN_STORAGE_SECRET_KEY,
+         accessKeyId: process.env.ARVAN_STORAGE_ACCESS_KEY || '',
+         secretAccessKey: process.env.ARVAN_STORAGE_SECRET_KEY || '',
       },
    });
    const formDataEntryValues = Array.from(formData.values());
@@ -71,6 +71,8 @@ export async function POST(request: NextRequest) {
                   Bucket: process.env.ARVAN_STORAGE_NAME,
                   Key: uploadPath,
                };
+               const signedRequest = new S3RequestPresigner(s3.config);
+
                const request = await createRequest(
                   s3,
                   // new GetObjectCommand(clientParams)
@@ -127,7 +129,7 @@ export async function POST(request: NextRequest) {
                return NextResponse.json({
                   success: true,
                   error: null,
-                  data: `${relativeUploadDir}/${filename}`,
+                  data: signedUrl,
                });
             } catch (e) {
                const serverLog: IServerLogsSchema = new ServerLogs({

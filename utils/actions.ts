@@ -4,6 +4,7 @@ import Users from '@/schemas/Users';
 import { AuthError } from 'next-auth';
 import connectMongo from './connectMongo';
 import {
+   IImagesSchema,
    IProjectsSchema,
    IServerLogsSchema,
    ITypesSchema,
@@ -15,6 +16,15 @@ import fs from 'fs';
 import bcrypt from 'bcrypt';
 import Images from '@/schemas/Images';
 import ServerLogs from '@/schemas/ServerLogs';
+import {
+   GetObjectCommand,
+   PutObjectCommand,
+   S3Client,
+} from '@aws-sdk/client-s3';
+import mime from 'mime';
+import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner';
+import { createRequest } from '@aws-sdk/util-create-request';
+import { formatUrl } from '@aws-sdk/util-format-url';
 
 export async function authenticate(
    prevState: string | undefined,
@@ -712,14 +722,16 @@ export async function getActiveAwardedProjects() {
    return [];
 }
 
-export async function getImageFile(imageId: string) {
+export async function getImageById(id: string) {
    try {
-      await fs.readFile(imageId, (err, data) => {
-         if (err) throw err;
-         return data;
+      await connectMongo();
+
+      // We have to check if the request is for a new Types or not.
+      const image = await Images.findOne({
+         id: id,
       });
+      return image;
    } catch (e) {
       console.log(e);
    }
-   return null;
 }

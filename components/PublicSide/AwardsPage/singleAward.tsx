@@ -5,14 +5,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ProjectsType } from '@/utils/types';
-import { getTypeById } from '@/utils/actions';
+import { getTypeById, getImageById } from '@/utils/actions';
 import {
    Heading2,
    Paragraph1,
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
-import { getImageById } from '@/utils/functions';
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
