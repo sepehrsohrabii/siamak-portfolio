@@ -4,6 +4,8 @@ import {
    S3Client,
    PutObjectCommand,
    GetObjectCommand,
+   ObjectCannedACL,
+   PutObjectCommandInput,
 } from '@aws-sdk/client-s3';
 import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner';
 import { createRequest } from '@aws-sdk/util-create-request';
@@ -58,36 +60,21 @@ export async function POST(request: NextRequest) {
             const uploadPath: string = `${projectId}/${imageType}/${filename}`;
 
             try {
-               const uploadParams = {
+               const uploadParams: PutObjectCommandInput = {
                   Bucket: process.env.ARVAN_STORAGE_NAME,
                   Key: uploadPath,
+                  ACL: 'public-read' as ObjectCannedACL, // Ensure ACL is of type ObjectCannedACL
                   Body: buffer,
                   ContentType: file.type,
                };
-               const data = await s3.send(new PutObjectCommand(uploadParams));
-               console.log('Success', data);
+               await s3.send(new PutObjectCommand(uploadParams));
+               const downloadUrl = `https://${process.env.ARVAN_STORAGE_BASE_URL}/${uploadPath}`;
 
-               const downloadParams = {
-                  Bucket: process.env.ARVAN_STORAGE_NAME,
-                  Key: uploadPath,
-               };
-               const signedRequest = new S3RequestPresigner(s3.config);
-
-               const request = await createRequest(
-                  s3,
-                  // new GetObjectCommand(clientParams)
-                  new GetObjectCommand(downloadParams)
-               );
-               // Create and format presigned URL
-               const signedUrl = formatUrl(
-                  await signedRequest.presign(request)
-               );
-               console.log(`download url: ${signedUrl}`);
                const image: IImagesSchema = new Images({
                   id: uniqueSuffix,
                   projectId: projectId,
                   fileKey: uploadPath,
-                  fileURL: signedUrl,
+                  fileURL: downloadUrl,
                   status: true,
                });
                await image.save();
@@ -129,7 +116,7 @@ export async function POST(request: NextRequest) {
                return NextResponse.json({
                   success: true,
                   error: null,
-                  data: signedUrl,
+                  data: downloadUrl,
                });
             } catch (e) {
                const serverLog: IServerLogsSchema = new ServerLogs({
