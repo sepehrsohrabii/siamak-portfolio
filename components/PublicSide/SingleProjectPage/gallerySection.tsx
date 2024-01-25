@@ -8,23 +8,6 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Heading2 } from '@/components/General/typography';
 import { getImageById } from '@/utils/actions';
-
-import LightGallery from 'lightgallery/react';
-
-// import styles
-import 'lightgallery/css/lightgallery.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lg-thumbnail.css';
-
-// If you want you can use SCSS instead of css
-import 'lightgallery/scss/lightgallery.scss';
-import 'lightgallery/scss/lg-zoom.scss';
-
-// import plugins if you need
-import lgThumbnail from 'lightgallery/plugins/thumbnail';
-import lgZoom from 'lightgallery/plugins/zoom';
-import ParallaxGallery from './parallaxGallery';
-
 const GallerySection = ({
    galleryImagesIds,
 }: {
@@ -53,29 +36,65 @@ const GallerySection = ({
    return (
       <div className='my-32 bg-stone-300 px-5 py-20 md:px-40'>
          <Heading2 className='mb-10 text-center'>GALLERY</Heading2>
-         <ParallaxGallery imagesUrlsList={imagesUrlsList} />
-         {/* {imagesUrlsList.length > 0 && (
+
+         {imagesUrlsList.length > 0 && (
             <>
-               <LightGallery
-                  onInit={() => {}}
-                  speed={500}
-                  plugins={[lgThumbnail, lgZoom]}
+               <Swiper
+                  style={
+                     {
+                        '--swiper-navigation-color': '#fff',
+                        '--swiper-pagination-color': '#fff',
+                     } as { [key: string]: string }
+                  }
+                  loop={true}
+                  // lazy={true}
+                  spaceBetween={10}
+                  navigation={true}
+                  thumbs={{ swiper: thumbsSwiper }}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className='mySwiper2'
                >
                   {imagesUrlsList.map((url, index) => (
-                     <a href={url}>
+                     <SwiperSlide key={index}>
                         <Image
                            src={url}
                            loading='lazy'
                            className='h-96 w-full object-cover md:h-screen'
-                           alt={`Image ${index + 1}`}
+                           alt={`gallery image ${index + 1}`}
                            width={1500}
                            height={1500}
                         />
-                     </a>
+                        <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
+                     </SwiperSlide>
                   ))}
-               </LightGallery>
+               </Swiper>
+               <Swiper
+                  onSwiper={() => setThumbsSwiper}
+                  loop={true}
+                  spaceBetween={10}
+                  slidesPerView={5}
+                  freeMode={true}
+                  // lazy={true}
+                  watchSlidesProgress={true}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className='mySwiper mt-3'
+               >
+                  {imagesUrlsList.map((url, index) => (
+                     <SwiperSlide key={index}>
+                        <Image
+                           src={url}
+                           loading='lazy'
+                           className='h-16 w-full object-cover md:h-32'
+                           alt={`gallery thumbnail ${index + 1}`}
+                           height={200}
+                           width={200}
+                        />
+                        <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div>
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
             </>
-         )} */}
+         )}
       </div>
    );
 };

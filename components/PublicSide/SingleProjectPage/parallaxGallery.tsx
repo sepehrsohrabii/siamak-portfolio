@@ -87,7 +87,7 @@ function ParallaxText({ baseVelocity = 100, imagesUrlsList }: ParallaxProps) {
                elementClassNames='flex flex-row w-max'
             >
                {imagesUrlsList.map((url, index) => (
-                  <a href={url} className='me-5 w-fit'>
+                  <a href={url} className='me-5 w-fit' key={index}>
                      <Image
                         src={url}
                         loading='lazy'
