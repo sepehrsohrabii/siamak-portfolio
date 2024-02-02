@@ -37,8 +37,8 @@ const ProjectsPageMainContainer = () => {
          <ProjectsHeader />
          <TypesSection setTypeId={setTypeId} typeId={typeId} />
          <div className='mx-5 my-10 grid grid-cols-1 gap-10 md:mx-40 md:my-20 md:grid-cols-2'>
-            {filteredProjects.map((project, index) => (
-               <SingleProjectItem project={project} key={index} />
+            {filteredProjects.map((project) => (
+               <SingleProjectItem project={project} key={Number(project.id)} />
             ))}
          </div>
       </>
