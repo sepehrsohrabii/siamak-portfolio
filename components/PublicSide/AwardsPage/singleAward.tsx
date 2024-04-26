@@ -1,17 +1,19 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ProjectsType } from '@/utils/types';
-import { getTypeById, getImageById } from '@/utils/actions';
+import { useEffect, useRef, useState } from 'react';
+
 import {
    Heading2,
    Paragraph1,
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
+import { getImageById, getTypeById } from '@/utils/actions';
+import { ProjectsType } from '@/utils/types';
+
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
@@ -124,7 +126,9 @@ const SingleAwardItem = ({
                         {typeName}
                      </Paragraph2>
                      <Paragraph1 className='text-gray-700'>
-                        {project.description}
+                        {project.description.length < 300
+                           ? project.description
+                           : project.description.substring(0, 300) + '...'}
                      </Paragraph1>
                      <div className='mt-5 flex items-center justify-between md:mt-10'>
                         <button>Read More</button>

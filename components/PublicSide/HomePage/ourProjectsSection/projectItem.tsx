@@ -1,14 +1,15 @@
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
 import {
    Heading5,
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
-import { getTypeById, getImageById } from '@/utils/actions';
+import { getImageById, getTypeById } from '@/utils/actions';
 import { ProjectsType } from '@/utils/types';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 export default function ProjectItem({
    project,
@@ -55,6 +56,7 @@ export default function ProjectItem({
                   alt={`${project.title} Image`}
                   width={400}
                   height={400}
+                  placeholder='blur'
                />
             </motion.div>
          </motion.div>
