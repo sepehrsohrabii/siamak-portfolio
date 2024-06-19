@@ -1,12 +1,14 @@
+import { useEffect, useRef, useState } from 'react';
+
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
 
 import {
    Heading2,
+   Heading3,
    Paragraph1,
    Paragraph2,
    Paragraph3,
@@ -17,13 +19,7 @@ import { ProjectsType } from '@/utils/types';
 // Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
-const SingleAwardItem = ({
-   project,
-   key,
-}: {
-   project: ProjectsType;
-   key: number;
-}) => {
+const SingleAwardItem = ({ project }: { project: ProjectsType }) => {
    const ref = useRef(null);
    const imageRef = useRef(null);
 
@@ -34,7 +30,7 @@ const SingleAwardItem = ({
          { width: '100%' }, // Initial width
          {
             width: '40%', // Target width
-            x: '50%',
+            x: '60%',
             duration: 1, // Animation duration
             ease: 'power2.out', // Easing function
             scrollTrigger: {
@@ -46,21 +42,8 @@ const SingleAwardItem = ({
             },
          }
       );
-
-      // Pause the animation by default
       animation.pause();
 
-      // // Toggle play/pause on scroll
-      // ScrollTrigger.create({
-      //    trigger: imageRef.current,
-      //    start: 'center',
-      //    end: 'top 100%',
-      //    onEnter: () => animation.play(),
-      //    onLeaveBack: () => animation.reverse(),
-      //    markers: true,
-      // });
-
-      // Cleanup on component unmount
       return () => {
          animation.kill();
       };
@@ -86,14 +69,10 @@ const SingleAwardItem = ({
    return (
       <Link href={`/projects/${project.slug}`}>
          <motion.div
-            key={key}
-            className='my-20 items-center justify-start md:relative md:flex md:h-96'
+            className='my-20 items-center justify-start md:relative md:flex md:h-80'
             ref={ref}
          >
             <motion.div
-               // initial={{ x: -200 }}
-               // animate={{ x: 0 }}
-               // transition={{ duration: 1 }}
                ref={imageRef}
                className='group z-10 justify-center md:flex'
             >
@@ -105,7 +84,7 @@ const SingleAwardItem = ({
                   }}
                >
                   <Image
-                     className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
+                     className='h-80 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
                      src={imageUrl}
                      alt={`${project.title} image`}
                      width={450}
@@ -116,9 +95,9 @@ const SingleAwardItem = ({
             <div className='w-full md:absolute'>
                <div className='items-center justify-between md:flex md:flex-row'>
                   <div className='mt-5 basis-1/5 self-center md:mt-0'>
-                     <Heading2 className='text-gray-800'>
+                     <Heading3 className='text-gray-800'>
                         {project.award}
-                     </Heading2>
+                     </Heading3>
                   </div>
                   <div className='basis-2/5'></div>
                   <div className='basis-1/3 self-center'>

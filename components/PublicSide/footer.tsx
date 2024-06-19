@@ -1,21 +1,12 @@
-import { motion, useScroll } from 'framer-motion';
-import Link from 'next/link';
-import { useRef } from 'react';
-import {
-   Heading3,
-   Paragraph1,
-   Paragraph2,
-   Paragraph3,
-} from '../General/typography';
+'use client';
 import Image from 'next/image';
+import Link from 'next/link';
+
 import logo from '@/public/Logo.svg';
 
+import { Paragraph1, Paragraph2, Paragraph3 } from '../General/typography';
+
 export default function Footer() {
-   const container = useRef(null);
-   const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start end', 'end end'],
-   });
    const links = [
       { name: 'Home', path: '/' },
       { name: 'Our Projects', path: '/projects' },
@@ -24,14 +15,9 @@ export default function Footer() {
       { name: 'Contact Us', path: '/contact' },
    ];
    return (
-      <motion.footer
-         className='mx-5 mt-36 md:mx-40'
-         ref={container}
-         style={{ opacity: scrollYProgress }}
-      >
+      <footer className='mx-5 mt-36 md:mx-40'>
          <div className='items-center justify-between md:flex md:flex-row'>
             <div className='md:basis-1/4'>
-               {/* <Heading3 className='text-4xl'>Graph Studio</Heading3> */}
                <Image
                   className='-ms-2'
                   width={150}
@@ -114,16 +100,20 @@ export default function Footer() {
          <div className='mt-5 items-end justify-between border-t border-black pb-10 pt-4 md:mt-10 md:flex md:flex-row md:pb-20'>
             <div className='basis-1/4'>
                <Paragraph3 className='w-full text-gray-500'>
-                  @2023 Graph Studio All Rights Reserved.
+                  @2024 Graph Studio All Rights Reserved.
                </Paragraph3>
             </div>
             <div className='basis-1/4'>
                <Paragraph3 className='w-full text-gray-500 md:text-right'>
                   Design and Developed by
-                  <Link href='https://sepehrsohrabi.dev/'> Sepehr</Link>.
+                  <Link href='https://www.linkedin.com/in/sepehrsohrabi/'>
+                     {' '}
+                     Sepehr
+                  </Link>
+                  .
                </Paragraph3>
             </div>
          </div>
-      </motion.footer>
+      </footer>
    );
 }

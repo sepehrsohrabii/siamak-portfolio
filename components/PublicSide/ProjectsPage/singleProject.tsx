@@ -1,28 +1,24 @@
-import { motion, useInView, useScroll } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+
+import { motion, useInView, useScroll } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import { getTypeById, getImageById } from '@/utils/actions';
+import Link from 'next/link';
+
 import {
    Heading5,
    Paragraph2,
    Paragraph3,
 } from '@/components/General/typography';
-import Link from 'next/link';
-// Register ScrollTrigger plugin with GSAP
+import { getImageById, getTypeById } from '@/utils/actions';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
    const ref = useRef(null);
-   const isInView = useInView(ref);
-   const { scrollYProgress } = useScroll({
-      target: ref,
-      offset: ['start end', 'end end'],
-   });
    const imageRef = useRef(null);
    useEffect(() => {
-      // Define the animation
       const animation = gsap.fromTo(
          imageRef.current,
          { width: '100%' }, // Initial width
@@ -68,7 +64,7 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
       <Link key={key} className='' href={`/projects/${project.slug}`}>
          <motion.div
             key={key}
-            className='relative flex h-96 justify-end'
+            className='relative flex h-60 justify-end'
             ref={ref}
          >
             <motion.div
@@ -84,7 +80,7 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
                >
                   {imageUrl && (
                      <Image
-                        className='h-96 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
+                        className='h-60 w-full object-cover saturate-0 duration-500 group-hover:saturate-100'
                         src={imageUrl}
                         alt={`${project.title} image`}
                         width={450}

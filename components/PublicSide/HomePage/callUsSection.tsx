@@ -1,19 +1,9 @@
+'use client';
 import { Heading2 } from '@/components/General/typography';
-import { motion, useScroll } from 'framer-motion';
-import { useRef } from 'react';
 
 export default function CallUsSection() {
-   const container = useRef(null);
-   const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start end', 'end end'],
-   });
    return (
-      <motion.div
-         className='my-32 w-full md:me-40 md:flex md:flex-row'
-         ref={container}
-         style={{ opacity: scrollYProgress }}
-      >
+      <div className='my-32 w-full md:me-40 md:flex md:flex-row'>
          <div className='bg-stone-300 py-20 md:basis-1/2 md:py-40 md:ps-40'>
             <Heading2 className='text-center'>We are here</Heading2>
          </div>
@@ -26,6 +16,6 @@ export default function CallUsSection() {
                +989113373811
             </a>
          </div>
-      </motion.div>
+      </div>
    );
 }

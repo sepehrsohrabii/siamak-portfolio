@@ -1,23 +1,14 @@
-import { Heading2, Paragraph1 } from '@/components/General/typography';
-import { motion, useScroll } from 'framer-motion';
-import { useRef } from 'react';
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Heading2, Paragraph1 } from '@/components/General/typography';
+
 export default function AboutUsSection() {
-   const container = useRef(null);
-   const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start end', 'end end'],
-   });
    return (
       <div className='mx-5 mb-36 md:mx-40'>
-         <motion.div
-            ref={container}
-            className='w-full md:flex md:flex-row'
-            style={{ opacity: scrollYProgress }}
-         >
-            <motion.div className='md:basis-3/5'>
+         <div className='w-full md:flex md:flex-row'>
+            <div className='md:basis-3/5'>
                <div className='grid grid-cols-3 gap-1 md:gap-4'>
                   <div className=' overflow-hidden'>
                      <Image
@@ -31,7 +22,7 @@ export default function AboutUsSection() {
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/Project 27-min.jpg'
+                        src='/images/01B-min.jpg'
                         alt='Awards'
                         height={400}
                         width={400}
@@ -40,7 +31,7 @@ export default function AboutUsSection() {
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/Project 26-min.jpg'
+                        src='/images/04-min.jpg'
                         alt='Awards'
                         height={400}
                         width={400}
@@ -58,15 +49,15 @@ export default function AboutUsSection() {
                   <div className=' overflow-hidden'>
                      <Image
                         className='h-56 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-                        src='/images/Project 16-min.jpg'
+                        src='/images/jeld-min.jpg'
                         alt='Awards'
                         height={400}
                         width={400}
                      />
                   </div>
                </div>
-            </motion.div>
-            <motion.div className='mt-10 self-center md:mt-0 md:basis-2/5 md:ps-20'>
+            </div>
+            <div className='mt-10 self-center md:mt-0 md:basis-2/5 md:ps-20'>
                <Heading2 className='text-gray-700'>About Graph</Heading2>
 
                <Paragraph1 className='mb-5 mt-5 text-justify text-gray-600	'>
@@ -94,8 +85,8 @@ export default function AboutUsSection() {
                      </Link>
                   </Paragraph1>
                </div>
-            </motion.div>
-         </motion.div>
+            </div>
+         </div>
       </div>
    );
 }

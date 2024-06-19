@@ -1,18 +1,14 @@
+'use client';
+import { useEffect, useState } from 'react';
+
+import Link from 'next/link';
+
 import { Heading2, Paragraph1 } from '@/components/General/typography';
 import { awardsCounter, projectsCounter } from '@/utils/actions';
-import { motion, useScroll } from 'framer-motion';
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
 
-const links = [
-   // { name: 'Open roles', href: '#' },
-   // { name: 'Internship program', href: '#' },
-   // { name: 'Our values', href: '#' },
-   { name: 'Meet our leadership', href: '/about' },
-];
+const links = [{ name: 'Meet our leadership', href: '/about' }];
 
 export default function StatisticsSection() {
-   const container = useRef(null);
    const [projectsNumber, setProjectsNumber] = useState<number>(0);
    const [awardsNumber, setAwardsNumber] = useState<number>(0);
    const stats = [
@@ -35,23 +31,15 @@ export default function StatisticsSection() {
       if (projectsNumber && awardsNumber) {
       }
    }, [projectsNumber, awardsNumber]);
-   const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start end', 'end end'],
-   });
    return (
       <div className='mx-5 my-32 md:mx-40'>
-         <motion.div
-            ref={container}
-            className='flex flex-row'
-            style={{ opacity: scrollYProgress }}
-         >
+         <div className='flex flex-row'>
             <div className='basis-3/4 pe-5 md:basis-1/2 md:pe-0'>
                <div className='mx-auto max-w-2xl lg:mx-0'>
                   <Heading2 className='tracking-tight text-black'>
                      Work with us
                   </Heading2>
-                  <Paragraph1 className='mt-6 text-gray-800'>
+                  <Paragraph1 className='mt-6 text-justify text-gray-800'>
                      By choosing to work with us, you{"'"}re not just engaging
                      architects; you{"'"}re joining hands with creators
                      dedicated to bringing your dreams to life. At Graph, we
@@ -84,7 +72,7 @@ export default function StatisticsSection() {
                      ))}
                </dl>
             </div>
-         </motion.div>
+         </div>
       </div>
    );
 }

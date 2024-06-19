@@ -1,17 +1,18 @@
 'use client';
-import { ScrollerMotion } from 'scroller-motion';
-import ProjectsHeader from '@/components/PublicSide/ProjectsPage/header';
-import TypesSection from '@/components/PublicSide/ProjectsPage/typesSection';
-import SingleProjectItem from '@/components/PublicSide/ProjectsPage/singleProject';
 import { useEffect, useState } from 'react';
-import { ProjectsType } from '@/utils/types';
+
+import ProjectsHeader from '@/components/PublicSide/ProjectsPage/header';
+import SingleProjectItem from '@/components/PublicSide/ProjectsPage/singleProject';
+import TypesSection from '@/components/PublicSide/ProjectsPage/typesSection';
 import { getActiveProjects } from '@/utils/actions';
+import { ProjectsType } from '@/utils/types';
+
+import ProjectImageSekelton from '../HomePage/ourProjectsSection/projectImageSekelton';
 
 const ProjectsPageMainContainer = () => {
    const [projects, setProjects] = useState<ProjectsType[]>([]);
    const [filteredProjects, setFilteredProjects] = useState<ProjectsType[]>([]);
    const [typeId, setTypeId] = useState<string>('');
-   const [error, setError] = useState(null);
    const fetchProjects = async () => {
       const projectsList: ProjectsType[] = await getActiveProjects();
       setProjects(projectsList);
@@ -36,10 +37,19 @@ const ProjectsPageMainContainer = () => {
       <>
          <ProjectsHeader />
          <TypesSection setTypeId={setTypeId} typeId={typeId} />
-         <div className='mx-5 my-10 grid grid-cols-1 gap-10 md:mx-40 md:my-20 md:grid-cols-2'>
-            {filteredProjects.map((project) => (
-               <SingleProjectItem project={project} key={Number(project.id)} />
-            ))}
+         <div className='mx-5 my-10 grid grid-cols-1 gap-6 md:mx-40 md:my-20 md:grid-cols-3'>
+            {filteredProjects.length === 0 ? (
+               <div role='status' className='animate-pulse'>
+                  <ProjectImageSekelton />
+               </div>
+            ) : (
+               filteredProjects.map((project) => (
+                  <SingleProjectItem
+                     project={project}
+                     key={Number(project.id)}
+                  />
+               ))
+            )}
          </div>
       </>
    );

@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
 import {
    Heading3,
    Heading5,
@@ -7,21 +12,22 @@ import {
 } from '@/components/General/typography';
 import { getImageById } from '@/utils/actions';
 import { ProjectsType } from '@/utils/types';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+
+import AwardImageSekelton from './awardImageSekelton';
 
 export default function AwardItem({ project }: { project: ProjectsType }) {
    const [imageUrl, setImageUrl] = useState<string>('');
+   const [isLoading, setIsLoading] = useState<boolean>(true);
    useEffect(() => {
       const getImageUrl = async () => {
          const image = await getImageById(project.mainImageId);
          if (image.fileURL) {
             setImageUrl(image.fileURL);
+            setIsLoading(false);
          }
       };
       getImageUrl();
-   }, []);
+   }, [project.mainImageId]);
    return (
       <div className='w-full justify-between md:flex md:flex-row'>
          <div className='mb-5 basis-2/5 md:mb-0 md:pe-5'>
@@ -47,13 +53,19 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
             </div>
          </div>
          <div className='h-80 basis-3/5'>
-            <Image
-               className='h-80 w-full object-cover saturate-0 duration-500 hover:saturate-100'
-               src={imageUrl}
-               alt='project image'
-               height={500}
-               width={500}
-            />
+            {isLoading ? (
+               <div role='status' className='animate-pulse'>
+                  <AwardImageSekelton />
+               </div>
+            ) : (
+               <Image
+                  className='h-80 w-full object-cover saturate-0 duration-500 hover:saturate-100'
+                  src={imageUrl}
+                  alt='project image'
+                  height={500}
+                  width={500}
+               />
+            )}
          </div>
       </div>
    );

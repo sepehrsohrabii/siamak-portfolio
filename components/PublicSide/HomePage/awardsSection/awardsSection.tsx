@@ -1,20 +1,31 @@
 'use client';
-import React, { useRef } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { motion, useScroll } from 'framer-motion';
-// Import Swiper styles
+import React, { useEffect, useRef, useState } from 'react';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { Heading1, Heading2 } from '@/components/General/typography';
+import { motion } from 'framer-motion';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { Heading2 } from '@/components/General/typography';
+import { getHomePageProjects } from '@/utils/actions';
 import { ProjectsType } from '@/utils/types';
-import AwardItem from './awardItem';
 
-const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
+import AwardItem from './awardItem';
+import AwardItemSekelton from './awardItemSekelton';
+
+const AwardsSection = () => {
+   const [projects, setProjects] = useState<ProjectsType[]>([]);
+
+   const fetchProjects = async () => {
+      const projectsList: ProjectsType[] = await getHomePageProjects();
+      if (projectsList) setProjects(projectsList);
+   };
+   useEffect(() => {
+      fetchProjects();
+   }, []);
+
    const progressCircle = useRef(null);
    const progressContent = useRef(null);
    const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
@@ -30,11 +41,6 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
          )}s`;
       }
    };
-   const container = useRef(null);
-   const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start end', 'end end'],
-   });
    const projectWithAwards = projects.filter(
       (project) =>
          project.award !== '' &&
@@ -43,12 +49,8 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
    );
    return (
       <div className='mb-32 bg-stone-300 py-32'>
-         <motion.div
-            ref={container}
-            className='mx-5 md:mx-40'
-            style={{ opacity: scrollYProgress }}
-         >
-            <motion.div className='mb-16 flex flex-row items-center justify-center'>
+         <div className='mx-5 md:mx-40'>
+            <div className='mb-16 flex flex-row items-center justify-center'>
                <Heading2 className='text-center text-gray-800'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
@@ -66,13 +68,9 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
                   </svg>
                </Heading2>
                <Heading2 className='text-center text-gray-800'>Awards</Heading2>
-            </motion.div>
+            </div>
             <motion.div
                className='box'
-               /**
-                * Setting the initial keyframe to "null" will use
-                * the current value to allow for interruptable keyframes.
-                */
                whileHover={{ scale: [null, 1.5, 1.4] }}
                transition={{ duration: 0.3 }}
             />
@@ -91,11 +89,15 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
                onAutoplayTimeLeft={onAutoplayTimeLeft}
                className='mySwiper'
             >
-               {projectWithAwards.map((project, index) => (
-                  <SwiperSlide key={index}>
-                     <AwardItem project={project} />
-                  </SwiperSlide>
-               ))}
+               {projectWithAwards && projectWithAwards.length > 0 ? (
+                  projectWithAwards.map((project, index) => (
+                     <SwiperSlide key={index}>
+                        <AwardItem project={project} />
+                     </SwiperSlide>
+                  ))
+               ) : (
+                  <AwardItemSekelton />
+               )}
 
                <div className='autoplay-progress' slot='container-end'>
                   <svg viewBox='0 0 48 48' ref={progressCircle}>
@@ -104,7 +106,7 @@ const AwardsSection = ({ projects }: { projects: ProjectsType[] }) => {
                   <span ref={progressContent}></span>
                </div>
             </Swiper>
-         </motion.div>
+         </div>
       </div>
    );
 };

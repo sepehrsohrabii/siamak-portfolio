@@ -1,14 +1,13 @@
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
-import engineers from '@/public/animations/scroll-down.json';
+import Image from 'next/image';
+
 import {
    Heading1,
-   Heading5,
    Heading6,
-   Paragraph1,
    Paragraph2,
 } from '@/components/General/typography';
-import Image from 'next/image';
+import engineers from '@/public/animations/scroll-down.json';
 
 export default function HeroSection() {
    const container = {
@@ -40,8 +39,10 @@ export default function HeroSection() {
                animate='visible'
             >
                <motion.div className='w-fit' variants={item}>
-                  <Heading1 className='mt-2 w-fit tracking-wide text-gray-800'>
-                     We Design Your Dreams,
+                  <Heading1 className='mt-2 w-fit whitespace-nowrap tracking-wide text-gray-800'>
+                     We Design
+                     <br />
+                     Your Dreams,
                   </Heading1>
                </motion.div>
                <motion.div
@@ -49,7 +50,6 @@ export default function HeroSection() {
                   variants={item}
                >
                   <Heading6 className='w-fit uppercase text-white'>
-                     {/* Graph Architecture */}
                      By Building Your Reality
                   </Heading6>
                </motion.div>

@@ -1,4 +1,9 @@
 'use client';
+import { useEffect, useState } from 'react';
+
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+
 import {
    Heading1,
    Heading4,
@@ -7,11 +12,8 @@ import {
    Paragraph4,
 } from '@/components/General/typography';
 import GallerySection from '@/components/PublicSide/SingleProjectPage/gallerySection';
-import { getProjectBySlug, getTypeById, getImageById } from '@/utils/actions';
+import { getImageById, getProjectBySlug, getTypeById } from '@/utils/actions';
 import { ProjectsType } from '@/utils/types';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 const SingleProjectMainContainer = ({
    params,
@@ -58,12 +60,12 @@ const SingleProjectMainContainer = ({
    }, [project]);
    return (
       <div>
-         {project?.award !== '' && (
+         {project?.award !== '' ? (
             <motion.div
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
                transition={{ duration: 1 }}
-               className='mb-36 mt-40 flex items-center bg-stone-300 p-5 px-5 md:px-40'
+               className='mt-40 flex items-center bg-stone-300 p-5 px-5 md:px-40'
             >
                <Image
                   src='/icons/award.png'
@@ -74,8 +76,10 @@ const SingleProjectMainContainer = ({
                />
                <Heading4 className='text-gray-700'>{project?.award}</Heading4>
             </motion.div>
+         ) : (
+            <div className='pt-28'></div>
          )}
-         <div className='mx-5 my-32 md:mx-40'>
+         <div className='mx-5 my-28 md:mx-40'>
             <Heading1 className='text-gray-800'>{project?.title}</Heading1>
          </div>
          {mainImageUrl && (
@@ -111,12 +115,12 @@ const SingleProjectMainContainer = ({
                </div>
             </div>
          )}
-         <div className='mx-5 my-32 md:mx-40'>
+         <div className='mx-5 my-28 md:mx-40'>
             <Paragraph4 className='text-gray-700'>
                {project?.description}
             </Paragraph4>
          </div>
-         <div className='mx-5 my-32 grid grid-cols-1 gap-10 md:mx-40 md:grid-cols-2'>
+         <div className='mx-5 my-28 grid grid-cols-1 gap-10 md:mx-40 md:grid-cols-2'>
             <Heading6 className='text-gray-500'>
                Type:{' '}
                <Paragraph1 className='inline text-gray-700'>
