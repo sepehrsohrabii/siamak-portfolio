@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
+
 import { roboto_c } from '@/components/fonts';
-import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
    title: {
@@ -19,7 +20,7 @@ export default function RootLayout({
    return (
       <html lang='en' className='scroll-smooth'>
          <body className={roboto_c.className}>{children}</body>
-         <GoogleTagManager gtmId='G-5EH55E00Q9' />
+         <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID ?? ''} />
       </html>
    );
 }
