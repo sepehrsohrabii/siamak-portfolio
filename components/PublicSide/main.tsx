@@ -1,8 +1,9 @@
 'use client';
-import Header from '@/components/PublicSide/header';
-import Footer from '@/components/PublicSide/footer';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
+
 import Loading from '@/app/loading';
+import Footer from '@/components/PublicSide/footer';
+import Header from '@/components/PublicSide/header';
 
 const MainContainer = ({ children }: { children: React.ReactNode }) => {
    return (

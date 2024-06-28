@@ -1,4 +1,3 @@
-'use client';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import gsap from 'gsap';
@@ -21,7 +20,7 @@ const OurProjectsSection = () => {
 
    const fetchProjects = async () => {
       const projectsList: ProjectsType[] = await getHomePageProjects();
-      if (projectsList) setProjects(projectsList);
+      if (projectsList.length > 0) setProjects(projectsList);
    };
    useEffect(() => {
       fetchProjects();
@@ -66,7 +65,7 @@ const OurProjectsSection = () => {
                      </Paragraph1>
                   </div>
                </div>
-               {projects && projects.length > 0 ? (
+               {projects.length > 0 ? (
                   projects.map((project, index) => (
                      <ProjectItem project={project} key={index} />
                   ))

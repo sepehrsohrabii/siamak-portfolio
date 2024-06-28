@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { motion, useInView, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
@@ -15,7 +15,7 @@ import { getImageById, getTypeById } from '@/utils/actions';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
+const SingleProjectItem = ({ project }: { project: any }) => {
    const ref = useRef(null);
    const imageRef = useRef(null);
    useEffect(() => {
@@ -47,13 +47,13 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
    useEffect(() => {
       const getImageUrl = async () => {
          const image = await getImageById(project.mainImageId);
-         if (image.fileURL) {
+         if (image?.fileURL) {
             setImageUrl(image.fileURL);
          }
       };
       const getTypeName = async () => {
          const type = await getTypeById(project.typeId);
-         if (type.title) {
+         if (type?.title) {
             setTypeName(type.title);
          }
       };
@@ -61,12 +61,8 @@ const SingleProjectItem = ({ project, key }: { project: any; key: number }) => {
       getTypeName();
    }, []);
    return (
-      <Link key={key} className='' href={`/projects/${project.slug}`}>
-         <motion.div
-            key={key}
-            className='relative flex h-60 justify-end'
-            ref={ref}
-         >
+      <Link className='' href={`/projects/${project.slug}`}>
+         <motion.div className='relative flex h-60 justify-end' ref={ref}>
             <motion.div
                ref={imageRef}
                className='group absolute left-0 z-10 flex h-full w-full justify-center'

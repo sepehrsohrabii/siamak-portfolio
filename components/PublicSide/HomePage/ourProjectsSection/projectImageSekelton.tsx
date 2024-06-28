@@ -1,3 +1,4 @@
+'use client';
 const ProjectImageSekelton = () => {
    return (
       <div className='mb-4 flex h-60 items-center justify-center bg-gray-300'>

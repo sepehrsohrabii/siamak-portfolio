@@ -1,3 +1,4 @@
+'use client';
 import ProjectImageSekelton from './projectImageSekelton';
 
 const ProjectItemSekelton = () => {

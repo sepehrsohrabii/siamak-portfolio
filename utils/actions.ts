@@ -1,30 +1,22 @@
 'use server';
-import { signIn, signOut } from '@/auth';
-import Users from '@/schemas/Users';
+import bcrypt from 'bcrypt';
+import fs from 'fs';
 import { AuthError } from 'next-auth';
+
+import { signIn, signOut } from '@/auth';
+import Images from '@/schemas/Images';
+import Projects from '@/schemas/Projects';
+import ServerLogs from '@/schemas/ServerLogs';
+import Types from '@/schemas/Types';
+import Users from '@/schemas/Users';
+
 import connectMongo from './connectMongo';
 import {
-   IImagesSchema,
    IProjectsSchema,
    IServerLogsSchema,
    ITypesSchema,
    IUsersSchema,
 } from './types';
-import Types from '@/schemas/Types';
-import Projects from '@/schemas/Projects';
-import fs from 'fs';
-import bcrypt from 'bcrypt';
-import Images from '@/schemas/Images';
-import ServerLogs from '@/schemas/ServerLogs';
-import {
-   GetObjectCommand,
-   PutObjectCommand,
-   S3Client,
-} from '@aws-sdk/client-s3';
-import mime from 'mime';
-import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner';
-import { createRequest } from '@aws-sdk/util-create-request';
-import { formatUrl } from '@aws-sdk/util-format-url';
 
 export async function authenticate(
    prevState: string | undefined,
@@ -209,7 +201,15 @@ export async function getTypeById(id: string) {
       const type = await Types.findOne({
          id: id,
       });
-      return type;
+      if (!type) throw new Error('Type does not exist.');
+
+      return {
+         id: type.id,
+         title: type.title,
+         slug: type.slug,
+         orderingNumber: type.orderingNumber,
+         status: type.status,
+      };
    } catch (e) {
       console.log(e);
    }
@@ -658,7 +658,27 @@ export async function getProjectBySlug(slug: string) {
       const project = await Projects.findOne({
          slug: slug,
       });
-      return project;
+      if (!project) throw new Error('Project does not exist.');
+      return {
+         id: project.id,
+         title: project.title,
+         slug: project.slug,
+         typeId: project.typeId,
+         mainImageId: project.mainImageId,
+         galleryImagesIds: project.galleryImagesIds,
+         award: project.award,
+         description: project.description,
+         year: project.year,
+         area: project.area,
+         address: project.address,
+         designTeam: project.designTeam,
+         collaboration: project.collaboration,
+         viewCounter: project.viewCounter,
+         showOnHomePage: project.showOnHomePage,
+         status: project.status,
+         createdAt: project.createdAt,
+         updatedAt: project.updatedAt,
+      };
    } catch (e) {
       console.log(e);
    }
@@ -725,12 +745,17 @@ export async function getActiveAwardedProjects() {
 export async function getImageById(id: string) {
    try {
       await connectMongo();
-
       // We have to check if the request is for a new Types or not.
       const image = await Images.findOne({
          id: id,
       });
-      return image;
+      if (!image) throw new Error('Image does not exist.');
+      return {
+         id: image.id,
+         fileURL: image.fileURL,
+         projectId: image.projectId,
+         status: image.status,
+      };
    } catch (e) {
       console.log(e);
    }

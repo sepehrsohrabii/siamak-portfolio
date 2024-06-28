@@ -10,7 +10,7 @@ import TrustSection from '@/components/PublicSide/HomePage/trustSection';
 
 const HomePage: React.FC = () => {
    return (
-      <div>
+      <>
          <HeroSection />
          <OurProjectsSection />
          <AboutUsSection />
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
          <TrustSection />
          <StatisticsSection />
          <CallUsSection />
-      </div>
+      </>
    );
 };
 export default HomePage;

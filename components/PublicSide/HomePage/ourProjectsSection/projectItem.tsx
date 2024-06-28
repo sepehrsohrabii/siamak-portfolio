@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
@@ -18,20 +19,20 @@ export default function ProjectItem({ project }: { project: ProjectsType }) {
    const [imageUrl, setImageUrl] = useState<string>('');
    const [typeName, setTypeName] = useState<string>('');
    const [isLoading, setIsLoading] = useState<boolean>(true);
+   const getImageUrl = async () => {
+      const image = await getImageById(project.mainImageId);
+      if (image && image.fileURL) {
+         setImageUrl(image.fileURL);
+         setIsLoading(false);
+      }
+   };
+   const getTypeName = async () => {
+      const type = await getTypeById(project.typeId);
+      if (type && type.title) {
+         setTypeName(type.title);
+      }
+   };
    useEffect(() => {
-      const getImageUrl = async () => {
-         const image = await getImageById(project.mainImageId);
-         if (image) {
-            setImageUrl(image.fileURL);
-            setIsLoading(false);
-         }
-      };
-      const getTypeName = async () => {
-         const type = await getTypeById(project.typeId);
-         if (type.title) {
-            setTypeName(type.title);
-         }
-      };
       getImageUrl();
       getTypeName();
    }, [project.mainImageId, project.typeId]);

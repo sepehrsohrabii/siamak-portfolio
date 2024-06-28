@@ -27,7 +27,7 @@ const SingleProjectMainContainer = ({
       if (!project) return;
       try {
          const image = await getImageById(project.mainImageId);
-         if (image.fileURL) {
+         if (image?.fileURL) {
             setMainImageUrl(image.fileURL);
          }
       } catch (e) {
@@ -37,13 +37,14 @@ const SingleProjectMainContainer = ({
    const getTypeName = async () => {
       if (!project) return;
       const type = await getTypeById(project.typeId);
-      if (type.title) {
+      if (type?.title) {
          setTypeName(type.title);
       }
    };
    const fetchProject = async () => {
       try {
          const res = await getProjectBySlug(params.slug);
+         if (!res) return;
          setProject(res);
       } catch (error) {
          console.log(error);
