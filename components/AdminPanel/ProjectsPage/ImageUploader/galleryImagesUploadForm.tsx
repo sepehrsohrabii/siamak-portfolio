@@ -1,11 +1,13 @@
-import { Label, Paragraph3 } from '@/components/General/typography';
-import { IImagesSchema, ProjectsType } from '@/utils/types';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { getProjectById, getImageById } from '@/utils/actions';
-import { MinusIcon } from '@heroicons/react/24/solid';
-import LoadingSpinSM from '@/components/General/loadingSpinSM';
+
 import axios from 'axios';
+import Link from 'next/link';
+
+import LoadingSpinSM from '@/components/General/loadingSpinSM';
+import { Label, Paragraph3 } from '@/components/General/typography';
+import { getImageById, getProjectById } from '@/utils/actions';
+import { ProjectsType } from '@/utils/types';
+import { MinusIcon } from '@heroicons/react/24/solid';
 
 const GalleryImagesUploadForm = ({
    project,
@@ -18,7 +20,7 @@ const GalleryImagesUploadForm = ({
    const [uploading, setUploading] = useState(false);
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [galleryImagesIds, setGalleryImagesIds] = useState<string[]>([]);
-   const [galleryImages, setGalleryImages] = useState<IImagesSchema[]>([]);
+   const [galleryImages, setGalleryImages] = useState<any[]>([]);
    const [totalUploaded, setTotalUploaded] = useState(0);
 
    const handleRemoveImage = async (imageId: string, index: number) => {
@@ -27,8 +29,8 @@ const GalleryImagesUploadForm = ({
          await fetch(`/api/image/delete/${imageId}`, {
             method: 'DELETE',
          });
-         setGalleryImages((prevImages) =>
-            prevImages.filter((_, i) => i !== index)
+         setGalleryImages(
+            (prevImages) => prevImages?.filter((_, i) => i !== index)
          );
          setGalleryImagesIds((prevImages) =>
             prevImages.filter((id) => id !== imageId)
@@ -108,7 +110,9 @@ const GalleryImagesUploadForm = ({
          const images = await Promise.all(
             galleryImagesIds.map((imageId) => getImageById(imageId))
          );
-         setGalleryImages(images.filter(Boolean)); // Filter out any undefined images
+         if (images && images.length > 0) {
+            setGalleryImages(images.filter(Boolean)); // Filter out any undefined images
+         }
       } catch (error) {
          console.error('Error fetching images:', error);
       }
@@ -155,7 +159,8 @@ const GalleryImagesUploadForm = ({
                </Paragraph3>
             </div>
          )}
-         {galleryImages.length > 0 &&
+         {galleryImages &&
+            galleryImages.length > 0 &&
             galleryImages.map((image, index) => (
                <div
                   key={image.id}

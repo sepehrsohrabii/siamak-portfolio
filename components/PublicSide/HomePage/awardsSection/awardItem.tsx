@@ -21,7 +21,7 @@ export default function AwardItem({ project }: { project: ProjectsType }) {
    useEffect(() => {
       const getImageUrl = async () => {
          const image = await getImageById(project.mainImageId);
-         if (image.fileURL) {
+         if (image?.fileURL) {
             setImageUrl(image.fileURL);
             setIsLoading(false);
          }
