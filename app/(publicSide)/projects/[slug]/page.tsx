@@ -1,5 +1,6 @@
 import SingleProjectMainContainer from '@/components/PublicSide/SingleProjectPage/mainContainer';
 import { getImageById, getProjectBySlug } from '@/utils/actions';
+
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
@@ -10,24 +11,40 @@ export async function generateMetadata(
    { params }: Props,
    parent: ResolvingMetadata
 ): Promise<Metadata> {
-   // read route params
    const slug = params.slug;
 
-   // fetch data
-   const project = await getProjectBySlug(slug);
-   const image = await getImageById(project.mainImageId);
+   try {
+      // Fetch data concurrently
+      const [project, parentMetadata] = await Promise.all([
+         getProjectBySlug(slug),
+         parent,
+      ]);
 
-   // optionally access and extend (rather than replace) parent metadata
-   const previousImages = (await parent).openGraph?.images || [];
+      if (!project) {
+         return {
+            title: 'Project not found',
+         };
+      }
 
-   return {
-      title: project.title,
-      openGraph: {
-         images: [image, ...previousImages],
-      },
-   };
+      const image: any | undefined = await getImageById(project.mainImageId);
+      const previousImages = parentMetadata.openGraph?.images || [];
+
+      return {
+         title: project.title,
+         openGraph: {
+            images: image ? [image, ...previousImages] : previousImages,
+         },
+      };
+   } catch (error) {
+      console.error('Error generating metadata:', error);
+      return {
+         title: 'Error loading project',
+      };
+   }
 }
+
 const SingleProjectPage = ({ params }: Props) => {
    return <SingleProjectMainContainer params={params} />;
 };
+
 export default SingleProjectPage;
