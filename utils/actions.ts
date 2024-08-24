@@ -418,7 +418,7 @@ export async function getProjectById(id: string) {
       const project = await Projects.findOne({
          id: id,
       });
-      return project;
+      return project.toJSON();
    } catch (e) {
       console.log(e);
    }
@@ -474,7 +474,7 @@ export async function editProject(
       );
       if (!updatedProject) throw new Error('Project does not exist.');
 
-      return updatedProject;
+      return updatedProject.toJSON();
    } catch (e) {
       console.log(e);
       throw new Error('An error occurred on saving the project.');

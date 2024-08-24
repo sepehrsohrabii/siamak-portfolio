@@ -1,10 +1,12 @@
-import { Label, Paragraph3 } from '@/components/General/typography';
-import { ProjectsType } from '@/utils/types';
 import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
-import { getProjectById, getImageById } from '@/utils/actions';
-import { MinusIcon } from '@heroicons/react/24/solid';
+
 import LoadingSpinSM from '@/components/General/loadingSpinSM';
+import { Label, Paragraph3 } from '@/components/General/typography';
+import { getImageById, getProjectById } from '@/utils/actions';
+import { ProjectsType } from '@/utils/types';
+import { MinusIcon } from '@heroicons/react/24/solid';
 
 const MainImageUploadForm = ({
    project,
@@ -88,8 +90,13 @@ const MainImageUploadForm = ({
 
    useEffect(() => {
       const getUpdatedProject = async () => {
+         console.log('project.id: ', project.id);
          const projectsList: ProjectsType = await getProjectById(project.id);
-         if (projectsList) setUpdatedProject(projectsList);
+
+         if (projectsList) {
+            console.log('projectsList: ', projectsList);
+            setUpdatedProject(projectsList);
+         }
       };
       if (uploading === false && isLoading === false) {
          getUpdatedProject();
